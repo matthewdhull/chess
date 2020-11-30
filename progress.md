@@ -8,6 +8,12 @@ Commit [85cd95](https://github.com/matthewdhull/chess/commit/85cd7955bf602cd0f36
 
 ![Alternating Colors](img/alternating_colors_board.png)
 
-Colors chosen from the [swiss style color picker] (https://fabianburghardt.de/swisscolors/)
+Colors chosen from the [swiss style color picker](https://fabianburghardt.de/swisscolors/)
 
 Commit [51168e4](https://github.com/matthewdhull/chess/commit/51168e44bf5d38d061212f6cda297b08eb3b67e2)
+
+### - x and y axes indicate board positions
+
+![Board Positions](img/board_positions.png)
+
+Commit [ac258a6](https://github.com/matthewdhull/chess/commit/ac258a6106e9dcafd08baef30f54c5341477279f)
