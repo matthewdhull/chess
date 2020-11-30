@@ -4,28 +4,43 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="">
  </head>
-
 <body>
   <script src="lib/d3/d3.min.js"></script>
   <script>
 
 	const size = 8
+	const squareStrokeWidth = 3
 	const rectWidth = 50, rectHeight = rectWidth
 	const lightSquareColor = '#dfe0e2'
 	const darkSquareColor = '#a5a6a9'
 	const squareStrokeColor = '#2f292b'
-	var margin = {'right':3, 'left':3, 'top':3, 'bottom':3}
+	var margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
 	
-	
+
 	// data generation
-	const data = Array.from(Array(size**2).keys())
+	const data = Array.from(Array(size**2).keys())	
+
+	// scales + axes
+	var xScale = d3.scaleLinear()
+		.domain([0,50,350]).range([0,50,350])
+	let xAxisTickLabels = ['A','B','C','D','E','F','G','H'];
+  	xAxis = d3.axisBottom(xScale)
+  		.tickFormat((d,i) => xAxisTickLabels[i])
+  		
+  	var yScale = d3.scaleLinear()
+  		.domain([0,50,350]).range([0,50,350])
+  	let yAxisTickLabels = ['8','7','6','5','4','3','2','1']
+  	yAxis = d3.axisRight(yScale)
+  		.tickFormat((d,i) => yAxisTickLabels[i])
+  	
+  	
   	var svg = d3.select('body')
   		.append('svg')
   		.attr('height', (rectHeight * size) + margin.top + margin.bottom)
   		.attr('width', (rectWidth * size) + margin.right + margin.left)
 
   	svg.append("g")
-  		.attr("transform", "translate(3,3)")
+  		.attr("transform", "translate("+squareStrokeWidth+","+squareStrokeWidth+")")
   		.selectAll('rect')
   		.data(data)
   		.enter()
@@ -38,7 +53,7 @@
   		})
   		.attr('width', rectWidth)
   		.attr('height', rectHeight)
-  		.attr('stroke-width', 3)
+  		.attr('stroke-width', squareStrokeWidth)
   		.attr('stroke', squareStrokeColor)
   		.attr('fill', function(d){
 	  		if( Math.floor(d / size) % 2 == 0 ){
@@ -51,6 +66,20 @@
 				return darkSquareColor		  		
 		  	}
 		  	return lightSquareColor
-  		})  		
-</script>
+  		})
+  		
+  	svg.append("g")
+  		.attr("width", 400)
+  		.attr("transform", 
+  			"translate("+((rectWidth*0.5)+squareStrokeWidth)+","+((rectHeight*size)+squareStrokeWidth)+")")
+  		.call(xAxis)
+  		.call(g => g.select(".domain").remove())  		
+
+  	svg.append("g")
+	  	.attr("transform", 
+	  		"translate("+((rectHeight*size)+squareStrokeWidth)+", "+((rectWidth*0.5)+squareStrokeWidth)+")")  
+  		.call(yAxis)
+  		.call(g => g.select(".domain").remove())  		
+      
+    </script>
 </body>
