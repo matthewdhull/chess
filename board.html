@@ -3,6 +3,12 @@
   <title>board</title>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="">
+  <style>
+	 svg g text {
+		 font-size: 9pt;
+		 font-family: sans-serif;
+	 }
+  </style>
  </head>
 <body>
   <script src="lib/d3/d3.min.js"></script>
@@ -22,13 +28,13 @@
 
 	// scales + axes
 	var xScale = d3.scaleLinear()
-		.domain([0,50,350]).range([0,50,350])
+	.domain([25,50,400]).range([25,50,400])
 	let xAxisTickLabels = ['A','B','C','D','E','F','G','H'];
   	xAxis = d3.axisBottom(xScale)
   		.tickFormat((d,i) => xAxisTickLabels[i])
   		
   	var yScale = d3.scaleLinear()
-  		.domain([0,50,350]).range([0,50,350])
+  		.domain([25,50,400]).range([25,50,400])
   	let yAxisTickLabels = ['8','7','6','5','4','3','2','1']
   	yAxis = d3.axisRight(yScale)
   		.tickFormat((d,i) => yAxisTickLabels[i])
@@ -38,7 +44,8 @@
   		.append('svg')
   		.attr('height', (rectHeight * size) + margin.top + margin.bottom)
   		.attr('width', (rectWidth * size) + margin.right + margin.left)
-
+  	
+  	// board 
   	svg.append("g")
   		.attr("transform", "translate("+squareStrokeWidth+","+squareStrokeWidth+")")
   		.selectAll('rect')
@@ -67,19 +74,38 @@
 		  	}
 		  	return lightSquareColor
   		})
-  		
+	
+	// axes	
   	svg.append("g")
   		.attr("width", 400)
-  		.attr("transform", 
-  			"translate("+((rectWidth*0.5)+squareStrokeWidth)+","+((rectHeight*size)+squareStrokeWidth)+")")
+  		.attr("transform", "translate(-22,403)")
   		.call(xAxis)
   		.call(g => g.select(".domain").remove())  		
 
   	svg.append("g")
 	  	.attr("transform", 
-	  		"translate("+((rectHeight*size)+squareStrokeWidth)+", "+((rectWidth*0.5)+squareStrokeWidth)+")")  
+	  		"translate(403,-22)") 
   		.call(yAxis)
   		.call(g => g.select(".domain").remove())  		
-      
+  	
+  	// board annotation
+  	svg.append("g")
+  		.selectAll("text")
+  		.data(data)
+  		.enter()
+  		.append("text")
+  		.attr('x', function(d){
+	  		return Math.floor(d/8) * rectWidth + 21
+   		})
+  		.attr('y', function(d){	
+	  		m = d % size
+	  		return m * rectHeight + 33
+  		})
+  		.text(function(d){
+	  		f = xAxisTickLabels[Math.floor(d/8)]
+	  		r = yAxisTickLabels[d % 8]
+	  		return f.concat('', r)
+  		})
+  		
     </script>
 </body>
