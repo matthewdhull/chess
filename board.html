@@ -14,14 +14,18 @@
 	const lightSquareColor = '#dfe0e2'
 	const darkSquareColor = '#a5a6a9'
 	const squareStrokeColor = '#2f292b'
+	var margin = {'right':3, 'left':3, 'top':3, 'bottom':3}
+	
+	
 	// data generation
 	const data = Array.from(Array(size**2).keys())
-  	
   	var svg = d3.select('body')
   		.append('svg')
-  		.attr('height', rectHeight * size)
-  		.attr('width', rectWidth * size)
+  		.attr('height', (rectHeight * size) + margin.top + margin.bottom)
+  		.attr('width', (rectWidth * size) + margin.right + margin.left)
+
   	svg.append("g")
+  		.attr("transform", "translate(3,3)")
   		.selectAll('rect')
   		.data(data)
   		.enter()
