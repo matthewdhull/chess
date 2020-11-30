@@ -1,0 +1,36 @@
+  <!DOCTYPE html>
+<head>
+  <title>board</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="">
+ </head>
+
+<body>
+  <script src="lib/d3/d3.min.js"></script>
+  <script>
+	// data generation
+	const size = 8
+	const data = Array.from(Array(size**2).keys())
+	const rectWidth = 50, rectHeight = rectWidth
+  	var svg = d3.select('body')
+  		.append('svg')
+  		.attr('height', rectHeight * size)
+  		.attr('width', rectWidth * size)
+  	svg.append("g")
+  		.selectAll('rect')
+  		.data(data)
+  		.enter()
+  		.append('rect')
+        .attr('x', function (d) {
+			return Math.floor(d / size) * rectWidth 
+        })
+  		.attr('y', function(d){
+  			return (d % size) * rectHeight
+  		})
+  		.attr('width', rectWidth)
+  		.attr('height', rectHeight)
+  		.attr('stroke-width', 3)
+  		.attr('stroke', 'plum')
+  		.attr('fill', 'pink')  		
+</script>
+</body>
