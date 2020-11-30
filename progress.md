@@ -17,3 +17,11 @@ Commit [51168e4](https://github.com/matthewdhull/chess/commit/51168e44bf5d38d061
 ![Board Positions](img/board_positions.png)
 
 Commit [ac258a6](https://github.com/matthewdhull/chess/commit/ac258a6106e9dcafd08baef30f54c5341477279f)
+
+### - Full board position annotation added
+
+- Plan to add visibility toggle for board positions
+
+![Board Position Annotations](img/board_position_annotations.png)
+
+Commit [45799c7](https://github.com/matthewdhull/chess/commit/4b799c7363b5dfd92fa251000c150dbd21085c79)
