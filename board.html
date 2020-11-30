@@ -8,10 +8,15 @@
 <body>
   <script src="lib/d3/d3.min.js"></script>
   <script>
-	// data generation
+
 	const size = 8
-	const data = Array.from(Array(size**2).keys())
 	const rectWidth = 50, rectHeight = rectWidth
+	const lightSquareColor = '#dfe0e2'
+	const darkSquareColor = '#a5a6a9'
+	const squareStrokeColor = '#2f292b'
+	// data generation
+	const data = Array.from(Array(size**2).keys())
+  	
   	var svg = d3.select('body')
   		.append('svg')
   		.attr('height', rectHeight * size)
@@ -30,7 +35,18 @@
   		.attr('width', rectWidth)
   		.attr('height', rectHeight)
   		.attr('stroke-width', 3)
-  		.attr('stroke', 'plum')
-  		.attr('fill', 'pink')  		
+  		.attr('stroke', squareStrokeColor)
+  		.attr('fill', function(d){
+	  		if( Math.floor(d / size) % 2 == 0 ){
+		  		if ((d % 2) == 0){
+			  		return lightSquareColor		  		
+		  		}
+		  		return darkSquareColor
+		  	}
+	  		if ((d % 2) == 0){
+				return darkSquareColor		  		
+		  	}
+		  	return lightSquareColor
+  		})  		
 </script>
 </body>
