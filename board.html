@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="">
   <style>
+	  * {
+		  font-family: sans-serif;
+	  }
 	 svg g text {
 		 font-size: 9pt;
-		 font-family: sans-serif;
 	 }
   </style>
  </head>
@@ -32,12 +34,38 @@
 	let xAxisTickLabels = ['A','B','C','D','E','F','G','H'];
   	xAxis = d3.axisBottom(xScale)
   		.tickFormat((d,i) => xAxisTickLabels[i])
-  		
+
   	var yScale = d3.scaleLinear()
   		.domain([25,50,400]).range([25,50,400])
-  	let yAxisTickLabels = ['8','7','6','5','4','3','2','1']
+  	let yAxisTickLabels = ['1','2','3','4','5','6','7','8']
   	yAxis = d3.axisRight(yScale)
   		.tickFormat((d,i) => yAxisTickLabels[i])
+
+  	// construct hash of board position names and coordinates
+  	var positions = {}
+	var i = 0
+	const yReverse = yAxisTickLabels.reverse()
+	while(i < xAxisTickLabels.length) {
+	    var j = 0
+		while(j < yAxisTickLabels.length) {
+			rank = yReverse[j]
+			file = xAxisTickLabels[i]
+			x = i * (rectWidth) + (rectWidth/2)+squareStrokeWidth
+			y = rank * (rectHeight) - (rectHeight/2)+squareStrokeWidth
+		    positions[file.concat('',rank)] = [x,y]
+ 		    j++
+		}
+		i++
+	}
+
+  	
+  	function getPositionLabel(d){
+	  	//iterate on data
+	  	// return 'E5', 'E4', etc.
+  		f = xAxisTickLabels[Math.floor(d/8)]
+  		r = yAxisTickLabels[d % 8]
+  		return f.concat('', r)	  	
+  	}
   	
   	
   	var svg = d3.select('body')
@@ -74,38 +102,66 @@
 		  	}
 		  	return lightSquareColor
   		})
+  		.on('mouseover', function(d){
+  			square = getPositionLabel(d)
+	  		s = 'Position: '		
+	  		d3.select("#positionDisplay")
+	  			.text(s.concat('',square))
+  		})
+  		.on('mouseout',function(){
+  			d3.select("#positionDisplay")
+  			.text('Position: ')
+  		})
 	
 	// axes	
   	svg.append("g")
-  		.attr("width", 400)
-  		.attr("transform", "translate(-22,403)")
+  		.attr("transform", "translate(-22,"+((rectWidth*size)+squareStrokeWidth)+")")
   		.call(xAxis)
   		.call(g => g.select(".domain").remove())  		
 
   	svg.append("g")
 	  	.attr("transform", 
-	  		"translate(403,-22)") 
+	  		"translate("+((rectHeight*size)+squareStrokeWidth)+",-22)") 
   		.call(yAxis)
   		.call(g => g.select(".domain").remove())  		
   	
-  	// board annotation
+  	// annotate square centers
+	svg.append("g")
+		.selectAll("circle")
+		.data(Array.from(Object.keys(positions)))
+		.enter()
+		.append('circle')
+		.attr('cx', function(d){
+			return positions[d][0]
+		})
+		.attr('cy', function(d){
+			return positions[d][1]
+		})
+		.attr('r', function(d){
+			return 11
+		})
+		.attr('stroke', 'black')
+		.attr('fill', 'white')  	
+  	
+  	
+  	// board position annotations
   	svg.append("g")
   		.selectAll("text")
   		.data(data)
   		.enter()
   		.append("text")
   		.attr('x', function(d){
-	  		return Math.floor(d/8) * rectWidth + 21
+	  		return (Math.floor(d / size) * rectWidth) + 20.4
    		})
   		.attr('y', function(d){	
 	  		m = d % size
-	  		return m * rectHeight + 33
+	  		return (m * rectHeight) + 32.5
   		})
   		.text(function(d){
-	  		f = xAxisTickLabels[Math.floor(d/8)]
-	  		r = yAxisTickLabels[d % 8]
-	  		return f.concat('', r)
+	  		return getPositionLabel(d)
   		})
+
   		
     </script>
+    <div id="positionDisplay">(Hover) Position:</div>
 </body>
