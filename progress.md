@@ -25,3 +25,10 @@ Commit [ac258a6](https://github.com/matthewdhull/chess/commit/ac258a6106e9dcafd0
 ![Board Position Annotations](img/board_position_annotations.png)
 
 Commit [45799c7](https://github.com/matthewdhull/chess/commit/4b799c7363b5dfd92fa251000c150dbd21085c79)
+
+### - Square Center Annotations
+ - Hover-over square shows board position
+
+![Square Cente Annotations](img/center_annotations.png)
+
+Commit [27c1aab](https://github.com/matthewdhull/chess/commit/27c1aab3420bddc38086edd7cd4af7d5e200872f)
