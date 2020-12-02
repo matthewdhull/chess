@@ -13,8 +13,9 @@
   </style>
  </head>
 <body>
-  <script src="lib/d3/d3.min.js"></script>
-  <script>
+<script src="pieces.js"></script>
+<script src="lib/d3/d3.min.js"></script>
+<script>
 
 	const size = 8
 	const squareStrokeWidth = 3
@@ -44,7 +45,7 @@
   	// construct hash of board position names and coordinates
   	var positions = {}
 	var i = 0
-	const yReverse = yAxisTickLabels.reverse()
+	var yReverse = yAxisTickLabels.reverse()
 	while(i < xAxisTickLabels.length) {
 	    var j = 0
 		while(j < yAxisTickLabels.length) {
@@ -52,7 +53,11 @@
 			file = xAxisTickLabels[i]
 			x = i * (rectWidth) + (rectWidth/2)+squareStrokeWidth
 			y = rank * (rectHeight) - (rectHeight/2)+squareStrokeWidth
-		    positions[file.concat('',rank)] = [x,y]
+			yReverse = yAxisTickLabels.reverse()
+			rank = yAxisTickLabels[j]
+			position_name = file.concat('',rank)
+		    positions[position_name] = [x,y]			
+			yReverse = yAxisTickLabels.reverse()		    
  		    j++
 		}
 		i++
@@ -140,8 +145,8 @@
 		.attr('r', function(d){
 			return 11
 		})
-		.attr('stroke', 'black')
-		.attr('fill', 'white')  	
+		.attr('stroke', 'rgba(.5,.5,.5,.2)')
+		.attr('fill', 'rgba(1.0,1.0,1.0,.1)')  	
   	
   	
   	// board position annotations
@@ -161,6 +166,37 @@
 	  		return getPositionLabel(d)
   		})
 
+  	//some hard-coded rook pieces
+	var rx = positions["A1"][0] 	
+	var ry = positions["A1"][1]	
+
+  	svg.append("path")     
+  		.style("stroke", "black")
+  		.attr("fill", "#fbfbfb")
+  		.attr("transform", 
+  			"translate("+(positions["A1"][0]-25)+","+(positions["A1"][1]-24)+")")
+  		.attr("d", rook_path);
+
+  	svg.append("path")     
+  		.style("stroke", "black")
+  		.attr("fill", "#fbfbfb")
+  		.attr("transform", 
+  			"translate("+(positions["H1"][0]-25)+","+(positions["H1"][1]-24)+")")
+  		.attr("d", rook_path);  		
+  		
+  	svg.append("path")     
+  		.style("stroke", "#f4f4f4")
+  		.attr("fill", "#303030")
+  		.attr("transform", 
+  			"translate("+(positions["A8"][0]-25)+","+(positions["A8"][1]-24)+")")
+  		.attr("d", rook_path);  		
+  		
+  	svg.append("path")     
+  		.style("stroke", "#f4f4f4")
+  		.attr("fill", "#303030")
+  		.attr("transform", 
+  			"translate("+(positions["H8"][0]-25)+","+(positions["H8"][1]-24)+")")
+  		.attr("d", rook_path);  		  		
   		
     </script>
     <div id="positionDisplay">(Hover) Position:</div>
