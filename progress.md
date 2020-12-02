@@ -32,3 +32,15 @@ Commit [45799c7](https://github.com/matthewdhull/chess/commit/4b799c7363b5dfd92f
 ![Square Cente Annotations](img/center_annotations.png)
 
 Commit [27c1aab](https://github.com/matthewdhull/chess/commit/27c1aab3420bddc38086edd7cd4af7d5e200872f)
+
+### - Piece path and positioning
+- Using `pieces.js` to hold the `d` value to specify the path to be drawn for a piece.  We start by drawing a rook.  To position the it, we use the `positions` dictionary and get the coordinates for where to  place the rook path within the `svg` element.
+
+Getting the position
+`	
+	x = positions["A8"][0]
+	y = positions["A8"][1]
+`
+![Piece Positioning](img/piece_positioning.png)
+
+Commit [84165e](https://github.com/matthewdhull/chess/commit/84165edbb1bde518ce159414c029993594ffac48)
