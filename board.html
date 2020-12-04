@@ -4,15 +4,31 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="">
   <style>
+	
+	 body {
+		 display: grid;
+	 }
+	 	  
 	  * {
 		  font-family: sans-serif;
 	  }
 	 svg g text {
 		 font-size: 9pt;
 	 }
+	 
+	 svg {
+	 	/*place svg element above button */
+		 grid-row-start: 1; 
+	 }
+	 button {
+		 width: 50px;
+	 }
+
+	 
   </style>
  </head>
 <body>
+<button id="start">Move</button>    
 <script src="pieces.js"></script> 
 <script src="lib/d3/d3.min.js"></script>
 <script>
@@ -192,7 +208,16 @@
 		.attr("d", function(d){
 			return start_positions[d].path
 		})
-  		
+	
+	// piece movement
+		d3.select("#start").on("click", function() {
+			var newPosition = positions["E4"]
+			d3.select("#wkp")
+				.transition()
+				.attr("transform", "translate("+(newPosition[0]-25)+","+
+  			(newPosition[1]-24)+")")
+  			start_positions["wkp"].position["E4"]
+		});	
+	
     </script>
-    <div id="positionDisplay">(Hover) Position:</div>
 </body>

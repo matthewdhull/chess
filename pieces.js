@@ -28,18 +28,21 @@ pawn_path = "M35,41.18l-1.88-1.49a.47.47,0,0,1-.16-.36V38.1a.44.44,0,0,0-.2-.38L
 start_positions = {
 					"wqr":{
 						"path": rook_path
+						, "name": "white's queen rook"
 						, "position": "A1"
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 						}
 					,"wkr":{
 						"path": rook_path
+						, "name": "white's king rook"						
 						, "position": "H1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqn":{
 						"path": knight_path
+						, "name": "white's queen knight"						
 						, "position": "B1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
@@ -47,77 +50,90 @@ start_positions = {
 					,"wkn":{
 						"path": knight_path
 						, "position": "G1"						
+						, "name": "white's king knight"												
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqb":{
 						"path": bishop_path
+						, "name": "white's queen bishop"						
 						, "position": "C1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wkb":{
 						"path": bishop_path
+						, "name": "white's king bishop"						
 						, "position": "F1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wq":{
 						"path": queen_path
+						, "name": "white's queen"						
 						, "position": "D1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}	
 					,"wk":{
 						"path": king_path
+						, "name": "white's king"						
 						, "position": "E1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqrp":{
 						"path": pawn_path
+						, "name": "white's queen rook pawn"						
 						, "position": "A2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}																									
 					,"wqnp":{
 						"path": pawn_path
+						, "name": "white's queen knight pawn"						
 						, "position": "B2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqbp":{
 						"path": pawn_path
+						, "name": "white's queen bishop pawn"						
 						, "position": "C2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}	
 					,"wqp":{
 						"path": pawn_path
+						, "name": "white's queen pawn"						
 						, "position": "D2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}	
 					,"wkp":{
 						"path": pawn_path
+						, "name": "white's kings pawn"						
 						, "position": "E2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wkbp":{
 						"path": pawn_path
+						, "name": "white's king bishop pawn"						
 						, "position": "F2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}		
 					,"wknp":{
 						"path": pawn_path
+						, "name": "white's king knight pawn"						
 						, "position": "G2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}				
 					,"wkrp":{
 						"path": pawn_path
+						, "name": "white's king rook pawn"												
 						, "position": "H2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
