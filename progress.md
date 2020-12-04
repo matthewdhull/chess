@@ -38,8 +38,11 @@ Commit [27c1aab](https://github.com/matthewdhull/chess/commit/27c1aab3420bddc380
 
 Getting the position:
 
-`x = positions["A8"][0]`
-`y = positions["A8"][1]`
+```
+x = positions["A8"][0]
+y = positions["A8"][1]
+```
+
 
 ![Piece Positioning](img/piece_positioning.png)
 
@@ -51,11 +54,14 @@ Commit [b61e48f](https://github.com/matthewdhull/chess/commit/b61e48f98534bceeb3
 
 e.g., Black's Queen Rook is named "bqr" and has the following data: 
 
-`"bqr":{
+
+```
+"bqr":{
 	"path": rook_path
 	, "position": "A8"
 	, "fill": black_piece_fill
-	, "stroke": black_piece_stroke`
+	, "stroke": black_piece_stroke
+```
 						
 and append as seen [here](https://github.com/matthewdhull/chess/blob/44f5efe90eef3ee326224ad0e1cd50baf7cd25d8/board.html#L171)
 
@@ -63,3 +69,30 @@ and append as seen [here](https://github.com/matthewdhull/chess/blob/44f5efe90ee
 
 Commit [44f5efe](https://github.com/matthewdhull/chess/commit/44f5efe90eef3ee326224ad0e1cd50baf7cd25d8)
 						
+						
+### Exploring Piece Movement
+
+By using D3's `.transition()` function, let's  explore how animate  the movement of a piece to a new position.   For this example, we move white's king pawn `wkp` to E4.  
+
+Bind the movement event to a button so we can control when the  move is triggered. 
+ 
+`d3.select("#start").on("click", function() {...}`
+
+We can access the coordinates of E4 as:
+
+`var newPosition = positions["E4"]`
+
+Then, select `wkp` and assign the E4 position to the pieces transform translation attribute.  To animate this position change, use the  `.transition())` function before assigning the new translation. 
+
+```
+d3.select("#wkp")
+    .transition()
+    .attr("transform", "translate("+(newPosition[0]-25)+","+
+(newPosition[1]-24)+")")
+```
+
+[full code](https://github.com/matthewdhull/chess/blob/9c2f5950a3ebfce514cbc1a015da841276a030af/board.html#L213)
+
+![Single Piece Movement](img/single_piece_movement.png)
+
+Commit [9c2f595](https://github.com/matthewdhull/chess/commit/9c2f5950a3ebfce514cbc1a015da841276a030af)
