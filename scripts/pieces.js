@@ -1,9 +1,15 @@
 // color schemes
-white_piece_fill = "#fbfbfb"
-white_piece_stroke = "black"
-
-black_piece_fill = "#303030"
-black_piece_stroke = "#f4f4f4"
+const squareStrokeWidth = 3
+const rectWidth = 50, rectHeight = rectWidth
+//const lightSquareColor = '#dfe0e2'
+const lightSquareColor = '#FFFEE3'
+//const darkSquareColor = '#a5a6a9'
+const darkSquareColor = '#419162'
+const squareStrokeColor = '#2f292b'
+const white_piece_fill = "#fbfbfb"
+const white_piece_stroke = "black"
+const black_piece_fill = "#303030"
+const black_piece_stroke = "#f4f4f4"
 
 
 // paths for each piece type
@@ -25,31 +31,31 @@ pawn_path = "M35,41.18l-1.88-1.49a.47.47,0,0,1-.16-.36V38.1a.44.44,0,0,0-.2-.38L
 // black king rook = bqr, A8
 // black queen rook = bkr, H8
 
-start_positions = {
+board = {
 					"wqr":{
 						"path": rook_path
 						, "name": "white's queen rook"
-						, "position": "A1"
+						, "position": "a1"
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 						}
 					,"wkr":{
 						"path": rook_path
 						, "name": "white's king rook"						
-						, "position": "H1"						
+						, "position": "h1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqn":{
 						"path": knight_path
 						, "name": "white's queen knight"						
-						, "position": "B1"						
+						, "position": "b1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wkn":{
 						"path": knight_path
-						, "position": "G1"						
+						, "position": "g1"						
 						, "name": "white's king knight"												
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
@@ -57,181 +63,318 @@ start_positions = {
 					,"wqb":{
 						"path": bishop_path
 						, "name": "white's queen bishop"						
-						, "position": "C1"						
+						, "position": "c1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wkb":{
 						"path": bishop_path
 						, "name": "white's king bishop"						
-						, "position": "F1"						
+						, "position": "f1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wq":{
 						"path": queen_path
 						, "name": "white's queen"						
-						, "position": "D1"						
+						, "position": "d1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}	
 					,"wk":{
 						"path": king_path
 						, "name": "white's king"						
-						, "position": "E1"						
+						, "position": "e1"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqrp":{
 						"path": pawn_path
 						, "name": "white's queen rook pawn"						
-						, "position": "A2"						
+						, "position": "a2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}																									
 					,"wqnp":{
 						"path": pawn_path
 						, "name": "white's queen knight pawn"						
-						, "position": "B2"						
+						, "position": "b2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wqbp":{
 						"path": pawn_path
 						, "name": "white's queen bishop pawn"						
-						, "position": "C2"						
+						, "position": "c2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}	
 					,"wqp":{
 						"path": pawn_path
 						, "name": "white's queen pawn"						
-						, "position": "D2"						
+						, "position": "d2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}	
 					,"wkp":{
 						"path": pawn_path
 						, "name": "white's kings pawn"						
-						, "position": "E2"						
+						, "position": "e2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}
 					,"wkbp":{
 						"path": pawn_path
 						, "name": "white's king bishop pawn"						
-						, "position": "F2"						
+						, "position": "f2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}		
 					,"wknp":{
 						"path": pawn_path
 						, "name": "white's king knight pawn"						
-						, "position": "G2"						
+						, "position": "g2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}				
 					,"wkrp":{
 						"path": pawn_path
 						, "name": "white's king rook pawn"												
-						, "position": "H2"						
+						, "position": "h2"						
 						, "fill": white_piece_fill
 						, "stroke": white_piece_stroke
 					}			
 					,"bqr":{
 						"path": rook_path
-						, "position": "A8"
+						, "position": "a8"
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkr":{
 						"path": rook_path
-						, "position": "H8"
+						, "position": "h8"
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bqn":{
 						"path": knight_path
-						, "position": "B8"						
+						, "position": "b8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkn":{
 						"path": knight_path
-						, "position": "G8"						
+						, "position": "g8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bqb":{
 						"path": bishop_path
-						, "position": "C8"						
+						, "position": "c8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkb":{
 						"path": bishop_path
-						, "position": "F8"						
+						, "position": "f8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bq":{
 						"path": queen_path
-						, "position": "D8"						
+						, "position": "d8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}	
 					,"bk":{
 						"path": king_path
-						, "position": "E8"						
+						, "position": "e8"						
 							, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}				
 					,"bqrp":{
 						"path": pawn_path
-						, "position": "A7"						
+						, "position": "a7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}																									
 					,"bqnp":{
 						"path": pawn_path
-						, "position": "B7"						
+						, "position": "b7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bqbp":{
 						"path": pawn_path
-						, "position": "C7"						
+						, "position": "c7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}	
 					,"bqp":{
 						"path": pawn_path
-						, "position": "D7"						
+						, "position": "d7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}	
 					,"bkp":{
 						"path": pawn_path
-						, "position": "E7"						
+						, "position": "e7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkbp":{
 						"path": pawn_path
-						, "position": "F7"						
+						, "position": "f7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}		
 					,"bknp":{
 						"path": pawn_path
-						, "position": "G7"						
+						, "position": "g7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}				
 					,"bkrp":{
 						"path": pawn_path
-						, "position": "H7"						
+						, "position": "h7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}																																																																							
 				}
+
+
+function knightMoves(position){
+	// get the possible moves for a knight on a given position
+	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}
+	var reverseIndex = {"1":"a","2":"b","3":"c","4":"d","5":"e","6":"f","7":"g","8":"h"}
+	var rankIndex = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}
+	var movePossibilities = [[2,1], [2,-1], [-2,1], [-2,-1], [1,2], [1,-2], [-1,2], [-1,-2]]
+	var moves = []
+	// get index of file
+	var fidx = fileIndex[position[0]] //e.g., if a, then 1
+	var ridx = rankIndex[position[1]] //e.g., if 1, then 1
+	var i = 0
+	while(i < movePossibilities.length) {
+		newFidx = fidx + movePossibilities[i][0] //e.g., if 1, then 3
+		newRidx = ridx + movePossibilities[i][1] //e.g., if 1, then 2
+		if ((fidx > 0 && fidx < 9) && (ridx > 0 && ridx < 9)){
+			var f = reverseIndex[newFidx.toString()]
+			var r = rankIndex[newRidx]
+			if ((typeof f !== 'undefined') && (typeof r !== 'undefined')){
+				moves.push(f+r)
+			}
+		}
+		i += 1	
+	}
+	return moves
+}
+
+
+function bishopMoves(position){
+	// get the possible moves for a bishop on a given position
+	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}
+		var reverseIndex = {"1":"a","2":"b","3":"c","4":"d","5":"e","6":"f","7":"g","8":"h"}
+		var rankIndex = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}
+		var movePossibilities = [
+			[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7]
+			,[-1,1],[-2,2],[-3,3],[-4,4],[-5,5],[-6,6],[-7,7]		
+			,[1,-1],[2,-2],[3,-3],[4,-4],[5,-5],[6,-6],[7,-7]
+			,[-1,-1],[-2,-2],[-3,-3],[-4,-4],[-5,-5],[-6,-6],[-7,-7]			
+		]
+		var moves = []
+		var fidx = fileIndex[position[0]] 
+		var ridx = rankIndex[position[1]]
+		var i = 0
+		while(i < movePossibilities.length) {
+			newFidx = fidx + movePossibilities[i][0] //e.g., if 1, then 3
+			newRidx = ridx + movePossibilities[i][1] //e.g., if 1, then 2
+			if ((fidx > 0 && fidx < 9) && (ridx > 0 && ridx < 9)){
+				var f = reverseIndex[newFidx.toString()]
+				var r = rankIndex[newRidx]
+				if ((typeof f !== 'undefined') && (typeof r !== 'undefined')){
+					moves.push(f+r)
+				}
+			}
+			i += 1	
+		}
+		//console.log("bishop moves ",moves)
+		return moves			
+}
+				
+				
+function parseMove(index, move){
+	// take in a move from pgn
+	// translate into a move understood by d3 viz
+	
+	// e.g., move = "e4"
+	bishopMoves("d4")
+	
+	var piece = ""
+	var file = ""
+	var newPosition = ""
+	var pawn = false
+	
+	const pawns = {"a":"qrp", "b":"qnp", "c":"qbp", "d":"qp", "e":"kp", "f":"kbp", "g": "knp", "h":"krp"}
+	
+	if (move.length == 2) {
+		// move a pawn
+		pawn = true
+		file = move[0]
+		piece = pawns[file]
+		newPosition = move
+	}
+	
+	else if (move.length == 3){
+		file = move[1]
+		var newPosition = move.substring(1, 3)		
+		piece = move[0].toLowerCase()
+		// console.log(piece+" "+newPosition)
+		if (piece == "n"){
+			var allKnightMoves = [
+			{"wqn":knightMoves(board["wqn"].position)}
+			,{"wkn":knightMoves(board["wkn"].position)}
+			,{"bqn":knightMoves(board["bqn"].position)}
+			,{"bkn":knightMoves(board["bkn"].position)}
+			]
+			var i = 0
+			while(i < allKnightMoves.length){
+				var pieceKey = Object.keys(allKnightMoves[i])[0]
+				var theseMoves = allKnightMoves[i][pieceKey]
+				if (theseMoves.includes(newPosition)){
+					/* console.log(pieceKey+" "+newPosition) */
+					piece = pieceKey.substring(1,3)
+				}
+				i+=1
+			}
+		}
+		else if (piece == "b"){
+			var allBishopMoves = [
+			{"wqb":bishopMoves(board["wqb"].position)}
+			,{"wkb":bishopMoves(board["wkb"].position)}
+			,{"bqb":bishopMoves(board["bqb"].position)}
+			,{"bkb":bishopMoves(board["bkb"].position)}
+			]
+			var i = 0
+			while(i < allBishopMoves.length){
+				var pieceKey = Object.keys(allBishopMoves[i])[0]
+				var theseMoves = allBishopMoves[i][pieceKey]
+				if (theseMoves.includes(newPosition)){
+					/* console.log(pieceKey+" "+newPosition) */
+					piece = pieceKey.substring(1,3)
+				}
+				i+=1
+			}			
+		}
+	}
+	
+	if (index % 2 == 0) // determine black's move or white's move
+	{
+		// white to move
+		piece = "w"+piece
+		return ([piece,newPosition])
+	}
+		// black to move
+		piece = "b"+piece
+		return ([piece,newPosition])
+
+}				
