@@ -96,3 +96,10 @@ d3.select("#wkp")
 ![Single Piece Movement](img/single_piece_movement.png)
 
 Commit [9c2f595](https://github.com/matthewdhull/chess/commit/9c2f5950a3ebfce514cbc1a015da841276a030af)
+
+### Reading Portable Game Notation (pgn) 
+
+
+![Reading PGN](img/read_pgn.png)
+
+Commit [2b859d](https://github.com/matthewdhull/chess/commit/2b859d5093124fd2b29b2b85d95454309bcf9ebe)
