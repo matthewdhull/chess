@@ -147,3 +147,12 @@ const potentialMoves = knightMoves("g1")
 Iterate through the potential moves for each knight and determine whether or not it contains "f3".  In this case, white's king knight moves from "g1" to "f3".    
 
 Commit [2b859d](https://github.com/matthewdhull/chess/commit/2b859d5093124fd2b29b2b85d95454309bcf9ebe)
+
+
+#### Re-thinking Rook Movement
+
+This bug appeared while playing `Rb1` 
+
+![Wrong Rook Move](img/wrong_rook.gif) 
+
+We should have white's queen rook to `b1` but the method for calculating the positions for a rook resulted in both rooks being able to move along the 1st rank.  The strategy for calculating all possible move directions for all rooks was causing this behavior 
