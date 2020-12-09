@@ -1,3 +1,6 @@
 ## Creating chess with D3
 
-See progress of work at [Progress](https://matthewdhull.github.io/chess/progress)
+Read  about building [chess in d3](https://matthewdhull.github.io/chess/progress) 
+
+![Chess Demo](img/chess_demo.gif)
+

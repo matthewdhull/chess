@@ -242,6 +242,55 @@ board = {
 					}																																																																							
 				}
 
+rook_test_board = {
+	"wqr":{
+			"path": rook_path
+			, "name": "white's queen rook"
+			, "position": "a1"
+			, "fill": white_piece_fill
+			, "stroke": white_piece_stroke
+		}	
+	, "wq":{
+			"path": queen_path
+			, "name": "white's queen"
+			, "position": "d1"
+			, "fill": white_piece_fill
+			, "stroke": white_piece_stroke
+		}		
+	, "wkr":{
+			"path": rook_path
+			, "name": "white's king rook"
+			, "position": "h1"
+			, "fill": white_piece_fill
+			, "stroke": white_piece_stroke
+		}
+	, "bqr":{
+			"path": rook_path
+			, "name": "black's queen rook"
+			, "position": "a8"
+			, "fill": black_piece_fill
+			, "stroke": black_piece_stroke
+		}
+	, "bkr":{
+			"path": rook_path
+			, "name": "black's king rook"
+			, "position": "h8"
+			, "fill": black_piece_fill
+			, "stroke": black_piece_stroke
+		}							
+	}	
+
+function getOccupiedSquares(){
+	// returns key-value pairs of occupied squares and their pieces e.g., {"a1", "wkr"}
+	var oc = {}
+	var pieces = Array.from(Object.keys(board))
+	var i = 0
+	while(i < pieces.length) {
+		oc[board[pieces[i]].position] = pieces[i]
+		i+=1
+	}
+	return (oc)
+}
 
 function knightMoves(position){
 	// get the possible moves for a knight on a given position
@@ -300,6 +349,137 @@ function bishopMoves(position){
 		//console.log("bishop moves ",moves)
 		return moves			
 }
+
+
+function rookMoves(position){
+	// get the possible moves for a bishop on a given position
+	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}
+	var reverseIndex = {"1":"a","2":"b","3":"c","4":"d","5":"e","6":"f","7":"g","8":"h"}
+	var rankIndex = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}
+	var movePossibilities = [
+		[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7]
+		,[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0]
+		,[0,-1],[0,-2],[0,-3],[0,-4],[0,-5],[0,-6],[0,-7]
+		,[-1,0],[-2,0],[-3,0],[-4,0],[-5,0],[-6,0],[-7,0]
+	]
+	var moves = []
+	var fidx = fileIndex[position[0]] 
+	var ridx = rankIndex[position[1]]
+	var i = 0
+	while(i < movePossibilities.length) {
+		newFidx = fidx + movePossibilities[i][0] //e.g., if 1, then 3
+		newRidx = ridx + movePossibilities[i][1] //e.g., if 1, then 2
+		if ((fidx > 0 && fidx < 9) && (ridx > 0 && ridx < 9)){
+			var f = reverseIndex[newFidx.toString()]
+			var r = rankIndex[newRidx]
+			if ((typeof f !== 'undefined') && (typeof r !== 'undefined')){
+				moves.push(f+r)
+			}
+		}
+		i += 1	
+	}
+	//console.log("rook moves ",moves)
+	return moves			
+}
+				
+
+function rookMovesFrom(fromPosition,toPosition){
+	// from position is the current position oof the rook
+	// to position is the position to try to move to
+	// try to make a path between the from-->to position
+	// if a piece occupies an intermediate square, then return the partial path
+
+	// convert from position from "a1" to [1,1] etc.
+	// convert to position from "b1" to [2,1]
+	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}	
+	var rankIndex = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}	
+	var reverseFileIndex = {"1":"a","2":"b","3":"c","4":"d","5":"e","6":"f","7":"g","8":"h"}	
+	var f = fileIndex[fromPosition[0]]
+	var r = rankIndex[fromPosition[1]]
+	// console.log("fromPosition "+fromPosition+" ["+[f,r]+"]")
+	var f1 = fileIndex[toPosition[0]]
+	var r1 = rankIndex[toPosition[1]]	
+	//  console.log("toPosition "+toPosition+" ["+[f1,r1]+"]")
+	// subtract: to position - from position, [2,1] - [1,1] = [1,0] (difference)
+	var diff = [Math.abs((f1-f)),Math.abs((r1-r))]
+	// console.log("diff: ["+diff+"]")
+
+	// enumerate intermediate squares between from position up to the to position inclusive
+	// e.g., from position a1=[1,1] - difference=[1,0] = [0,0], no intermediate squares, so  path contains 		// b1 = [2,1]
+	//
+	// e.g. from position "h8"=[8,1] to "b1"=[2,1] is [2,1] - [8,1] = [-6,0]
+	// [2,1] - [-6,0] = [2,1] + [6,0], range from 2..6
+
+	var intermediateSteps = null
+	var intermediateValuesLength = null
+	var intermediateStepIndexes = []
+	var fromFile = true
+	
+
+	if ((diff[1]==0) && (diff[0]!=0)){
+		//make range from file
+		lowerBound = Math.min(f,f1)
+		if (f == lowerBound) {
+			lowerBound +=1
+		}
+		intermediateValuesLength = diff[0]			
+	}
+	else if ((diff[1]!=0) && (diff[0]==0)){
+		//make range from rank
+		fromFile = false
+		lowerBound = Math.min(r,r1)
+		if (r == lowerBound){
+			lowerBound += 1
+		}
+		intermediateValuesLength = diff[1]
+	}
+	
+	var intermediateSteps = Array.from(new Array(intermediateValuesLength), (x, i) => i + lowerBound)	
+	// console.log("intermediate steps: ", intermediateSteps)
+	
+	// construct file,rank indexes for all intermediate steps between from --> to position (inclusive)
+	var i = 0
+	while (i < intermediateSteps.length){
+		if (fromFile){
+			intermediateStepIndexes.push([intermediateSteps[i],r])
+		}
+		else {
+			intermediateStepIndexes.push([f,intermediateSteps[i]])			
+		}
+		i += 1
+	}
+	
+	// console.log("intermediate step indexes: ", intermediateStepIndexes)
+	
+	// now, we find where the "to" position is in the array...depending on whether or not the rank/file
+	// of the to position is higher/lower than the from position, set the order of the array is set so that	// the first element is the closest square to the from position
+	// f1,r1 
+	var last = intermediateStepIndexes[intermediateStepIndexes.length - 1]
+	var first = intermediateStepIndexes[0] 
+	// console.log("first: "+first+" last: "+last+" from: "+[f1,r1])
+	if (first[0]==f1 && first[1] == r1){
+		intermediateStepIndexes.reverse()
+	}
+	
+	// console.log("unfiltered rook path: ",intermediateStepIndexes)
+	var intermediatePositions = []
+	i = 0
+	// traverse the positions and see if any of them are occupied
+	while(i < intermediateStepIndexes.length) {
+		var fp = reverseFileIndex[intermediateStepIndexes[i][0]] 
+		var thePosition = fp+intermediateStepIndexes[i][1]
+		if (Object.keys(getOccupiedSquares()).includes(thePosition)){
+			// found an intermediate square that's occupied...
+			break	
+		}
+		intermediatePositions.push(thePosition)
+
+		i += 1
+	}
+
+	return(intermediatePositions)
+	
+}
 				
 				
 function parseMove(index, move){
@@ -307,18 +487,17 @@ function parseMove(index, move){
 	// translate into a move understood by d3 viz
 	
 	// e.g., move = "e4"
-	bishopMoves("d4")
-	
+
 	var piece = ""
 	var file = ""
 	var newPosition = ""
-	var pawn = false
+	var kingsideCastle = false
+	var queensideCastle = false
 	
 	const pawns = {"a":"qrp", "b":"qnp", "c":"qbp", "d":"qp", "e":"kp", "f":"kbp", "g": "knp", "h":"krp"}
 	
 	if (move.length == 2) {
 		// move a pawn
-		pawn = true
 		file = move[0]
 		piece = pawns[file]
 		newPosition = move
@@ -365,16 +544,49 @@ function parseMove(index, move){
 				i+=1
 			}			
 		}
+		else if (piece == "r"){
+			var allRookMoves = [
+			{"wqr":rookMovesFrom(board["wqr"].position,newPosition)}
+			,{"wkr":rookMovesFrom(board["wkr"].position,newPosition)}
+			,{"bqr":rookMovesFrom(board["bqr"].position,newPosition)}
+			,{"bkr":rookMovesFrom(board["bkr"].position,newPosition)}
+			]
+			var i = 0
+			while(i < allRookMoves.length){
+				var pieceKey = Object.keys(allRookMoves[i])[0]
+				var theseMoves = allRookMoves[i][pieceKey]
+				if (theseMoves.includes(newPosition)){
+					/* console.log(pieceKey+" "+newPosition) */
+					piece = pieceKey.substring(1,3)
+				}
+				i+=1
+			}
+		}
+		
+		else if (piece == "o"){          
+			//kingside castle
+			kingsideCastle = true
+		}
+		
+		
 	}
 	
 	if (index % 2 == 0) // determine black's move or white's move
 	{
 		// white to move
+		
+		if (kingsideCastle) {
+			return ([["wk","g1"],["wkr","f1"]])		
+		}
+	
 		piece = "w"+piece
-		return ([piece,newPosition])
+		return ([[piece,newPosition]])
 	}
 		// black to move
+		if (kingsideCastle) {
+			return ([["bk","g8"],["bkr","f8"]])		
+		}		
 		piece = "b"+piece
-		return ([piece,newPosition])
+		return ([[piece,newPosition]])
 
 }				
