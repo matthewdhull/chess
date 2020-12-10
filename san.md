@@ -1,1 +1,9 @@
+### Parsing SAN (Standard Algebraic Notation)
+
+### Take 1 at a parsing tree
+Using length of a single move in SAN as base case
 <img src="img/san_parse_tree_1.svg">
+
+### Take 2 at a parsing tree
+Root of tree checks for whether or not the move is a capture, disregards cases of check/checkmate
+<img src="img/san_parse_tree_2.svg">
