@@ -7,3 +7,7 @@ Using length of a single move in SAN as base case
 ### Take 2 at a parsing tree
 Root of tree checks for whether or not the move is a capture, disregards cases of check/checkmate
 <img src="img/san_parse_tree_2.svg">
+
+### Take 3 at a parsing tree
+level 2 branches check the string length for greater simplification.  
+<img src="img/san_parse_tree_3.svg">
