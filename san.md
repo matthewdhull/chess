@@ -1,4 +1,10 @@
-### Parsing SAN (Standard Algebraic Notation)
+### Parsing SAN (Standard Algebraic [chess] Notation)
+
+### SAN parsing tree
+Current version
+<img src="img/san_parse_tree_4.svg">
+
+(previous attempts shown below)
 
 ### Take 1 at a parsing tree
 Using length of a single move in SAN as base case
