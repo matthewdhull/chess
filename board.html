@@ -47,7 +47,7 @@
 	var margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
 	
 
-	// data generation
+	// squares data generation
 	const data = Array.from(Array(size**2).keys())	
 
 	// scales + axes
@@ -83,6 +83,7 @@
 		}
 		i++
 	}
+	
 
   	function getPositionLabel(d){
 	  	//iterate on data
@@ -187,10 +188,16 @@
   		})
 
   	// add pieces
+	var pieces = Array.from(Object.keys(board))  	
+
 	svg.append("g")
+		.attr("id", "pieces")
+		
+	var chessPieces = d3.select("#pieces")
 		.selectAll("path")
-		.data(Array.from(Object.keys(board)))
-		.enter()
+		.data(pieces)
+		
+	chessPieces.enter()
 		.append("path")
 		.attr("id", function(d){
 			return d
@@ -228,24 +235,50 @@
 		// piece movement
 		d3.select("#start").on("click", function() {
   			this_move = data.moves[move]
-  			var parsedMoves = parseMove(move, this_move)
+  			var parsedMoves = parseMove(move, this_move, board)
 			console.log(parsedMoves)
-			var i = 0
-			while(i < parsedMoves.length) {
-				var piece = parsedMoves[i][0]
-				var nextPosition = parsedMoves[i][1]
+
+			var piece = parsedMoves[0][0]
+			var nextPosition = parsedMoves[0][1]
+
 				
-				
-				var newPosition = positions[nextPosition] //x,y coords
-				d3.select("#"+piece) //animate movement
-					.transition()
-					.attr("transform", "translate("+(newPosition[0]-25)+","+
-	  			(newPosition[1]-24)+")")
-	  			
-	  			// update state of the board
-	  			board[piece].position = nextPosition
-				i += 1
-			}  	
+			var newPosition = positions[nextPosition] //x,y coords
+			d3.select("#"+piece) //animate movement
+				.transition()
+				.attr("transform", "translate("+(newPosition[0]-25)+","+
+  			(newPosition[1]-24)+")")
+  				.on("end",function(d){
+	  				if (parsedMoves.length == 2){
+		  				if (parsedMoves[1][1]=="x"){
+			  				// capture
+			  				var capturedPiece = parsedMoves[1][0]
+		  					console.log("capture of "+ board[capturedPiece].name + "!")
+							delete board[capturedPiece]
+							pieces.splice (pieces.indexOf(capturedPiece), 1)
+
+							d3.select("#pieces").select("path#"+capturedPiece)
+								.transition()
+								.attr("stroke", "rgba(0,0,0,0)")
+								.attr("fill", "rgba(0,0,0,0)")
+								.remove()	  						  					
+		  				}
+		  				else {
+			  				// castling move
+		  					var piece = parsedMoves[1][0]
+							var nextPosition = parsedMoves[1][1]								
+							var newPosition = positions[nextPosition] //x,y coords
+							d3.select("#"+piece) //animate movement
+								.transition()
+								.attr("transform", "translate("+(newPosition[0]-25)+","+
+				  			(newPosition[1]-24)+")")			  				
+		  				}
+	  				}
+
+  				})
+  				
+  			// update state of the board
+  			// console.log("piece: "+piece+" nextPosition: "+nextPosition)
+  			board[piece].position = nextPosition					
 			move +=1 //advance to next move of game					
 		});            
 

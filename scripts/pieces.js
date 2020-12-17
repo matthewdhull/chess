@@ -34,6 +34,7 @@ pawn_path = "M35,41.18l-1.88-1.49a.47.47,0,0,1-.16-.36V38.1a.44.44,0,0,0-.2-.38L
 board = {
 					"wqr":{
 						"path": rook_path
+						, "type": "rook"
 						, "name": "white's queen rook"
 						, "position": "a1"
 						, "fill": white_piece_fill
@@ -41,6 +42,7 @@ board = {
 						}
 					,"wkr":{
 						"path": rook_path
+						, "type": "rook"						
 						, "name": "white's king rook"						
 						, "position": "h1"						
 						, "fill": white_piece_fill
@@ -48,6 +50,7 @@ board = {
 					}
 					,"wqn":{
 						"path": knight_path
+						, "type": "knight"						
 						, "name": "white's queen knight"						
 						, "position": "b1"						
 						, "fill": white_piece_fill
@@ -55,6 +58,7 @@ board = {
 					}
 					,"wkn":{
 						"path": knight_path
+						, "type": "knight"												
 						, "position": "g1"						
 						, "name": "white's king knight"												
 						, "fill": white_piece_fill
@@ -62,6 +66,7 @@ board = {
 					}
 					,"wqb":{
 						"path": bishop_path
+						, "type": "bishop"												
 						, "name": "white's queen bishop"						
 						, "position": "c1"						
 						, "fill": white_piece_fill
@@ -69,6 +74,7 @@ board = {
 					}
 					,"wkb":{
 						"path": bishop_path
+						, "type": "bishop"																		
 						, "name": "white's king bishop"						
 						, "position": "f1"						
 						, "fill": white_piece_fill
@@ -76,6 +82,7 @@ board = {
 					}
 					,"wq":{
 						"path": queen_path
+						, "type": "queen"												
 						, "name": "white's queen"						
 						, "position": "d1"						
 						, "fill": white_piece_fill
@@ -83,6 +90,7 @@ board = {
 					}	
 					,"wk":{
 						"path": king_path
+						, "type": "king"						
 						, "name": "white's king"						
 						, "position": "e1"						
 						, "fill": white_piece_fill
@@ -90,6 +98,7 @@ board = {
 					}
 					,"wqrp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's queen rook pawn"						
 						, "position": "a2"						
 						, "fill": white_piece_fill
@@ -97,6 +106,7 @@ board = {
 					}																									
 					,"wqnp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's queen knight pawn"						
 						, "position": "b2"						
 						, "fill": white_piece_fill
@@ -104,6 +114,7 @@ board = {
 					}
 					,"wqbp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's queen bishop pawn"						
 						, "position": "c2"						
 						, "fill": white_piece_fill
@@ -111,6 +122,7 @@ board = {
 					}	
 					,"wqp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's queen pawn"						
 						, "position": "d2"						
 						, "fill": white_piece_fill
@@ -118,6 +130,7 @@ board = {
 					}	
 					,"wkp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's kings pawn"						
 						, "position": "e2"						
 						, "fill": white_piece_fill
@@ -125,6 +138,7 @@ board = {
 					}
 					,"wkbp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's king bishop pawn"						
 						, "position": "f2"						
 						, "fill": white_piece_fill
@@ -132,6 +146,7 @@ board = {
 					}		
 					,"wknp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's king knight pawn"						
 						, "position": "g2"						
 						, "fill": white_piece_fill
@@ -139,6 +154,7 @@ board = {
 					}				
 					,"wkrp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "name": "white's king rook pawn"												
 						, "position": "h2"						
 						, "fill": white_piece_fill
@@ -146,154 +162,187 @@ board = {
 					}			
 					,"bqr":{
 						"path": rook_path
+						, "type": "rook"
+						, "name": "black's queen rook"
 						, "position": "a8"
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkr":{
 						"path": rook_path
+						, "type": "rook"						
+						, "name": "black's king rook"						
 						, "position": "h8"
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bqn":{
 						"path": knight_path
+						, "type": "knight"
+						, "name": "black's queen knight"
 						, "position": "b8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkn":{
 						"path": knight_path
+						, "type": "knight"						
+						, "name": "black's king knight"
 						, "position": "g8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bqb":{
 						"path": bishop_path
+						, "type": "bishop"
+						, "name": "black's queen bishop"
 						, "position": "c8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkb":{
 						"path": bishop_path
+						, "type": "bishop"	
+						, "name": "black's king bishop"
 						, "position": "f8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bq":{
 						"path": queen_path
+						, "type": "queen"
+						, "name": "black's queen"										
 						, "position": "d8"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}	
 					,"bk":{
 						"path": king_path
+						, "type": "king"
+						, "name": "black's king"										
 						, "position": "e8"						
-							, "fill": black_piece_fill
+						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}				
 					,"bqrp":{
 						"path": pawn_path
+						, "type": "pawn"
+						, "name": "black's queen rook pawn"										
 						, "position": "a7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}																									
 					,"bqnp":{
 						"path": pawn_path
+						, "type": "pawn"
+						, "name": "black's queen knight pawn"												
 						, "position": "b7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bqbp":{
 						"path": pawn_path
+						, "type": "pawn"			
+						, "name": "black's queen bishop pawn"									
 						, "position": "c7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}	
 					,"bqp":{
 						"path": pawn_path
-						, "position": "d7"						
+						, "type": "pawn"						
+						, "position": "d7"
+						, "name": "black's queen pawn"												
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}	
 					,"bkp":{
 						"path": pawn_path
+						, "type": "pawn"						
 						, "position": "e7"						
+						, "name": "black's king pawn"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}
 					,"bkbp":{
 						"path": pawn_path
+						, "type": "pawn"						
+						, "name": "black's king bishop pawn"						
 						, "position": "f7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}		
 					,"bknp":{
 						"path": pawn_path
+						, "type": "pawn"
+						, "name": "black's king knight pawn"												
 						, "position": "g7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}				
 					,"bkrp":{
 						"path": pawn_path
+						, "type": "pawn"
+						, "name": "black's king rook pawn"												
 						, "position": "h7"						
 						, "fill": black_piece_fill
 						, "stroke": black_piece_stroke
 					}																																																																							
 				}
 
-rook_test_board = {
-	"wqr":{
-			"path": rook_path
-			, "name": "white's queen rook"
-			, "position": "a1"
-			, "fill": white_piece_fill
-			, "stroke": white_piece_stroke
-		}	
-	, "wq":{
-			"path": queen_path
-			, "name": "white's queen"
-			, "position": "d1"
-			, "fill": white_piece_fill
-			, "stroke": white_piece_stroke
-		}		
-	, "wkr":{
-			"path": rook_path
-			, "name": "white's king rook"
-			, "position": "h1"
-			, "fill": white_piece_fill
-			, "stroke": white_piece_stroke
-		}
-	, "bqr":{
-			"path": rook_path
-			, "name": "black's queen rook"
-			, "position": "a8"
-			, "fill": black_piece_fill
-			, "stroke": black_piece_stroke
-		}
-	, "bkr":{
-			"path": rook_path
-			, "name": "black's king rook"
-			, "position": "h8"
-			, "fill": black_piece_fill
-			, "stroke": black_piece_stroke
-		}							
-	}	
-
-function getOccupiedSquares(){
+function getOccupiedSquares(aBoard){
 	// returns key-value pairs of occupied squares and their pieces e.g., {"a1", "wkr"}
 	var oc = {}
-	var pieces = Array.from(Object.keys(board))
+	var pieces = Array.from(Object.keys(aBoard))
 	var i = 0
 	while(i < pieces.length) {
-		oc[board[pieces[i]].position] = pieces[i]
+		oc[aBoard[pieces[i]].position] = pieces[i]
 		i+=1
 	}
 	return (oc)
 }
 
+
+function getPlayerPiecesForType(player, type, aBoard){
+	/*
+		Gets the player's pieces for a piece type
+		e,g., for "w", and "pawn", get all white pawns
+		returns array of strings: e.g., ["wqrp", "wqnp", ...,"wkrp"]
+	
+	args:
+	 player = "w" or "b"
+	 type = "pawn", "rook", "knight", "bishop", "king", "queen"
+	 board = a dict containing all pieces info
+	*/
+	
+	var pieceTypeSubset = []			
+	for (const [key, value] of Object.entries(aBoard)) {
+	  	if (value.type  == type && key[0]==player){pieceTypeSubset.push(key)}		  	
+	}
+	return pieceTypeSubset			
+}
+
+
+function getPlayerPawnForFile(player, file, aBoard){
+	// get the pawn for a given file
+	// returns a piece e.g., "wkp", or "bqrp", etc.
+	// assumes only one pawn on the file for the given player
+	// disambiguation could be required for other scenarios
+	var pieces = getPlayerPiecesForType(player, "pawn", aBoard)		
+	pawnsAndPositionsForPlayer = {}
+	pieces.forEach(function(piece){
+		pawnsAndPositionsForPlayer[aBoard[piece].position] = piece
+	})		
+	
+	var pawnPositions  = Array.from(Object.keys(pawnsAndPositionsForPlayer))
+	const found = pawnPositions.find(element => element[0] == file)
+	return (pawnsAndPositionsForPlayer[found])			
+}
+
+
 function knightMoves(position){
 	// get the possible moves for a knight on a given position
+	// returns an array of strings ["a6", "b3",...]
 	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}
 	var reverseIndex = {"1":"a","2":"b","3":"c","4":"d","5":"e","6":"f","7":"g","8":"h"}
 	var rankIndex = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}
@@ -351,6 +400,7 @@ function bishopMoves(position){
 }
 
 
+/*
 function rookMoves(position){
 	// get the possible moves for a bishop on a given position
 	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}
@@ -381,10 +431,11 @@ function rookMoves(position){
 	//console.log("rook moves ",moves)
 	return moves			
 }
+*/
 				
 
-function rookMovesFrom(fromPosition,toPosition){
-	// from position is the current position oof the rook
+function rookMovesFrom(fromPosition, toPosition, aBoard){
+	// from position is the current position of the rook
 	// to position is the position to try to move to
 	// try to make a path between the from-->to position
 	// if a piece occupies an intermediate square, then return the partial path
@@ -414,7 +465,7 @@ function rookMovesFrom(fromPosition,toPosition){
 	var intermediateValuesLength = null
 	var intermediateStepIndexes = []
 	var fromFile = true
-	
+	var lowerBound = null
 
 	if ((diff[1]==0) && (diff[0]!=0)){
 		//make range from file
@@ -449,6 +500,7 @@ function rookMovesFrom(fromPosition,toPosition){
 		i += 1
 	}
 	
+	
 	// console.log("intermediate step indexes: ", intermediateStepIndexes)
 	
 	// now, we find where the "to" position is in the array...depending on whether or not the rank/file
@@ -456,7 +508,7 @@ function rookMovesFrom(fromPosition,toPosition){
 	// f1,r1 
 	var last = intermediateStepIndexes[intermediateStepIndexes.length - 1]
 	var first = intermediateStepIndexes[0] 
-	// console.log("first: "+first+" last: "+last+" from: "+[f1,r1])
+	//console.log("first: "+first+" last: "+last+" from: "+[f1,r1])
 	if (first[0]==f1 && first[1] == r1){
 		intermediateStepIndexes.reverse()
 	}
@@ -468,7 +520,7 @@ function rookMovesFrom(fromPosition,toPosition){
 	while(i < intermediateStepIndexes.length) {
 		var fp = reverseFileIndex[intermediateStepIndexes[i][0]] 
 		var thePosition = fp+intermediateStepIndexes[i][1]
-		if (Object.keys(getOccupiedSquares()).includes(thePosition)){
+		if (Object.keys(getOccupiedSquares(aBoard)).includes(thePosition) && thePosition != toPosition){
 			// found an intermediate square that's occupied...
 			break	
 		}
@@ -476,117 +528,269 @@ function rookMovesFrom(fromPosition,toPosition){
 
 		i += 1
 	}
-
+		
 	return(intermediatePositions)
 	
 }
-				
-				
-function parseMove(index, move){
-	// take in a move from pgn
-	// translate into a move understood by d3 viz
-	
-	// e.g., move = "e4"
+							
 
+function getPieceTypeMoves(player, pieceType, newPosition, aBoard){
+   /**
+	*	@summary 		get all possible moves for all pieces of the given type (N, B, R, etc.).
+	*	
+	* 	@param {str}   	player           the player, "w" or "b"
+	*	@param {str} 	pieceType 		 a pieceType, "R", "N", "B", "K", "Q"
+	*	@param {str}	newPosition		 e.g., "f6", "a8", etc.
+    *	@param {dict} 	aBoard			 the current board, see other descriptions
+    *
+    *	@fires			getPlayerPiecesForType()
+    *
+	*   @return {dict}   A dict w/ a key for each piece w/ array of positions {"wqr":["a8","b1"]}
+	*/	
+	
+	
+	if (pieceType == "N"){
+		
+		var availablePlayerKnights = getPlayerPiecesForType(player, "knight", aBoard)
+		var  allKnightMoves = []
+		var i = 0
+		while (i < availablePlayerKnights.length){
+			var aKnight = availablePlayerKnights[i]
+			var m = {}
+			m[aKnight] = knightMoves(aBoard[aKnight].position)
+			allKnightMoves.push(m)
+			i+=1
+		}			
+		
+		return allKnightMoves		
+	}
+	
+	else if (pieceType == "B"){
+		
+		var availablePlayerBishops = getPlayerPiecesForType(player, "bishop", aBoard)
+		var  allBishopMoves = []
+		var i = 0
+		while (i < availablePlayerBishops.length){
+			var aBishop = availablePlayerBishops[i]
+			var m = {}
+			m[aBishop] = bishopMoves(aBoard[aBishop].position)
+			allBishopMoves.push(m)
+			i+=1
+		}		
+		
+		return allBishopMoves
+	}
+	
+	else if (pieceType == "R"){
+	
+		var availablePlayerRooks = getPlayerPiecesForType(player, "rook", aBoard)
+		var  allRookMoves = []
+		var i = 0
+		while (i < availablePlayerRooks.length){
+			var aRook = availablePlayerRooks[i]
+			var m = {}
+			m[aRook] = rookMovesFrom(aBoard[aRook].position, newPosition, aBoard)
+			allRookMoves.push(m)
+			i+=1
+		}
+			
+		return allRookMoves
+	}
+	
+	else if (pieceType == "Q"){
+		
+		var availablePlayerQueens = getPlayerPiecesForType(player, "queen", aBoard)
+		var aQueen = availablePlayerQueens[0]
+		var m = {}
+		var queenMoves = []
+		m[aQueen] = [newPosition]
+		queenMoves.push(m)
+		// console.log("queen moves ", queenMoves)		
+		return queenMoves
+	}
+	
+	else {
+		return "did not recognize piece type: "+pieceType
+	}			
+}
+
+
+function getPieceForPosition(player, pieceType, newPosition, aBoard) {
+   /**
+	*	@summary 		Which piece can move to this position ??.
+	*	
+	*	@description 	Get all moves possible on the board for that piece type (pieceTypeMoves)
+	*	find the piece that could potentially move to that new position
+	*	e.g., only white's queen knight can move to F6, etc. 	
+	*	
+	* 	@param {str}   	player           the player, "w" or "b"
+	*	@param {str} 	pieceType 		 a pieceType, "R", "N", "B", etc.
+	*	@param {str}	newPosition		 e.g., "f6", "a8", etc.
+    *	@param {dict} 	aBoard			 the current board, see other descriptions
+    *
+    *	@fires			getPieceTypeMoves()
+    *
+	*   @return {str}   The piece , e.g., "wkr"
+	*/
+	
+	var i = 0
+	var piece = null
+	var pieceTypeMoves = getPieceTypeMoves(player, pieceType, newPosition, aBoard)
+	// console.log('pieceType: ',pieceType)			
+	//console.log('pieceTypeMoves: ',pieceTypeMoves)
+	
+	while(i < pieceTypeMoves.length){
+		var pieceKey = Object.keys(pieceTypeMoves[i])[0]
+		var theseMoves = pieceTypeMoves[i][pieceKey]
+
+		if (theseMoves.includes(newPosition)){
+			piece = pieceKey.substring(1,3)
+		}
+		i+=1
+	}	
+	
+	return piece //"wkr" is white king rook. 
+}
+
+
+function parseMove(index, move, aBoard){
+	
 	var piece = ""
 	var file = ""
 	var newPosition = ""
 	var kingsideCastle = false
-	var queensideCastle = false
-	
-	const pawns = {"a":"qrp", "b":"qnp", "c":"qbp", "d":"qp", "e":"kp", "f":"kbp", "g": "knp", "h":"krp"}
-	
-	if (move.length == 2) {
-		// move a pawn
-		file = move[0]
-		piece = pawns[file]
-		newPosition = move
+	var queensideCastle = true
+	var capture = false
+	var pawns = {"a":"qrp", "b":"qnp", "c":"qbp", "d":"qp", "e":"kp", "f":"kbp", "g": "knp", "h":"krp"}
+
+
+	var player = "w"
+	if (index % 2 == 0) { 		
+		player = "w"
 	}
-	
-	else if (move.length == 3){
-		file = move[1]
-		var newPosition = move.substring(1, 3)		
-		piece = move[0].toLowerCase()
-		// console.log(piece+" "+newPosition)
-		if (piece == "n"){
-			var allKnightMoves = [
-			{"wqn":knightMoves(board["wqn"].position)}
-			,{"wkn":knightMoves(board["wkn"].position)}
-			,{"bqn":knightMoves(board["bqn"].position)}
-			,{"bkn":knightMoves(board["bkn"].position)}
-			]
-			var i = 0
-			while(i < allKnightMoves.length){
-				var pieceKey = Object.keys(allKnightMoves[i])[0]
-				var theseMoves = allKnightMoves[i][pieceKey]
-				if (theseMoves.includes(newPosition)){
-					/* console.log(pieceKey+" "+newPosition) */
-					piece = pieceKey.substring(1,3)
-				}
-				i+=1
-			}
-		}
-		else if (piece == "b"){
-			var allBishopMoves = [
-			{"wqb":bishopMoves(board["wqb"].position)}
-			,{"wkb":bishopMoves(board["wkb"].position)}
-			,{"bqb":bishopMoves(board["bqb"].position)}
-			,{"bkb":bishopMoves(board["bkb"].position)}
-			]
-			var i = 0
-			while(i < allBishopMoves.length){
-				var pieceKey = Object.keys(allBishopMoves[i])[0]
-				var theseMoves = allBishopMoves[i][pieceKey]
-				if (theseMoves.includes(newPosition)){
-					/* console.log(pieceKey+" "+newPosition) */
-					piece = pieceKey.substring(1,3)
-				}
-				i+=1
-			}			
-		}
-		else if (piece == "r"){
-			var allRookMoves = [
-			{"wqr":rookMovesFrom(board["wqr"].position,newPosition)}
-			,{"wkr":rookMovesFrom(board["wkr"].position,newPosition)}
-			,{"bqr":rookMovesFrom(board["bqr"].position,newPosition)}
-			,{"bkr":rookMovesFrom(board["bkr"].position,newPosition)}
-			]
-			var i = 0
-			while(i < allRookMoves.length){
-				var pieceKey = Object.keys(allRookMoves[i])[0]
-				var theseMoves = allRookMoves[i][pieceKey]
-				if (theseMoves.includes(newPosition)){
-					/* console.log(pieceKey+" "+newPosition) */
-					piece = pieceKey.substring(1,3)
-				}
-				i+=1
-			}
+	else {
+		player = "b"
+	}
+
+	if (move.includes('x')){ //capture
+		capture = true
+		splits = move.split("x")
+		var piece = splits[0]
+		var newPosition = splits[1]
+		
+
+		if (splits[1].includes('=')){
+			return "pawn capture and promotion"
 		}
 		
-		else if (piece == "o"){          
-			//kingside castle
-			kingsideCastle = true
+		else {
+			if (piece.length == 1){
+				var pawnPiece = /[abcdefgh]/.test(piece);
+				var nonPawnPiece = /[RBNKQ]/.test(piece)
+				
+				if (pawnPiece && !nonPawnPiece){
+					console.log("pawn capture")
+					file = splits[0]
+					piece = pawns[file]
+				}						
+				else if (nonPawnPiece && !pawnPiece){
+					// return "non-pwn capture"
+					var pieceType = piece
+					// console.log(piece+" "+newPosition)
+					piece = getPieceForPosition(player, pieceType, newPosition, aBoard)		
+					
+				}
+			}
+			
+			else if (piece.length == 2){
+				 "non-pwn file disambiguation capture"
+			}
+			
+			else if (piece.length == 3){
+				 "non-pwn file/rank disambiguation capture"
+			}
+			
+			else {
+				return "could not parse capture move"
+			}
+			
 		}
-		
 		
 	}
+
+	else if (!move.includes('x')){ // not a capture
+		
+		if (move.includes('=')){		
+			return ("pawn promotion")
+		}
+		
+		else { // non capture move
+			if (move.length == 2){ // pawn move
+				
+				file = move[0]	
+				// piece = pawns[file]
+				newPosition = move
+				
+				const pawn = getPlayerPawnForFile(player, file, aBoard)
+				return ([[pawn,newPosition]])
+			}
+			
+			else if (move.length == 3){
+				if (move[0] == "O"){
+					kingsideCastle = true
+				}
+				else {
+					file = move[1] // one of a-h
+					var newPosition = move.substring(1, 3)	// e.g., f3
+					pieceType = move[0] // e.g., N,B,K,
+					piece = getPieceForPosition(player, pieceType, newPosition, aBoard)
+				}
+			}
+			
+			else if (move.length == 4){
+				return "non-pwn file disambiguation move"
+			}
+			
+			else if (move.length == 5){
+				if (move[0] == "O") {
+					quensideCastle = true
+				}
+				else {
+					return "non-pwn rank/file disambiguation move"
+				}
+			}
+		
+			else {
+				return "could not parse non-capture move "
+			}
+		}
+	}
 	
-	if (index % 2 == 0) // determine black's move or white's move
-	{
+	else {
+		return "could not parse move/capture"
+	}
+	
+	if (index % 2 == 0) { // determine black's move or white's move
 		// white to move
-		
 		if (kingsideCastle) {
 			return ([["wk","g1"],["wkr","f1"]])		
 		}
-	
 		piece = "w"+piece
-		return ([[piece,newPosition]])
 	}
+	
+	else {
 		// black to move
 		if (kingsideCastle) {
 			return ([["bk","g8"],["bkr","f8"]])		
 		}		
-		piece = "b"+piece
-		return ([[piece,newPosition]])
+		piece = "b"+piece		
+	}
+	
+	if (capture){
+		var capturedPiece = getOccupiedSquares(aBoard)[newPosition]
+		return ([[piece,newPosition],[capturedPiece,"x"]])	//'x' indicates capture
+	}
 
-}				
+	return ([[piece,newPosition]])	
+	
+}

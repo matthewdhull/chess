@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.13.0.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.13.0.js"></script>
+	<script src="../d3-lib/d3/d3.min.js"></script>		
+	<script src="../scripts/pieces.js"></script>    
+	<script>
+		
+	const moves = [ "e4", "exd5", "Rxh8", "axd5", "gxh6", "bxh6", "Rbxa1", "e8=Q"
+					, "hxg1=Q","Rb2xd2", "Rbd5", "Nf3", "O-O", "O-O-O" ]	
+					
+	const board1 = {
+		"wkr":{ "type": "rook", "position": "h1"}	
+		,"wqr":{ "type": "rook", "position": "a1"}	
+		,"bkr":{ "type": "rook", "position": "h8"}
+		,"bqr":{ "type": "rook", "position": "a8"}			
+	}
+	
+	const queenCaptureBoard = {
+		"bq":{ "type": "queen", "position": "d8"}
+		,"wqnp":{"type":"pawn", "position": "b6"}
+	}						
+	
+	
+	const rookDisambiguationBoard = {
+		"wkr":{"type":"rook", "position": "f1"}
+		,"wqr":{"type":"rook", "position": "b4"}
+	}
+	
+	const rookDisambiguationCaptureBoard = {
+		
+		"wqr":{"type":"rook", "position": "a2"}
+		,"wkr":{"type":"rook", "position": "c1"}
+		,"bqrp":{"type":"pawn", "position": "a1"}
+	}
+	
+	const knightDisambiguationBoard	= {
+		"bkn":{"type":"knight", "position":"g8"}
+		,"bqn":{"type":"knight", "position":"d5"}
+	}
+	
+	
+	const knightDisambiguationCaptureBoard	= {
+		"bkn":{"type":"knight", "position":"g8"}
+		,"bqn":{"type":"knight", "position":"d5"}
+		,"wkbp":{"type":"pawn", "position":"f6"}
+	}	
+	
+	
+	const queenDisambiguationBoard = {
+		"wq":{ "type": "rook", "position": "a7"}	
+		,"wq1":{ "type": "rook", "position": "a8"}	
+		,"wq2":{ "type": "rook", "position": "b8"}
+		,"bqnp":{ "type": "rook", "position": "b7"}			
+	}
+	
+	
+	const queensideCastleBoard = {
+		"wqr": {"type":"rook", "position": "a1"}
+		,"wk": {"type":"queen", "position": "e1"}
+	}
+	
+	
+	
+	const kingMoveBoard = {
+		"bk": {"type":"rook", "position": "e8"}
+		,"wqp": {"type":"queen", "position": "d7"}
+	}	
+			
+	
+	  
+	QUnit.module('position check', function(){
+		const e2 = board["wkp"].position 		
+		QUnit.test('wkp should be on e2', function(assert){
+			assert.equal(e2, "e2");
+		});
+	});
+	  
+	
+	QUnit.module('parse test', function(){
+		const parseMove0 = moves[0]		
+		QUnit.test('move 0 should be wkp --> e4', function(assert){
+			assert.deepEqual(parseMove(0, parseMove0,board),[["wkp","e4"]])
+		});
+	});
+	
+
+	
+	QUnit.module('capture test', function(){
+		const parseMove1 = "cxb4"
+		const board0 = {
+			"wqnp":{ "type": "pawn", "position": "b4"}	
+			,"bqbp":{ "type": "pawn", "position": "c5"}
+		}			
+		QUnit.test(parseMove1+' should be a capture', function(assert){
+			assert.deepEqual(parseMove(1, parseMove1,board0),[["bqbp","b4"],["wqnp","x"]])
+		});
+	});	
+	
+
+
+	QUnit.module('occupied squares test', function(){
+		const occupiedSquares = {"a1":"wqr", "h1":"wkr", "a8":"bqr", "h8":"bkr"}		
+		QUnit.test("testing start positions of rooks", function(assert){
+			assert.deepEqual(getOccupiedSquares(board1),occupiedSquares)
+		});
+	});
+	
+	
+	
+	QUnit.module('rook moves  test', function(){
+		const rMoves = ["h2", "h3", "h4", "h5", "h6", "h7",  "h8"]
+		QUnit.test("should be the moves for wkr", function(assert){
+			assert.deepEqual(rookMovesFrom("h1", "h8", board1),rMoves)
+		});
+	});
+
+	
+	QUnit.module('multiple rook moves test', function(){
+		const allRookMoves = [  
+		 {"wkr": ["h2","h3","h4","h5","h6","h7","h8"]}			
+		,{"wqr": [NaN]}]		
+		QUnit.test("all rook moves for wkr & bqr", function(assert){
+			assert.deepEqual(getPieceTypeMoves("w","R", "h8", board1), allRookMoves)
+		})
+	})
+	
+	 
+
+	QUnit.module('non-pwn capture test', function(){
+		const parseMove2 = "Rxh8"		
+		QUnit.test(parseMove2+' should be a wkr capture', function(assert){
+			assert.deepEqual(parseMove(0, parseMove2, board1),[["wkr","h8"],["bkr","x"]])
+		});
+	});
+	
+	
+	
+	QUnit.module('queen capture test', function(){
+		const parseMove3 = "Qxb6"		
+		QUnit.test(parseMove3+' should be a bq capture', function(assert){
+			assert.deepEqual(parseMove(1, parseMove3, queenCaptureBoard),[["bq","b6"],["wqnp","x"]])
+		});
+	});	
+
+	
+	QUnit.module('queen move test', function(){
+		const parseMove4 = "Qc7"		
+		QUnit.test(parseMove4+' should be a bq move', function(assert){
+			assert.deepEqual(parseMove(1, parseMove4, queenCaptureBoard),[["bq","c7"]])
+		});
+	});		
+	
+	
+	QUnit.module('black king move test', function(){
+		const parseMove10 = "Kf8"
+		QUnit.test.todo(parseMove10+' should be a king move', function(assert){
+			assert.deepEqual(parseMove(1, parseMove10, kingMoveBoard),[["bk","f8"]])
+		});
+	});		
+	
+	
+	QUnit.module('black king capture test', function(){
+		const parseMove11 = "Kxd7"
+		QUnit.test.todo(parseMove11+' should be a king capture', function(assert){
+			assert.deepEqual(parseMove(1, parseMove11, kingMoveBoard),[["bk","f8"],["wqp","x"]])
+		});
+	});			
+	
+	
+	QUnit.module('rook file disambiguation move test', function(){
+		const parseMove5 = "Rfb1"		
+		QUnit.test.todo(parseMove5+' should be an f-file rook move', function(assert){
+			assert.deepEqual(parseMove(0, parseMove5, rookDisambiguationBoard),[["wkr","b1"]])
+		});
+	});		
+	
+	
+	
+	QUnit.module('rook file disambiguation capture test', function(){
+		const parseMove13 = "Raxa1"		
+		QUnit.test.todo(parseMove13+' should be an a-file rook capture', function(assert){
+			assert.deepEqual(parseMove(0, parseMove13, rookDisambiguationCaptureBoard),[["wqr","a1"],["bqrp","x"]])
+		});
+	});			
+	
+
+	QUnit.module('Knight file disambiguation move test', function(){
+		const parseMove12 = "Ngf6"		
+		QUnit.test.todo(parseMove12+' should be an g-file knight move', function(assert){
+			assert.deepEqual(parseMove(1, parseMove12, knightDisambiguationBoard),[["bkn","f6"]])
+		});
+	});		
+	
+
+	QUnit.module('Knight file disambiguation capture test', function(){
+		const parseMove13 = "Ngxf6"		
+		QUnit.test.todo(parseMove13+' should be an g-file knight capture', function(assert){
+			assert.deepEqual(parseMove(1, parseMove13, knightDisambiguationCaptureBoard),[["bkn","f6"],["wkbp","x"]])
+		});
+	});		
+
+	
+	QUnit.module('white queenside castle test', function(){
+		const parseMove7 = "O-O-O"
+		QUnit.test.todo(parseMove7+' should be a queenside castle', function(assert){
+			assert.deepEqual(parseMove(0, parseMove7, queensideCastleBoard),[["wk","b1"],["wqr","c1"]])
+		});
+	});			
+
+	
+	QUnit.module('black queenside castle test', function(){
+		const parseMove8 = "O-O-O"
+		QUnit.test.todo(parseMove8+' should be a queenside castle', function(assert){
+			assert.deepEqual(parseMove(1, parseMove8, queensideCastleBoard),[["bk","b8"],["bqr","c8"]])
+		});
+	});		
+
+	
+	// http://www.talkchess.com/forum3/viewtopic.php?t=33764#p341905
+	QUnit.module('queen file/rank disambiguation move test', function(){
+		const parseMove9 = "Qa8xb7"
+		QUnit.test.todo(parseMove9+' should be an a-file, rank 8 queen move & capture', function(assert){
+			assert.deepEqual(parseMove(0, parseMove9, queenDisambiguationBoard),[["wq1","b7"]])
+		});
+	});		
+	
+	// pawn capture w/ dynamic positions lookup
+	
+	// pawn promotion test
+	
+	// pawn capture promotion test
+	
+	
+				
+	</script>    
+</body>
+</html>
