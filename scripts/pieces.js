@@ -26,6 +26,9 @@ queen_path = "M12.13,40.35h0a7.46,7.46,0,0,0,1.15-1.47l.46-1.11a.2.2,0,0,1,.12-.
 
 pawn_path = "M35,41.18l-1.88-1.49a.47.47,0,0,1-.16-.36V38.1a.44.44,0,0,0-.2-.38L29,37a.44.44,0,0,1-.2-.33L26.72,25.36h1.14A20.38,20.38,0,0,0,31,25.19l.43-.51a.18.18,0,0,0,0-.2l-.55-.66a.15.15,0,0,1,0-.2L31,22H28.31a6,6,0,1,0-6.62,0H19l.21,1.62a.15.15,0,0,1,0,.2l-.55.66a.15.15,0,0,0,0,.2l.42.51a18,18,0,0,0,3,.25h1.14L21,36.75a36.9,36.9,0,0,1-3.71,1,.44.44,0,0,0-.2.38v1.23a.47.47,0,0,1-.16.36l-1.88,1.49a.16.16,0,0,0,0,.22L16.33,43a.18.18,0,0,0,.09,0H33.58a.18.18,0,0,0,.09,0L35,41.4A.16.16,0,0,0,35,41.18Z"
 
+
+const pieceTypeMap = {"R":"rook", "N":"knight", "B":"bishop","Q":"queen", "K":"king"}
+
 // white king rook = wkr, A1
 // white queen rook = wqr, H1
 // black king rook = bqr, A8
@@ -323,20 +326,80 @@ function getPlayerPiecesForType(player, type, aBoard){
 }
 
 
-function getPlayerPawnForFile(player, file, aBoard){
+function getPlayerPawnForFile(player, file, aBoard, aPosition){
 	// get the pawn for a given file
 	// returns a piece e.g., "wkp", or "bqrp", etc.
 	// assumes only one pawn on the file for the given player
 	// disambiguation could be required for other scenarios
+
+	// get all file pawns for the player
 	var pieces = getPlayerPiecesForType(player, "pawn", aBoard)		
-	pawnsAndPositionsForPlayer = {}
+	var playerPawnsForFile = {}
+	var ranks = []  //array of ints: 1, 3, 
+	var desiredRank = parseInt(aPosition[1])
+
 	pieces.forEach(function(piece){
-		pawnsAndPositionsForPlayer[aBoard[piece].position] = piece
+		if (aBoard[piece].position[0] == file){
+			playerPawnsForFile[aBoard[piece].position] = piece
+			ranks.push(parseInt(aBoard[piece].position[1]))			
+		}
 	})		
 	
-	var pawnPositions  = Array.from(Object.keys(pawnsAndPositionsForPlayer))
-	const found = pawnPositions.find(element => element[0] == file)
-	return (pawnsAndPositionsForPlayer[found])			
+	
+	if (Object.entries(playerPawnsForFile).length > 1){ // handle file ambiguity 
+		var chosenPawn = null	
+		if (player == "w"){
+			ranks.forEach(function(rank){
+				if (rank == (desiredRank-1)){
+					var calculatedPosition = file+rank.toString()
+					chosenPawn = playerPawnsForFile[calculatedPosition]
+				}
+			})
+		}
+		else {
+			ranks.forEach(function(rank){
+				if (rank == (desiredRank+1)){
+					chosenPawn = playerPawnsForFile[file+rank.toString()]					
+				}
+			})
+			
+		}
+		return (chosenPawn)
+	}
+		
+	else { // only one pawnForFile
+		var k = Array.from(Object.keys(playerPawnsForFile))[0]
+		return (playerPawnsForFile[k])
+	}		
+}
+
+
+function getPlayerPieceForFile(player, file, pieceType, aBoard){
+	// get the non-pwn piece for a given file (file disambiguation)
+	// 
+	var pieces = getPlayerPiecesForType(player, pieceTypeMap[pieceType], aBoard)
+	piecesAndPositionsForPlayer = {}
+	pieces.forEach(function(piece){
+		piecesAndPositionsForPlayer[aBoard[piece].position] = piece
+	})
+	var piecePositions  = Array.from(Object.keys(piecesAndPositionsForPlayer))
+	const found = piecePositions.find(element => element[0] == file)
+
+	return (piecesAndPositionsForPlayer[found])			
+}
+
+
+function getPlayerPieceForRank(player, rank, pieceType, aBoard){
+	// get the non-pwn piece for a given rank (rank disambiguation)
+	// 
+	var pieces = getPlayerPiecesForType(player, pieceTypeMap[pieceType], aBoard)
+	piecesAndPositionsForPlayer = {}
+	pieces.forEach(function(piece){
+		piecesAndPositionsForPlayer[aBoard[piece].position] = piece
+	})
+	var piecePositions  = Array.from(Object.keys(piecesAndPositionsForPlayer))
+	const found = piecePositions.find(element => element[1] == rank)
+	return (piecesAndPositionsForPlayer[found])
 }
 
 
@@ -398,40 +461,6 @@ function bishopMoves(position){
 		//console.log("bishop moves ",moves)
 		return moves			
 }
-
-
-/*
-function rookMoves(position){
-	// get the possible moves for a bishop on a given position
-	var fileIndex = {"a":1,"b":2,"c":3,"d":4,"e":5,"f":6,"g":7,"h":8}
-	var reverseIndex = {"1":"a","2":"b","3":"c","4":"d","5":"e","6":"f","7":"g","8":"h"}
-	var rankIndex = {"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}
-	var movePossibilities = [
-		[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7]
-		,[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0]
-		,[0,-1],[0,-2],[0,-3],[0,-4],[0,-5],[0,-6],[0,-7]
-		,[-1,0],[-2,0],[-3,0],[-4,0],[-5,0],[-6,0],[-7,0]
-	]
-	var moves = []
-	var fidx = fileIndex[position[0]] 
-	var ridx = rankIndex[position[1]]
-	var i = 0
-	while(i < movePossibilities.length) {
-		newFidx = fidx + movePossibilities[i][0] //e.g., if 1, then 3
-		newRidx = ridx + movePossibilities[i][1] //e.g., if 1, then 2
-		if ((fidx > 0 && fidx < 9) && (ridx > 0 && ridx < 9)){
-			var f = reverseIndex[newFidx.toString()]
-			var r = rankIndex[newRidx]
-			if ((typeof f !== 'undefined') && (typeof r !== 'undefined')){
-				moves.push(f+r)
-			}
-		}
-		i += 1	
-	}
-	//console.log("rook moves ",moves)
-	return moves			
-}
-*/
 				
 
 function rookMovesFrom(fromPosition, toPosition, aBoard){
@@ -609,6 +638,18 @@ function getPieceTypeMoves(player, pieceType, newPosition, aBoard){
 		return queenMoves
 	}
 	
+	else if (pieceType == "K"){
+		
+		var playerKing = getPlayerPiecesForType(player, "king", aBoard)
+		var aKing = playerKing[0]
+		var m = {}
+		var kingMoves = []
+		m[aKing] = [newPosition]
+		kingMoves.push(m)
+		// console.log("king moves ", queenMoves)		
+		return kingMoves		
+	}
+	
 	else {
 		return "did not recognize piece type: "+pieceType
 	}			
@@ -655,16 +696,19 @@ function getPieceForPosition(player, pieceType, newPosition, aBoard) {
 
 function parseMove(index, move, aBoard){
 	
+	// trim special chars, i.e., +, #
+	move = move.split("+")[0]
+	move = move.split("#")[0]
+	
 	var piece = ""
 	var file = ""
 	var newPosition = ""
 	var kingsideCastle = false
 	var queensideCastle = true
 	var capture = false
-	var pawns = {"a":"qrp", "b":"qnp", "c":"qbp", "d":"qp", "e":"kp", "f":"kbp", "g": "knp", "h":"krp"}
-
-
 	var player = "w"
+	
+
 	if (index % 2 == 0) { 		
 		player = "w"
 	}
@@ -677,6 +721,7 @@ function parseMove(index, move, aBoard){
 		splits = move.split("x")
 		var piece = splits[0]
 		var newPosition = splits[1]
+		const capturedPiece = getOccupiedSquares(aBoard)[newPosition]		
 		
 
 		if (splits[1].includes('=')){
@@ -689,25 +734,45 @@ function parseMove(index, move, aBoard){
 				var nonPawnPiece = /[RBNKQ]/.test(piece)
 				
 				if (pawnPiece && !nonPawnPiece){
-					console.log("pawn capture")
+					// pawn capture
 					file = splits[0]
-					piece = pawns[file]
+					var newPosition = move.substring(2, 4)	
+					const capturedPiece = getOccupiedSquares(aBoard)[newPosition]
+					const pawn = getPlayerPawnForFile(player, file, aBoard, newPosition)
+					return ([[pawn,newPosition],[capturedPiece,"x"]])
 				}						
 				else if (nonPawnPiece && !pawnPiece){
-					// return "non-pwn capture"
+					// non-pwn capture
 					var pieceType = piece
-					// console.log(piece+" "+newPosition)
 					piece = getPieceForPosition(player, pieceType, newPosition, aBoard)		
 					
 				}
 			}
 			
 			else if (piece.length == 2){
-				 "non-pwn file disambiguation capture"
+				// console.log(move+": non-pwn file or rank disambiguation capture")
+				var pieceType = move[0]
+				var isFile = /[abcdefgh]/.test(move[1])
+				var isRank = /[12345678]/.test(move[1])
+				
+				if (isFile && !isRank){
+					// console.log("non-pwn file disambiguation")
+					const file = move[1]
+					piece = getPlayerPieceForFile(player, file, pieceType, aBoard)
+					
+					return ([[piece, newPosition],[capturedPiece,"x"]])					
+				}
+				else if (!isFile && isRank){
+					// console.log(pieceType+" rank disambiguation")					
+					const rank = move[1]
+					piece = getPlayerPieceForRank(player, rank, pieceType, aBoard)
+					
+					return ([[piece, newPosition],[capturedPiece,"x"]])
+				}				 
 			}
 			
 			else if (piece.length == 3){
-				 "non-pwn file/rank disambiguation capture"
+				 console.log(move+": non-pwn file & rank disambiguation capture")
 			}
 			
 			else {
@@ -731,7 +796,7 @@ function parseMove(index, move, aBoard){
 				// piece = pawns[file]
 				newPosition = move
 				
-				const pawn = getPlayerPawnForFile(player, file, aBoard)
+				const pawn = getPlayerPawnForFile(player, file, aBoard, newPosition)
 				return ([[pawn,newPosition]])
 			}
 			
@@ -748,7 +813,26 @@ function parseMove(index, move, aBoard){
 			}
 			
 			else if (move.length == 4){
-				return "non-pwn file disambiguation move"
+				var pieceType = move[0]
+				var isFile = /[abcdefgh]/.test(move[1])
+				var isRank = /[12345678]/.test(move[1])
+				var newPosition = move.substring(2, 4)	// e.g., f3
+				if (isFile && !isRank){
+					// console.log("non-pwn file disambiguation")
+					const file = move[1]
+					piece = getPlayerPieceForFile(player, file, pieceType, aBoard)
+					
+					return ([[piece, newPosition]])					
+				}
+				else if (!isFile && isRank){
+					// console.log(pieceType+" rank disambiguation")					
+					const rank = move[1]
+					piece = getPlayerPieceForRank(player, rank, pieceType, aBoard)
+					
+					return ([[piece,  newPosition]])
+				}
+				
+				return "non-pwn rank or file disambiguation move"
 			}
 			
 			else if (move.length == 5){
@@ -756,7 +840,7 @@ function parseMove(index, move, aBoard){
 					quensideCastle = true
 				}
 				else {
-					return "non-pwn rank/file disambiguation move"
+					return "non-pwn rank & file disambiguation move"
 				}
 			}
 		

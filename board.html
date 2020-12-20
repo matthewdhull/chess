@@ -267,6 +267,7 @@
 		  					var piece = parsedMoves[1][0]
 							var nextPosition = parsedMoves[1][1]								
 							var newPosition = positions[nextPosition] //x,y coords
+							board[piece].position = nextPosition
 							d3.select("#"+piece) //animate movement
 								.transition()
 								.attr("transform", "translate("+(newPosition[0]-25)+","+
@@ -276,8 +277,6 @@
 
   				})
   				
-  			// update state of the board
-  			// console.log("piece: "+piece+" nextPosition: "+nextPosition)
   			board[piece].position = nextPosition					
 			move +=1 //advance to next move of game					
 		});            
