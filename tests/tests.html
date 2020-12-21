@@ -98,9 +98,9 @@
 	
 	  
 	QUnit.module('position check', function(){
-		const e2 = board["wkp"].position 		
-		QUnit.test('wkp should be on e2', function(assert){
-			assert.equal(e2, "e2");
+		const h1 = board1["wkr"].position 		
+		QUnit.test('wkr should be on h1', function(assert){
+			assert.equal(h1, "h1");
 		});
 	});
 	  
@@ -108,7 +108,7 @@
 	QUnit.module('parse test', function(){
 		const parseMove0 = moves[0]		
 		QUnit.test('move 0 should be wkp --> e4', function(assert){
-			assert.deepEqual(parseMove(0, parseMove0,board),[["wkp","e4"]])
+			assert.deepEqual(parseMove(0, parseMove0,board1),[["wkp","e4"]])
 		});
 	});
 
