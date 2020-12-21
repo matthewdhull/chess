@@ -20,32 +20,57 @@
 	 	/*place svg element above button */
 		 grid-row-start: 1; 
 	 }
-	 button {
-		 width: 50px;
+	 
+	 #start {
+	 	grid-row-start: 2;
+	 	width: 50px;
+	 	height: 20px;
+	 }
+	 
+	 #positionDisplay{
+		 grid-row-start: 3;
+		 
 	 }
 	 
 	 #moves {
+		 grid-row-start: 4;
 		 width: 400px;
 		 line-height: 25px;
 		 overflow-wrap: break-word;
+	 }
+	 
+	 #selectGame {
+		 grid-row-start: 1;
+		 grid-column-start: 2;
 	 }
 
 	 
   </style>
  </head>
 <body>
+
 <button id="start">Move</button>
+
 <div id="positionDisplay">(hover) Position:</div>
 <div id="moves"></div>
+
+<div id="selectGame">
+<label for="gameSelect">Select Game:</label>
+<select name="gameSelect" id="gameSelect">
+	<option value="data/kasparovVkarpov.json">Kasparov v. Karpov</option>	
+	<option value="data/fischerVreshevsky.json">Fischer v. Reshevsky</option>
+	<option value="data/bruehlVphilidor.json">Bruehl v. Philidor</option>  
+</select>
+</div>
+
 <script src="scripts/pieces.js"></script> 
 <script src="d3-lib/d3/d3.min.js"></script>
 <script>
 	
 
 	const size = 8
-	var move = 0
 	var margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
-	
+
 
 	// squares data generation
 	const data = Array.from(Array(size**2).keys())	
@@ -187,62 +212,90 @@
 	  		return getPositionLabel(d)
   		})
 
-  	// add pieces
-	var pieces = Array.from(Object.keys(board))  	
+  	//  container for pieces
+	svg.append("g").attr("id", "pieces")
 
-	svg.append("g")
-		.attr("id", "pieces")
+    Promise.all([  // load default game. 
+        d3.json('data/kasparovVkarpov.json'),
+        d3.json('data/startBoard.json')
+    ]).then(
+        d => ready(d[0], d[1])
+    );
+
+
+	function ready(gameData, aBoard){	
+				
+        d3.select("#gameSelect").on("change", function (d) {
+            var selectedOption = d3.select(this).property("value")
+			Promise.all([
+		        d3.json(selectedOption),
+		        d3.json('data/startBoard.json')
+		    ]).then(
+		        d => loadGame(d[0], pieces, d[1])
+		    )                
+            
+        })		
+			
+		loadGame(gameData, pieces, aBoard)
+	}
+
+	function loadPieces(pieces, aBoard){
+				
+		var pieces = Array.from(Object.keys(aBoard))  			
 		
-	var chessPieces = d3.select("#pieces")
-		.selectAll("path")
-		.data(pieces)
+		d3.select("#pieces").selectAll("path").remove()
 		
-	chessPieces.enter()
-		.append("path")
-		.attr("id", function(d){
-			return d
-		})
-		.attr("transform", function(d){
-  			return "translate("+
-  			(positions[board[d].position][0]-25)
-  			+","+
-  			(positions[board[d].position][1]-24)
-  			+")"			
-		})
-		.attr("fill", function(d){
-			return board[d].fill
-		})
-		.attr("stroke", function(d){
-			return board[d].stroke
-		})
-		.attr("d", function(d){
-			return board[d].path
-		})
+		var chessPieces = d3.select("#pieces")
+			.selectAll("path")
+			.data(pieces)
+			
+		chessPieces.enter()
+			.append("path")
+			.attr("id", function(d){ return d })
+			.attr("transform", function(d){
+	  			return "translate("+
+	  			(positions[aBoard[d].position][0]-25)
+	  			+","+
+	  			(positions[aBoard[d].position][1]-24)
+	  			+")"			
+			})
+			.attr("fill", function(d){ 
+				return pieceColors[aBoard[d].fill]
+			})
+			.attr("stroke", function(d){ 
+				return pieceColors[aBoard[d].stroke] 				
+			})
+			.attr("d", function(d){ 
+				return piecePaths[aBoard[d].path]
+			})	
+			
+			return pieces			
+	}
 	
-	
-	// load a game
-    d3.json("data/pgn709.json", function (d) {
-            // return {
-            //  any necessary parsing
-            //     year: parseTime(d.year),
-            //     running_total: +d.running_total
-            // }
-        }).then(function (data) {
-            d3.select("#moves")
-            .append("p")
-            .text(data.moves)
+	function loadGame(gameData, pieces, aBoard){
+		
+		pieces = loadPieces(pieces, aBoard)						
+		
+		d3.select("#moves p").remove()
+        d3.select("#moves")       
+        	.append("p")
+        	.text(gameData.moves)	
+		
+		var move = 0		
+        var lastMove = gameData.moves.length
     	        
 		// piece movement
+		d3.select("#start").attr("disabled", null)		
 		d3.select("#start").on("click", function() {
-  			this_move = data.moves[move]
-  			var parsedMoves = parseMove(move, this_move, board)
+			
+  			this_move = gameData.moves[move]
+  			var parsedMoves = parseMove(move, this_move, aBoard)
 			console.log(parsedMoves)
 
 			var piece = parsedMoves[0][0]
 			var nextPosition = parsedMoves[0][1]
-
-				
 			var newPosition = positions[nextPosition] //x,y coords
+			d3.select("#start").attr("disabled", "disabled")
 			d3.select("#"+piece) //animate movement
 				.transition()
 				.attr("transform", "translate("+(newPosition[0]-25)+","+
@@ -252,8 +305,8 @@
 		  				if (parsedMoves[1][1]=="x"){
 			  				// capture
 			  				var capturedPiece = parsedMoves[1][0]
-		  					console.log("capture of "+ board[capturedPiece].name + "!")
-							delete board[capturedPiece]
+		  					console.log("capture of "+ aBoard[capturedPiece].name + "!")
+							delete aBoard[capturedPiece]
 							pieces.splice (pieces.indexOf(capturedPiece), 1)
 
 							d3.select("#pieces").select("path#"+capturedPiece)
@@ -267,23 +320,24 @@
 		  					var piece = parsedMoves[1][0]
 							var nextPosition = parsedMoves[1][1]								
 							var newPosition = positions[nextPosition] //x,y coords
-							board[piece].position = nextPosition
+							aBoard[piece].position = nextPosition
 							d3.select("#"+piece) //animate movement
 								.transition()
 								.attr("transform", "translate("+(newPosition[0]-25)+","+
 				  			(newPosition[1]-24)+")")			  				
 		  				}
 	  				}
+	  				if (move!=lastMove){ // detect endgame
+	  					d3.select("#start").attr("disabled", null)		  				
+	  				}
 
   				})
   				
-  			board[piece].position = nextPosition					
+  			aBoard[piece].position = nextPosition					
 			move +=1 //advance to next move of game					
 		});            
+	}
 
-        }).catch(function (error) {
-            console.log(error);
-        });
 
 	
     </script>
