@@ -1,0 +1,258 @@
+{
+					"wqr":{
+						"path": "rook_path"
+						, "type": "rook"
+						, "name": "white's queen rook"
+						, "position": "a1"
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+						}
+					,"wkr":{
+						"path": "rook_path"
+						, "type": "rook"						
+						, "name": "white's king rook"						
+						, "position": "h1"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wqn":{
+						"path": "knight_path"
+						, "type": "knight"						
+						, "name": "white's queen knight"						
+						, "position": "b1"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wkn":{
+						"path": "knight_path"
+						, "type": "knight"												
+						, "position": "g1"						
+						, "name": "white's king knight"												
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wqb":{
+						"path": "bishop_path"
+						, "type": "bishop"												
+						, "name": "white's queen bishop"						
+						, "position": "c1"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wkb":{
+						"path": "bishop_path"
+						, "type": "bishop"																		
+						, "name": "white's king bishop"						
+						, "position": "f1"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wq":{
+						"path": "queen_path"
+						, "type": "queen"												
+						, "name": "white's queen"						
+						, "position": "d1"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}	
+					,"wk":{
+						"path": "king_path"
+						, "type": "king"						
+						, "name": "white's king"						
+						, "position": "e1"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wqrp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's queen rook pawn"						
+						, "position": "a2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}																									
+					,"wqnp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's queen knight pawn"						
+						, "position": "b2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wqbp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's queen bishop pawn"						
+						, "position": "c2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}	
+					,"wqp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's queen pawn"						
+						, "position": "d2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}	
+					,"wkp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's kings pawn"						
+						, "position": "e2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					,"wkbp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's king bishop pawn"						
+						, "position": "f2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}		
+					,"wknp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's king knight pawn"						
+						, "position": "g2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}				
+					,"wkrp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's king rook pawn"												
+						, "position": "h2"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}			
+					,"bqr":{
+						"path": "rook_path"
+						, "type": "rook"
+						, "name": "black's queen rook"
+						, "position": "a8"
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bkr":{
+						"path": "rook_path"
+						, "type": "rook"						
+						, "name": "black's king rook"						
+						, "position": "h8"
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bqn":{
+						"path": "knight_path"
+						, "type": "knight"
+						, "name": "black's queen knight"
+						, "position": "b8"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bkn":{
+						"path": "knight_path"
+						, "type": "knight"						
+						, "name": "black's king knight"
+						, "position": "g8"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bqb":{
+						"path": "bishop_path"
+						, "type": "bishop"
+						, "name": "black's queen bishop"
+						, "position": "c8"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bkb":{
+						"path": "bishop_path"
+						, "type": "bishop"	
+						, "name": "black's king bishop"
+						, "position": "f8"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bq":{
+						"path": "queen_path"
+						, "type": "queen"
+						, "name": "black's queen"										
+						, "position": "d8"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}	
+					,"bk":{
+						"path": "king_path"
+						, "type": "king"
+						, "name": "black's king"										
+						, "position": "e8"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}				
+					,"bqrp":{
+						"path": "pawn_path"
+						, "type": "pawn"
+						, "name": "black's queen rook pawn"										
+						, "position": "a7"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}																									
+					,"bqnp":{
+						"path": "pawn_path"
+						, "type": "pawn"
+						, "name": "black's queen knight pawn"												
+						, "position": "b7"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bqbp":{
+						"path": "pawn_path"
+						, "type": "pawn"			
+						, "name": "black's queen bishop pawn"									
+						, "position": "c7"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}	
+					,"bqp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "position": "d7"
+						, "name": "black's queen pawn"												
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}	
+					,"bkp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "position": "e7"						
+						, "name": "black's king pawn"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+					,"bkbp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "black's king bishop pawn"						
+						, "position": "f7"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}		
+					,"bknp":{
+						"path": "pawn_path"
+						, "type": "pawn"
+						, "name": "black's king knight pawn"												
+						, "position": "g7"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}				
+					,"bkrp":{
+						"path": "pawn_path"
+						, "type": "pawn"
+						, "name": "black's king rook pawn"												
+						, "position": "h7"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}																																																								
+}

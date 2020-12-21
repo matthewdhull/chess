@@ -1,0 +1,206 @@
+{
+    "str": {
+        "Event": "World Championship",
+        "Site": "?",
+        "Round": "32",
+        "White": "Kasparov",
+        "Black": "Karpov",
+        "Result": "1-0",
+        "ECO": "E12",
+        "Opening": "Queen's Indian: 4.Nc3 Bb7"
+    },
+    "moves": [
+        "d4",
+        "Nf6",
+        "c4",
+        "e6",
+        "Nf3",
+        "b6",
+        "Nc3",
+        "Bb7",
+        "a3",
+        "d5",
+        "cxd5",
+        "Nxd5",
+        "Qc2",
+        "Nd7",
+        "Nxd5",
+        "exd5",
+        "Bg5",
+        "f6",
+        "Bf4",
+        "c5",
+        "g3",
+        "g6",
+        "h4",
+        "Qe7",
+        "Bg2",
+        "Bg7",
+        "h5",
+        "f5",
+        "Qd2",
+        "Bf6",
+        "Rc1",
+        "Rc8",
+        "Rc3",
+        "Rc6",
+        "Re3",
+        "Re6",
+        "Rxe6",
+        "Qxe6",
+        "Ng5",
+        "Qe7",
+        "dxc5",
+        "Nxc5",
+        "hxg6",
+        "d4",
+        "g7",
+        "Bxg7",
+        "Bxb7",
+        "Qxb7",
+        "f3",
+        "Qd5",
+        "Rxh7",
+        "Rxh7",
+        "Nxh7",
+        "Qb3",
+        "Bd6",
+        "Ne6",
+        "Ng5",
+        "Bh6",
+        "Bf4",
+        "Bxg5",
+        "Bxg5",
+        "Nxg5",
+        "Qxg5",
+        "Qxb2",
+        "Qxf5",
+        "Qc1+",
+        "Kf2",
+        "Qe3+",
+        "Kf1",
+        "Qc1+",
+        "Kg2",
+        "Qxa3",
+        "Qh5+",
+        "Kd7",
+        "Qg4+",
+        "Kc6",
+        "Qxd4",
+        "b5",
+        "g4",
+        "b4",
+        "g5",
+        "b3",
+        "Qe4+",
+        "Kd7",
+        "Qh7+",
+        "Ke6",
+        "g6",
+        "b2",
+        "g7"
+    ],
+    "annotations": [
+        {
+            "moveCount": 4,
+            "comment": "Karpov could play 4...Bb4 if he wished to transpose into the Nimzo-Indian defence. But he likes the Queen's Indian."
+        },
+        {
+            "moveCount": 5,
+            "comment": "One of my favorite systems. I won a lot of games with it on my way to the World Championship."
+        },
+        {
+            "moveCount": 8,
+            "comment": " The scope of the bishop at b7 is now limited by the pawn at d5."
+        },
+        {
+            "moveCount": 8,
+            "comment": " Now the e6 square is weakened. But exchanging bishops would not have helped Black. 9...Be7 10.Bxe7 Kxe7 Black can't take with the queen because then the c-pawn falls. 11.e3 Re8 12.Bd3 h6 13.O-O Kf8 White's bishop is much more effective than Black's."
+        },
+        {
+            "moveCount": 11,
+            "comment": "11.dxc5 bxc5 Black's hanging pawns would be an asset here, as both are defended. And Karpov knows a lot about playing such position"
+        },
+        {
+            "moveCount": 8,
+            "comment": " This is the customary method of attacking a weakened kingside."
+        },
+        {
+            "moveCount": 14,
+            "comment": "Black now has some pressure at d4."
+        },
+        {
+            "moveCount": 8,
+            "comment": " Neither side has castled. I want to leave my rook at h1 to support the pawn advances on the kingside. If I have to, I can move my king to safety by walking it to g1. Black's king will have more difficulty finding shelter."
+        },
+        {
+            "moveCount": 17,
+            "comment": "The threat is 18.Re3."
+        },
+        {
+            "moveCount": 8,
+            "comment": " Here I failed to find the best move."
+        },
+        {
+            "moveCount": 21,
+            "comment": "Now by capturing with the knight, Karpov threatens to push his pawn to d3 and exploit the pin on the e-file."
+        },
+        {
+            "moveCount": 8,
+            "comment": " 21...bxc5 22.hxg6 hxg6 23.Rxh8+ Bxh8 24.Bxd5 Bxd5 25.Qxd5 Bxb2 26.Bd6"
+        },
+        {
+            "moveCount": 22,
+            "comment": "22...hxg6 23.Rxh8+ Bxh8 24.Bxd5 Bxd5 25.Qxd5 Bxb2 26.Bd6"
+        },
+        {
+            "moveCount": 8,
+            "comment": " I should have just captured the bishop at b7. 23.Bxb7 Qxb7 24.f3 hxg6 25.Rxh8+ Bxh8 26.b4 Nd7 27.Qa2! Nf8 28.Ne6 White has the better game."
+        },
+        {
+            "moveCount": 25,
+            "comment": "25.O-O My king would be safe but I would have no pressure on the h-file. Black's pieces can't get at my king, which is well-protected."
+        },
+        {
+            "moveCount": 8,
+            "comment": " I have an extra pawn. Karpov makes my job easier by playing inaccurately here."
+        },
+        {
+            "moveCount": 27,
+            "comment": "27...d3 28.b4 Ne6 29.Qxd3 Qxd3 30.exd3 Nxf4 31.gxf4 Bb2 32.a4 Bc3+ Black maintains the balance."
+        },
+        {
+            "moveCount": 28,
+            "comment": "Black's king is still in danger."
+        },
+        {
+            "moveCount": 29,
+            "comment": "29...Nxg5 30.Qxg5 Qf7 31.Qc1 Qd7 32.Qc7"
+        },
+        {
+            "moveCount": 21,
+            "comment": "Now there is a series of exchanges which lead to a clarification of the position."
+        },
+        {
+            "moveCount": 35,
+            "comment": "My king is sheltered, but Black's isn't. That is actually more important than the extra pawn here."
+        },
+        {
+            "moveCount": 8,
+            "comment": " Black tries to win the footrace. But the safety of my king makes all the difference. In queen endgames most advances are accomplished in conjunction with checking maneuvers, so the safer king has a big advantage."
+        },
+        {
+            "moveCount": 14,
+            "comment": "Black resigned. Even though the b-pawn seems to be flying, White will win."
+        },
+        {
+            "moveCount": 8,
+            "comment": " Or else my queen will get to e8 and provide an escort for my pawn."
+        },
+        {
+            "moveCount": 45,
+            "comment": "And my queen guards b1!"
+        }
+    ],
+    "nag": []
+}
