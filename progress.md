@@ -167,4 +167,8 @@ To correct this, we try to find a path from the desired position, e.g., `b1` to 
 ![Correct Rook Logic](img/correct_rook_logic.png)   
 
 
+ #### Game Select and Move Indicators
  
+ A few games are now available for play-through.  A simple indicator shows the current move. 
+ 
+ ![Move Indicator](img/move_indicator.gif)  
