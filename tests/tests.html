@@ -77,7 +77,6 @@
 	}
 	
 	
-	
 	const kingMoveBoard = {
 		"bk": {"type":"king", "position": "e8"}
 		,"wqp": {"type":"queen", "position": "d7"}
@@ -106,9 +105,9 @@
 	  
 	
 	QUnit.module('parse test', function(){
-		const parseMove0 = moves[0]		
-		QUnit.test('move 0 should be wkp --> e4', function(assert){
-			assert.deepEqual(parseMove(0, parseMove0,board1),[["wkp","e4"]])
+		const parseMove0 = "Rh4"
+		QUnit.test('move 0 should be wkr --> h4', function(assert){
+			assert.deepEqual(parseMove(0, parseMove0,board1),[["wkr","h4"]])
 		});
 	});
 

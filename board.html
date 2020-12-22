@@ -28,21 +28,31 @@
 	 }
 	 
 	 #positionDisplay{
-		 grid-row-start: 3;
-		 
+		 grid-row-start: 3;		 
 	 }
 	 
-	 #moves {
-		 grid-row-start: 4;
-		 width: 400px;
-		 line-height: 25px;
-		 overflow-wrap: break-word;
-	 }
 	 
 	 #selectGame {
 		 grid-row-start: 1;
 		 grid-column-start: 2;
 	 }
+	 
+
+	 #moves {
+		 display: grid;
+		 grid-template-columns: repeat(2, 85px);  		 
+		 width: 433px;
+		 height: 433px;
+		 line-height: 25px;
+		 overflow: scroll;
+	 }
+	 
+	 #moves div {
+		 margin: 2px;
+		 padding: 2px;
+	 }
+	 
+
 
 	 
   </style>
@@ -52,7 +62,6 @@
 <button id="start">Move</button>
 
 <div id="positionDisplay">(hover) Position:</div>
-<div id="moves"></div>
 
 <div id="selectGame">
 <label for="gameSelect">Select Game:</label>
@@ -60,7 +69,9 @@
 	<option value="data/kasparovVkarpov.json">Kasparov v. Karpov</option>	
 	<option value="data/fischerVreshevsky.json">Fischer v. Reshevsky</option>
 	<option value="data/bruehlVphilidor.json">Bruehl v. Philidor</option>  
+	<option value="data/brandtleyVmatthew211220.json">Brandtley v. Matthew </option>
 </select>
+<div id="moves"></div>
 </div>
 
 <script src="scripts/pieces.js"></script> 
@@ -276,10 +287,18 @@
 		
 		pieces = loadPieces(pieces, aBoard)						
 		
-		d3.select("#moves p").remove()
-        d3.select("#moves")       
-        	.append("p")
-        	.text(gameData.moves)	
+		d3.select("#moves").selectAll("div").remove()
+        d3.select("#moves")
+        	.selectAll("div")
+			.data(gameData.moves)        	
+        	.enter()
+        	.append("div")
+			.attr("id", function(d,i){
+				return "move"+i
+			})
+        	.text(function(d,i){
+				return d
+        	})	
 		
 		var move = 0		
         var lastMove = gameData.moves.length
@@ -296,6 +315,21 @@
 			var nextPosition = parsedMoves[0][1]
 			var newPosition = positions[nextPosition] //x,y coords
 			d3.select("#start").attr("disabled", "disabled")
+			
+			
+			// color move squares		
+			d3.select("#move"+move)
+				.transition()
+				.style("background-color", "#c2d8d7")		
+
+			d3.select("#move"+(move-1).toString())
+				.transition()
+				.style("background-color", "white")		
+			
+			var scrollMoveToView = document.getElementById("move"+move);
+			scrollMoveToView.scrollIntoView();
+			
+			
 			d3.select("#"+piece) //animate movement
 				.transition()
 				.attr("transform", "translate("+(newPosition[0]-25)+","+
