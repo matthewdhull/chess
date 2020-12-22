@@ -105,7 +105,7 @@ The [pgn](https://opensource.apple.com/source/Chess/Chess-110.0.6/Documentation/
 
 #### Interpreting the pgn format
 
-A move described in `pgn` contains implicit meaning:
+A move described in a `pgn` file is written in standard algebraic notation (SAN) and contains implicit meaning:
 *e.g*. 
 - `e4` implies to move a white or black pawn to the `e4` square.  In the opening moves of the game, only white's king pawn can make this move.   
 - `Nf3` implies to move a white or black knight to the `f3` square.
@@ -148,6 +148,7 @@ Iterate through the potential moves for each knight and determine whether or not
 
 Commit [2b859d](https://github.com/matthewdhull/chess/commit/2b859d5093124fd2b29b2b85d95454309bcf9ebe)
 
+The same logic was used for determining which bishop or rook should move. 
 
 #### Re-thinking Rook Movement
 
@@ -155,4 +156,15 @@ This bug appeared while playing `Rb1`
 
 ![Wrong Rook Move](img/wrong_rook.gif) 
 
-We should have white's queen rook to `b1` but the method for calculating the positions for a rook resulted in both rooks being able to move along the 1st rank.  The strategy for calculating all possible move directions for all rooks was causing this behavior 
+We should have white's queen rook to `b1` but the method for calculating the positions for a rook resulted in both rooks being able to move along the 1st rank.  The method for translating implict moves described previously did not consider squares that would be illegal moves caused by intermediate pieces.  Given the board state shown below, `Rb1` does not require any rank or file disambiguation in SAN.  Instead, we must internally deal with the disambiguation by only choosing the rook that could legally move to `b1` 
+
+Below, we see the possible squares were originally calculated. The arrows span covers all possible squares considered.  In this case, it seems that both rooks can move to `b1` 
+
+![Wrong Rook Logic](img/wrong_rook_logic.png) 
+
+To correct this, we try to find a path from the desired position, e.g., `b1` to each rook and stop if an intermediate piece exists.  If we start at position `b1` and move horizontally on rank 1, we find an intermediate piece on `d1` and that only white's queen rook on `a1` can move to `b1`.  See `rookMovesFrom(fromPosition, toPosition, aBoard) ` [code](https://github.com/matthewdhull/chess/blob/a302b280b01ab2427bad67767b396f3b019aa2d2/scripts/pieces.js#L198)
+
+![Correct Rook Logic](img/correct_rook_logic.png)   
+
+
+ 
