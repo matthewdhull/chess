@@ -1,17 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-12-23T18:46:22+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Building chess in d3</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Alternating colors</title><link href="http://localhost:4000/2020/11/30/Alternating-Colors.html" rel="alternate" type="text/html" title="Alternating colors" /><published>2020-11-30T00:00:00+01:00</published><updated>2020-11-30T00:00:00+01:00</updated><id>http://localhost:4000/2020/11/30/Alternating%20Colors</id><content type="html" xml:base="http://localhost:4000/2020/11/30/Alternating-Colors.html">&lt;h3 id=&quot;--with-alternating-colors&quot;&gt;- With Alternating Colors&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-23T20:05:53+01:00</updated><id>/feed.xml</id><title type="html">Edit _config.yml to set your title!</title><subtitle>This is where the description of your site will go. You should change it by editing the _config.yml file. It can be as long as you like! Happy blogging... ❤</subtitle><entry><title type="html">This is the title</title><link href="/2020/01/14/welcome.html" rel="alternate" type="text/html" title="This is the title" /><published>2020-01-14T00:00:00+01:00</published><updated>2020-01-14T00:00:00+01:00</updated><id>/2020/01/14/welcome</id><content type="html" xml:base="/2020/01/14/welcome.html">&lt;p&gt;Here’s the table of contents:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/img/alternating_colors_board.png&quot; alt=&quot;Alternating Colors&quot; /&gt;&lt;/p&gt;
+&lt;ol id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#basic-setup&quot; id=&quot;markdown-toc-basic-setup&quot;&gt;Basic setup&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#basic-formatting&quot; id=&quot;markdown-toc-basic-formatting&quot;&gt;Basic formatting&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#lists&quot; id=&quot;markdown-toc-lists&quot;&gt;Lists&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#boxes-and-stuff&quot; id=&quot;markdown-toc-boxes-and-stuff&quot;&gt;Boxes and stuff&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#images&quot; id=&quot;markdown-toc-images&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#code&quot; id=&quot;markdown-toc-code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tables&quot; id=&quot;markdown-toc-tables&quot;&gt;Tables&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#footnotes&quot; id=&quot;markdown-toc-footnotes&quot;&gt;Footnotes&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;Colors chosen from the &lt;a href=&quot;https://fabianburghardt.de/swisscolors/&quot;&gt;swiss style color picker&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;basic-setup&quot;&gt;Basic setup&lt;/h2&gt;
 
-&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/51168e44bf5d38d061212f6cda297b08eb3b67e2&quot;&gt;51168e4&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html">- With Alternating Colors</summary></entry><entry><title type="html">Xy axes</title><link href="http://localhost:4000/2020/11/30/xy-Axes.html" rel="alternate" type="text/html" title="Xy axes" /><published>2020-11-30T00:00:00+01:00</published><updated>2020-11-30T00:00:00+01:00</updated><id>http://localhost:4000/2020/11/30/xy%20Axes</id><content type="html" xml:base="http://localhost:4000/2020/11/30/xy-Axes.html">&lt;h3 id=&quot;--x-and-y-axes-indicate-board-positions&quot;&gt;- x and y Axes Indicate Board Positions.&lt;/h3&gt;
+&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/img/board_positions.png&quot; alt=&quot;Board Positions&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-filename.md&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/ac258a6106e9dcafd08baef30f54c5341477279f&quot;&gt;ac258a6&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html">- x and y Axes Indicate Board Positions.</summary></entry><entry><title type="html">Building a basic board</title><link href="http://localhost:4000/2020/11/29/Building-a-Basic-Board.html" rel="alternate" type="text/html" title="Building a basic board" /><published>2020-11-29T00:00:00+01:00</published><updated>2020-11-29T00:00:00+01:00</updated><id>http://localhost:4000/2020/11/29/Building%20a%20Basic%20Board</id><content type="html" xml:base="http://localhost:4000/2020/11/29/Building-a-Basic-Board.html">&lt;h3 id=&quot;building-the-basic-board&quot;&gt;Building the Basic Board&lt;/h3&gt;
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filename&lt;/code&gt; is whatever file name you choose, to remind yourself what this post is about. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; is the file extension for markdown files.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/img/basic_board.png&quot; alt=&quot;Pink Board&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The first line of the file should start with a single hash character, then a space, then your title. This is how you create a “&lt;em&gt;level 1 heading&lt;/em&gt;” in markdown. Then you can create level 2, 3, etc headings as you wish but repeating the hash character, such as you see in the line &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;## File names&lt;/code&gt; above.&lt;/p&gt;
 
-&lt;p&gt;Showing progress on a basic board layout in d3.&lt;/p&gt;
+&lt;h2 id=&quot;basic-formatting&quot;&gt;Basic formatting&lt;/h2&gt;
 
-&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/85cd7955bf602cd0f36232d0edbad500f6ee738d&quot;&gt;85cd95&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html">Building the Basic Board</summary></entry></feed>
+&lt;p&gt;You can use &lt;em&gt;italics&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code font text&lt;/code&gt;, and create &lt;a href=&quot;https://www.markdownguide.org/cheat-sheet/&quot;&gt;links&lt;/a&gt;. Here’s a footnote &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Here’s a horizontal rule:&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
+
+&lt;p&gt;Here’s a list:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;item 1&lt;/li&gt;
+  &lt;li&gt;item 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And a numbered list:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;item 1&lt;/li&gt;
+  &lt;li&gt;item 2&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;boxes-and-stuff&quot;&gt;Boxes and stuff&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is a quotation&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;Toast Toast--warning googoo&quot;&gt;
+   &lt;span class=&quot;Toast-icon&quot;&gt;&lt;svg class=&quot;octicon octicon-alert&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
+   &lt;span class=&quot;Toast-content&quot;&gt;You can include alert boxes&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;…and…&lt;/p&gt;
+
+&lt;div class=&quot;Toast&quot;&gt;
+   &lt;span class=&quot;Toast-icon&quot;&gt;&lt;svg class=&quot;octicon octicon-info&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
+   &lt;span class=&quot;Toast-content&quot;&gt;You can include info boxes&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;images&quot;&gt;Images&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/logo.png&quot; alt=&quot;&quot; title=&quot;fast.ai's logo&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;General preformatted text:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Do a thing
+do_thing()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Python code and output:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Prints '2'
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Column 1&lt;/th&gt;
+      &lt;th&gt;Column 2&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A thing&lt;/td&gt;
+      &lt;td&gt;Another thing&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h2&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;This is the footnote. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Here’s the table of contents:</summary></entry></feed>
