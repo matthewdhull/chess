@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-23T18:06:48+01:00</updated><id>/feed.xml</id><title type="html">Building chess in d3</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Alternating colors</title><link href="/2020/11/30/Alternating-Colors.html" rel="alternate" type="text/html" title="Alternating colors" /><published>2020-11-30T00:00:00+01:00</published><updated>2020-11-30T00:00:00+01:00</updated><id>/2020/11/30/Alternating%20Colors</id><content type="html" xml:base="/2020/11/30/Alternating-Colors.html">&lt;h3 id=&quot;--with-alternating-colors&quot;&gt;- With Alternating Colors&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/alternating_colors_board.png&quot; alt=&quot;Alternating Colors&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Colors chosen from the &lt;a href=&quot;https://fabianburghardt.de/swisscolors/&quot;&gt;swiss style color picker&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/51168e44bf5d38d061212f6cda297b08eb3b67e2&quot;&gt;51168e4&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html">- With Alternating Colors</summary></entry><entry><title type="html">Xy axes</title><link href="/2020/11/30/xy-Axes.html" rel="alternate" type="text/html" title="Xy axes" /><published>2020-11-30T00:00:00+01:00</published><updated>2020-11-30T00:00:00+01:00</updated><id>/2020/11/30/xy%20Axes</id><content type="html" xml:base="/2020/11/30/xy-Axes.html">&lt;h3 id=&quot;--x-and-y-axes-indicate-board-positions&quot;&gt;- x and y Axes Indicate Board Positions.&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/board_positions.png&quot; alt=&quot;Board Positions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/ac258a6106e9dcafd08baef30f54c5341477279f&quot;&gt;ac258a6&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html">- x and y Axes Indicate Board Positions.</summary></entry><entry><title type="html">Building a basic board</title><link href="/2020/11/29/Building-a-Basic-Board.html" rel="alternate" type="text/html" title="Building a basic board" /><published>2020-11-29T00:00:00+01:00</published><updated>2020-11-29T00:00:00+01:00</updated><id>/2020/11/29/Building%20a%20Basic%20Board</id><content type="html" xml:base="/2020/11/29/Building-a-Basic-Board.html">&lt;h3 id=&quot;building-the-basic-board&quot;&gt;Building the Basic Board&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/basic_board.png&quot; alt=&quot;Pink Board&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Showing progress on a basic board layout in d3.&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/85cd7955bf602cd0f36232d0edbad500f6ee738d&quot;&gt;85cd95&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html">Building the Basic Board</summary></entry></feed>
