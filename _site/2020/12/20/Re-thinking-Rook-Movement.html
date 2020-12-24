@@ -3,15 +3,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Building chess with D3 | Chess with D3</title>
+<title>Re Thinking rook movement | Chess with D3</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Building chess with D3" />
+<meta property="og:title" content="Re Thinking rook movement" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Notes on building chess visualizations" />
-<meta property="og:description" content="Notes on building chess visualizations" />
+<meta name="description" content="Re-thinking Rook Movement" />
+<meta property="og:description" content="Re-thinking Rook Movement" />
 <meta property="og:site_name" content="Chess with D3" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-20T00:00:00+01:00" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"Building chess with D3","description":"Notes on building chess visualizations","url":"/","name":"Chess with D3","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Re Thinking rook movement","dateModified":"2020-12-20T00:00:00+01:00","datePublished":"2020-12-20T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/20/Re-thinking-Rook-Movement.html"},"description":"Re-thinking Rook Movement","url":"/2020/12/20/Re-thinking-Rook-Movement.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Chess with D3" />
@@ -72,68 +74,34 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><h1 class="page-heading">Building chess with D3</h1><p><img src="/images/move_indicator.gif" alt="demo image" /></p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<p>All development notes:</p>
-<h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Dec 22, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/22/Game-Select-and-Move-Indicator.html">
-            Game select and move indicator
-          </a>
-        </h3></li><li><span class="post-meta">Dec 20, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/20/Re-thinking-Rook-Movement.html">
-            Re Thinking rook movement
-          </a>
-        </h3></li><li><span class="post-meta">Dec 7, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/07/Reading-Portable-Game-Notation.html">
-            Reading Portable Game Notation (pgn)
-          </a>
-        </h3></li><li><span class="post-meta">Dec 5, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/05/Exploring-Piece-Movement.html">
-            Exploring Piece Movement
-          </a>
-        </h3></li><li><span class="post-meta">Dec 4, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/04/Adding-Remaining-Pieces.html">
-            Remaining Pieces, re-factored initial piece layout
-          </a>
-        </h3></li><li><span class="post-meta">Dec 3, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/03/Piece-Positioning.html">
-            Piece path and positioning
-          </a>
-        </h3></li><li><span class="post-meta">Dec 2, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/02/Square-Center-Annotations.html">
-            Square Center Annotations
-          </a>
-        </h3></li><li><span class="post-meta">Dec 1, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/01/Board-Position-Annotation.html">
-            Full board position annotation added
-          </a>
-        </h3></li><li><span class="post-meta">Nov 30, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/30/xy-Axes.html">
-            x and y Axes Indicate Board Positions.
-          </a>
-        </h3></li><li><span class="post-meta">Nov 30, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/30/Alternating-Colors.html">
-            With Alternating Colors
-          </a>
-        </h3></li><li><span class="post-meta">Nov 29, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/29/Building-a-Basic-Board.html">
-            Building the Basic Board
-          </a>
-        </h3></li></ul>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Re Thinking rook movement</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-12-20T00:00:00+01:00" itemprop="datePublished">Dec 20, 2020
+      </time></p>
+  </header>
 
-    <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p></div>
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="re-thinking-rook-movement">Re-thinking Rook Movement</h4>
+
+<p>This bug appeared while playing <code class="language-plaintext highlighter-rouge">Rb1</code></p>
+
+<p><img src="/images/wrong_rook.gif" alt="Wrong Rook Move" /></p>
+
+<p>We should have white’s queen rook to <code class="language-plaintext highlighter-rouge">b1</code> but the method for calculating the positions for a rook resulted in both rooks being able to move along the 1st rank.  The method for translating implict moves described previously did not consider squares that would be illegal moves caused by intermediate pieces.  Given the board state shown below, <code class="language-plaintext highlighter-rouge">Rb1</code> does not require any rank or file disambiguation in SAN.  Instead, we must internally deal with the disambiguation by only choosing the rook that could legally move to <code class="language-plaintext highlighter-rouge">b1</code></p>
+
+<p>Below, we see the possible squares were originally calculated. The arrows span covers all possible squares considered.  In this case, it seems that both rooks can move to <code class="language-plaintext highlighter-rouge">b1</code></p>
+
+<p><img src="/images/wrong_rook_logic.png" alt="Wrong Rook Logic" /></p>
+
+<p>To correct this, we try to find a path from the desired position, e.g., <code class="language-plaintext highlighter-rouge">b1</code> to each rook and stop if an intermediate piece exists.  If we start at position <code class="language-plaintext highlighter-rouge">b1</code> and move horizontally on rank 1, we find an intermediate piece on <code class="language-plaintext highlighter-rouge">d1</code> and that only white’s queen rook on <code class="language-plaintext highlighter-rouge">a1</code> can move to <code class="language-plaintext highlighter-rouge">b1</code>.  See <code class="language-plaintext highlighter-rouge">rookMovesFrom(fromPosition, toPosition, aBoard) </code> <a href="https://github.com/matthewdhull/chess/blob/a302b280b01ab2427bad67767b396f3b019aa2d2/scripts/pieces.js#L198">code</a></p>
+
+<p><img src="/images/correct_rook_logic.png" alt="Correct Rook Logic" /></p>
+
+  </div><a class="u-url" href="/2020/12/20/Re-thinking-Rook-Movement.html" hidden></a>
+</article>
 
       </div>
     </main><footer class="site-footer h-card">

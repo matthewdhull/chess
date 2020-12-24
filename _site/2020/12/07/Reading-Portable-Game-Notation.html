@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Reading Portable Game Notation (pgn) | Chess with D3</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Reading Portable Game Notation (pgn)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Notes on building chess visualizations" />
+<meta property="og:description" content="Notes on building chess visualizations" />
+<meta property="og:site_name" content="Chess with D3" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-07T00:00:00+01:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Reading Portable Game Notation (pgn)","dateModified":"2020-12-07T00:00:00+01:00","datePublished":"2020-12-07T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/07/Reading-Portable-Game-Notation.html"},"description":"Notes on building chess visualizations","url":"/2020/12/07/Reading-Portable-Game-Notation.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Chess with D3" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+          ]}
+        );
+      });
+    </script>
+  
+
+  <script>
+  function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+  }
+  window.onload = wrap_img;
+  </script>
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Chess with D3</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about.html">About</a><a class="page-link" href="/">Building chess with D3</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Reading Portable Game Notation (pgn)</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-12-07T00:00:00+01:00" itemprop="datePublished">Dec 7, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="/images/reading_pgn.gif" alt="Reading PGN" /></p>
+
+<p>The <a href="https://opensource.apple.com/source/Chess/Chess-110.0.6/Documentation/PGN-Standard.txt">pgn</a> format is widely used to notate the plays in a game of chess.  It seems natural to use pgn files to drive the movement of pieces in the visualization since adopting this standard would permit us to visualize any game.  While pgn is designed to be human-readable and easily read by computers, there are tradeoffs in the data representation that require some extra work to translate the notation of a given move into an action to drive the visualization.</p>
+
+<h4 id="interpreting-the-pgn-format">Interpreting the pgn format</h4>
+
+<p>A move described in a <code class="language-plaintext highlighter-rouge">pgn</code> file is written in standard algebraic notation (SAN) and contains implicit meaning:
+<em>e.g</em>.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">e4</code> implies to move a white or black pawn to the <code class="language-plaintext highlighter-rouge">e4</code> square.  In the opening moves of the game, only white’s king pawn can make this move.</li>
+  <li><code class="language-plaintext highlighter-rouge">Nf3</code> implies to move a white or black knight to the <code class="language-plaintext highlighter-rouge">f3</code> square.</li>
+</ul>
+
+<p>Within the <code class="language-plaintext highlighter-rouge">.pgn</code> file, the moves are given as pairs. Since white always begins the game we can read a move as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">1. e4 c5</code> means that white opens by moving their king pawn to e4 and black responds by moving their queen’s bishop pawn to c5.</p>
+
+<h4 id="obtaining-and-parsing">Obtaining and parsing</h4>
+
+<p>For our datasource, we <a href="https://chessmicrobase.com/microbases/10?token=1koly5lq">Chess Microbase</a> for its 1000 publicly available games for download in the .pgn format.  This project starts with <a href="https://chessmicrobase.com/microbases/10/games/709?token=1koly5lq">Brown vs. Quinteros</a></p>
+
+<p>Parsing the entire <code class="language-plaintext highlighter-rouge">.pgn</code> is beyond the scope of this project and there are already many excellent solutions available.   We choose <a href="https://github.com/Aditya-ds-1806">Aditya DS’s</a> excellent <a href="https://aditya-ds-1806.github.io/Chess-PGN-Parser/#/">Chess PGN Parser</a> for its ability to parse a <code class="language-plaintext highlighter-rouge">.pgn</code> into <code class="language-plaintext highlighter-rouge">.json</code>. (the format used for this project)</p>
+
+<h4 id="translating-implicit-moves">Translating Implicit Moves</h4>
+
+<p>All moves are stored in the <code class="language-plaintext highlighter-rouge">moves</code> array.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">moves</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">e4</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">c5</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Nf3</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">Kf3</span><span class="dl">"</span><span class="p">]</span>  
+</code></pre></div></div>
+<p>We deduce white’s turn or black’s turn by the index of the move:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// white's move</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>While the goal is to let <code class="language-plaintext highlighter-rouge">d3</code> use a <code class="language-plaintext highlighter-rouge">.pgn</code> game file and drive the placement and movement of pieces within the DOM, we don’t have enough information for parsing a move like <code class="language-plaintext highlighter-rouge">Nf3</code>.</p>
+<ul>
+  <li>Which of the four knights is moving to “f3”?</li>
+  <li>What is the starting square?<br />
+While trying to avoid tracking the entire board state, we use make use of a utility function that returns the possible moves for each knight on the board.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// get the moves for the knight on square g1 </span>
+<span class="kd">const</span> <span class="nx">potentialMoves</span> <span class="o">=</span> <span class="nx">knightMoves</span><span class="p">(</span><span class="dl">"</span><span class="s2">g1</span><span class="dl">"</span><span class="p">)</span>  
+<span class="c1">// returns ["e2","f3","h3"]</span>
+</code></pre></div></div>
+<p>Iterate through the potential moves for each knight and determine whether or not it contains “f3”.  In this case, white’s king knight moves from “g1” to “f3”.</p>
+
+<p>The same logic was used for determining which bishop or rook should move.</p>
+
+<p>Commit <a href="https://github.com/matthewdhull/chess/commit/2b859d5093124fd2b29b2b85d95454309bcf9ebe">2b859d</a></p>
+
+  </div><a class="u-url" href="/2020/12/07/Reading-Portable-Game-Notation.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Chess with D3</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Chess with D3</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2">-<ul class="social-media-list">
+  <li><a href="https://github.com/matthewdhull"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">matthewdhull</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Notes on building chess visualizations</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

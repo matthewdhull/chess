@@ -3,15 +3,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Building chess with D3 | Chess with D3</title>
+<title>Game select and move indicator | Chess with D3</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Building chess with D3" />
+<meta property="og:title" content="Game select and move indicator" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Notes on building chess visualizations" />
-<meta property="og:description" content="Notes on building chess visualizations" />
+<meta name="description" content="Game Select and Move Indicators" />
+<meta property="og:description" content="Game Select and Move Indicators" />
 <meta property="og:site_name" content="Chess with D3" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-22T00:00:00+01:00" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"Building chess with D3","description":"Notes on building chess visualizations","url":"/","name":"Chess with D3","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Game select and move indicator","dateModified":"2020-12-22T00:00:00+01:00","datePublished":"2020-12-22T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/22/Game-Select-and-Move-Indicator.html"},"description":"Game Select and Move Indicators","url":"/2020/12/22/Game-Select-and-Move-Indicator.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Chess with D3" />
@@ -72,68 +74,26 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><h1 class="page-heading">Building chess with D3</h1><p><img src="/images/move_indicator.gif" alt="demo image" /></p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<p>All development notes:</p>
-<h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Dec 22, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/22/Game-Select-and-Move-Indicator.html">
-            Game select and move indicator
-          </a>
-        </h3></li><li><span class="post-meta">Dec 20, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/20/Re-thinking-Rook-Movement.html">
-            Re Thinking rook movement
-          </a>
-        </h3></li><li><span class="post-meta">Dec 7, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/07/Reading-Portable-Game-Notation.html">
-            Reading Portable Game Notation (pgn)
-          </a>
-        </h3></li><li><span class="post-meta">Dec 5, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/05/Exploring-Piece-Movement.html">
-            Exploring Piece Movement
-          </a>
-        </h3></li><li><span class="post-meta">Dec 4, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/04/Adding-Remaining-Pieces.html">
-            Remaining Pieces, re-factored initial piece layout
-          </a>
-        </h3></li><li><span class="post-meta">Dec 3, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/03/Piece-Positioning.html">
-            Piece path and positioning
-          </a>
-        </h3></li><li><span class="post-meta">Dec 2, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/02/Square-Center-Annotations.html">
-            Square Center Annotations
-          </a>
-        </h3></li><li><span class="post-meta">Dec 1, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/01/Board-Position-Annotation.html">
-            Full board position annotation added
-          </a>
-        </h3></li><li><span class="post-meta">Nov 30, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/30/xy-Axes.html">
-            x and y Axes Indicate Board Positions.
-          </a>
-        </h3></li><li><span class="post-meta">Nov 30, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/30/Alternating-Colors.html">
-            With Alternating Colors
-          </a>
-        </h3></li><li><span class="post-meta">Nov 29, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/29/Building-a-Basic-Board.html">
-            Building the Basic Board
-          </a>
-        </h3></li></ul>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Game select and move indicator</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-12-22T00:00:00+01:00" itemprop="datePublished">Dec 22, 2020
+      </time></p>
+  </header>
 
-    <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p></div>
+  <div class="post-content e-content" itemprop="articleBody">
+    <h4 id="game-select-and-move-indicators">Game Select and Move Indicators</h4>
+
+<p>A few games are now available for play-through.  A simple indicator shows the current move.</p>
+
+<p><img src="/images/move_indicator.gif" alt="Move Indicator" /></p>
+
+<p>Commit <a href="https://github.com/matthewdhull/chess/commit/a302b280b01ab2427bad67767b396f3b019aa2d2">a302b28</a></p>
+
+  </div><a class="u-url" href="/2020/12/22/Game-Select-and-Move-Indicator.html" hidden></a>
+</article>
 
       </div>
     </main><footer class="site-footer h-card">

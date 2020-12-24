@@ -1,110 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-23T20:05:53+01:00</updated><id>/feed.xml</id><title type="html">Edit _config.yml to set your title!</title><subtitle>This is where the description of your site will go. You should change it by editing the _config.yml file. It can be as long as you like! Happy blogging... ❤</subtitle><entry><title type="html">This is the title</title><link href="/2020/01/14/welcome.html" rel="alternate" type="text/html" title="This is the title" /><published>2020-01-14T00:00:00+01:00</published><updated>2020-01-14T00:00:00+01:00</updated><id>/2020/01/14/welcome</id><content type="html" xml:base="/2020/01/14/welcome.html">&lt;p&gt;Here’s the table of contents:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-12-24T13:07:07+01:00</updated><id>/feed.xml</id><title type="html">Chess with D3</title><subtitle>Notes on building chess visualizations</subtitle><entry><title type="html">Game select and move indicator</title><link href="/2020/12/22/Game-Select-and-Move-Indicator.html" rel="alternate" type="text/html" title="Game select and move indicator" /><published>2020-12-22T00:00:00+01:00</published><updated>2020-12-22T00:00:00+01:00</updated><id>/2020/12/22/Game%20Select%20and%20Move%20Indicator</id><content type="html" xml:base="/2020/12/22/Game-Select-and-Move-Indicator.html">&lt;h4 id=&quot;game-select-and-move-indicators&quot;&gt;Game Select and Move Indicators&lt;/h4&gt;
 
-&lt;ol id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#basic-setup&quot; id=&quot;markdown-toc-basic-setup&quot;&gt;Basic setup&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#basic-formatting&quot; id=&quot;markdown-toc-basic-formatting&quot;&gt;Basic formatting&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#lists&quot; id=&quot;markdown-toc-lists&quot;&gt;Lists&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#boxes-and-stuff&quot; id=&quot;markdown-toc-boxes-and-stuff&quot;&gt;Boxes and stuff&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#images&quot; id=&quot;markdown-toc-images&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#code&quot; id=&quot;markdown-toc-code&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tables&quot; id=&quot;markdown-toc-tables&quot;&gt;Tables&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#footnotes&quot; id=&quot;markdown-toc-footnotes&quot;&gt;Footnotes&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;A few games are now available for play-through.  A simple indicator shows the current move.&lt;/p&gt;
 
-&lt;h2 id=&quot;basic-setup&quot;&gt;Basic setup&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/images/move_indicator.gif&quot; alt=&quot;Move Indicator&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/a302b280b01ab2427bad67767b396f3b019aa2d2&quot;&gt;a302b28&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Game Select and Move Indicators</summary></entry><entry><title type="html">Re Thinking rook movement</title><link href="/2020/12/20/Re-thinking-Rook-Movement.html" rel="alternate" type="text/html" title="Re Thinking rook movement" /><published>2020-12-20T00:00:00+01:00</published><updated>2020-12-20T00:00:00+01:00</updated><id>/2020/12/20/Re-thinking%20Rook%20Movement</id><content type="html" xml:base="/2020/12/20/Re-thinking-Rook-Movement.html">&lt;h4 id=&quot;re-thinking-rook-movement&quot;&gt;Re-thinking Rook Movement&lt;/h4&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-filename.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This bug appeared while playing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rb1&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filename&lt;/code&gt; is whatever file name you choose, to remind yourself what this post is about. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; is the file extension for markdown files.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/wrong_rook.gif&quot; alt=&quot;Wrong Rook Move&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The first line of the file should start with a single hash character, then a space, then your title. This is how you create a “&lt;em&gt;level 1 heading&lt;/em&gt;” in markdown. Then you can create level 2, 3, etc headings as you wish but repeating the hash character, such as you see in the line &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;## File names&lt;/code&gt; above.&lt;/p&gt;
+&lt;p&gt;We should have white’s queen rook to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b1&lt;/code&gt; but the method for calculating the positions for a rook resulted in both rooks being able to move along the 1st rank.  The method for translating implict moves described previously did not consider squares that would be illegal moves caused by intermediate pieces.  Given the board state shown below, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rb1&lt;/code&gt; does not require any rank or file disambiguation in SAN.  Instead, we must internally deal with the disambiguation by only choosing the rook that could legally move to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b1&lt;/code&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;basic-formatting&quot;&gt;Basic formatting&lt;/h2&gt;
+&lt;p&gt;Below, we see the possible squares were originally calculated. The arrows span covers all possible squares considered.  In this case, it seems that both rooks can move to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b1&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;You can use &lt;em&gt;italics&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code font text&lt;/code&gt;, and create &lt;a href=&quot;https://www.markdownguide.org/cheat-sheet/&quot;&gt;links&lt;/a&gt;. Here’s a footnote &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Here’s a horizontal rule:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/wrong_rook_logic.png&quot; alt=&quot;Wrong Rook Logic&quot; /&gt;&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;p&gt;To correct this, we try to find a path from the desired position, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b1&lt;/code&gt; to each rook and stop if an intermediate piece exists.  If we start at position &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b1&lt;/code&gt; and move horizontally on rank 1, we find an intermediate piece on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d1&lt;/code&gt; and that only white’s queen rook on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a1&lt;/code&gt; can move to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b1&lt;/code&gt;.  See &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rookMovesFrom(fromPosition, toPosition, aBoard) &lt;/code&gt; &lt;a href=&quot;https://github.com/matthewdhull/chess/blob/a302b280b01ab2427bad67767b396f3b019aa2d2/scripts/pieces.js#L198&quot;&gt;code&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/images/correct_rook_logic.png&quot; alt=&quot;Correct Rook Logic&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Re-thinking Rook Movement</summary></entry><entry><title type="html">Reading Portable Game Notation (pgn)</title><link href="/2020/12/07/Reading-Portable-Game-Notation.html" rel="alternate" type="text/html" title="Reading Portable Game Notation (pgn)" /><published>2020-12-07T00:00:00+01:00</published><updated>2020-12-07T00:00:00+01:00</updated><id>/2020/12/07/Reading%20Portable%20Game%20Notation</id><content type="html" xml:base="/2020/12/07/Reading-Portable-Game-Notation.html">&lt;p&gt;&lt;img src=&quot;/images/reading_pgn.gif&quot; alt=&quot;Reading PGN&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Here’s a list:&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://opensource.apple.com/source/Chess/Chess-110.0.6/Documentation/PGN-Standard.txt&quot;&gt;pgn&lt;/a&gt; format is widely used to notate the plays in a game of chess.  It seems natural to use pgn files to drive the movement of pieces in the visualization since adopting this standard would permit us to visualize any game.  While pgn is designed to be human-readable and easily read by computers, there are tradeoffs in the data representation that require some extra work to translate the notation of a given move into an action to drive the visualization.&lt;/p&gt;
 
+&lt;h4 id=&quot;interpreting-the-pgn-format&quot;&gt;Interpreting the pgn format&lt;/h4&gt;
+
+&lt;p&gt;A move described in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pgn&lt;/code&gt; file is written in standard algebraic notation (SAN) and contains implicit meaning:
+&lt;em&gt;e.g&lt;/em&gt;.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;item 1&lt;/li&gt;
-  &lt;li&gt;item 2&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;e4&lt;/code&gt; implies to move a white or black pawn to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;e4&lt;/code&gt; square.  In the opening moves of the game, only white’s king pawn can make this move.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Nf3&lt;/code&gt; implies to move a white or black knight to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;f3&lt;/code&gt; square.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;And a numbered list:&lt;/p&gt;
+&lt;p&gt;Within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pgn&lt;/code&gt; file, the moves are given as pairs. Since white always begins the game we can read a move as follows:&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;item 1&lt;/li&gt;
-  &lt;li&gt;item 2&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1. e4 c5&lt;/code&gt; means that white opens by moving their king pawn to e4 and black responds by moving their queen’s bishop pawn to c5.&lt;/p&gt;
 
-&lt;h2 id=&quot;boxes-and-stuff&quot;&gt;Boxes and stuff&lt;/h2&gt;
+&lt;h4 id=&quot;obtaining-and-parsing&quot;&gt;Obtaining and parsing&lt;/h4&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quotation&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;For our datasource, we &lt;a href=&quot;https://chessmicrobase.com/microbases/10?token=1koly5lq&quot;&gt;Chess Microbase&lt;/a&gt; for its 1000 publicly available games for download in the .pgn format.  This project starts with &lt;a href=&quot;https://chessmicrobase.com/microbases/10/games/709?token=1koly5lq&quot;&gt;Brown vs. Quinteros&lt;/a&gt;&lt;/p&gt;
 
-&lt;div class=&quot;Toast Toast--warning googoo&quot;&gt;
-   &lt;span class=&quot;Toast-icon&quot;&gt;&lt;svg class=&quot;octicon octicon-alert&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
-   &lt;span class=&quot;Toast-content&quot;&gt;You can include alert boxes&lt;/span&gt;
-&lt;/div&gt;
+&lt;p&gt;Parsing the entire &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pgn&lt;/code&gt; is beyond the scope of this project and there are already many excellent solutions available.   We choose &lt;a href=&quot;https://github.com/Aditya-ds-1806&quot;&gt;Aditya DS’s&lt;/a&gt; excellent &lt;a href=&quot;https://aditya-ds-1806.github.io/Chess-PGN-Parser/#/&quot;&gt;Chess PGN Parser&lt;/a&gt; for its ability to parse a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pgn&lt;/code&gt; into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.json&lt;/code&gt;. (the format used for this project)&lt;/p&gt;
 
-&lt;p&gt;…and…&lt;/p&gt;
+&lt;h4 id=&quot;translating-implicit-moves&quot;&gt;Translating Implicit Moves&lt;/h4&gt;
 
-&lt;div class=&quot;Toast&quot;&gt;
-   &lt;span class=&quot;Toast-icon&quot;&gt;&lt;svg class=&quot;octicon octicon-info&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
-   &lt;span class=&quot;Toast-content&quot;&gt;You can include info boxes&lt;/span&gt;
-&lt;/div&gt;
+&lt;p&gt;All moves are stored in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;moves&lt;/code&gt; array.&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;moves&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;e4&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;c5&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Nf3&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Kf3&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;We deduce white’s turn or black’s turn by the index of the move:&lt;/p&gt;
 
-&lt;h2 id=&quot;images&quot;&gt;Images&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/logo.png&quot; alt=&quot;&quot; title=&quot;fast.ai's logo&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
-
-&lt;p&gt;General preformatted text:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Do a thing
-do_thing()
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// white's move&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Python code and output:&lt;/p&gt;
+&lt;p&gt;While the goal is to let &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d3&lt;/code&gt; use a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pgn&lt;/code&gt; game file and drive the placement and movement of pieces within the DOM, we don’t have enough information for parsing a move like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Nf3&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Which of the four knights is moving to “f3”?&lt;/li&gt;
+  &lt;li&gt;What is the starting square?&lt;br /&gt;
+While trying to avoid tracking the entire board state, we use make use of a utility function that returns the possible moves for each knight on the board.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Prints '2'
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// get the moves for the knight on square g1 &lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;potentialMoves&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;knightMoves&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;g1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+&lt;span class=&quot;c1&quot;&gt;// returns [&quot;e2&quot;,&quot;f3&quot;,&quot;h3&quot;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Iterate through the potential moves for each knight and determine whether or not it contains “f3”.  In this case, white’s king knight moves from “g1” to “f3”.&lt;/p&gt;
+
+&lt;p&gt;The same logic was used for determining which bishop or rook should move.&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/2b859d5093124fd2b29b2b85d95454309bcf9ebe&quot;&gt;2b859d&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Exploring Piece Movement</title><link href="/2020/12/05/Exploring-Piece-Movement.html" rel="alternate" type="text/html" title="Exploring Piece Movement" /><published>2020-12-05T00:00:00+01:00</published><updated>2020-12-05T00:00:00+01:00</updated><id>/2020/12/05/Exploring%20Piece%20Movement</id><content type="html" xml:base="/2020/12/05/Exploring-Piece-Movement.html">&lt;p&gt;By using D3’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.transition()&lt;/code&gt; function, let’s  explore how animate  the movement of a piece to a new position.   For this example, we move white’s king pawn &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wkp&lt;/code&gt; to E4.&lt;/p&gt;
+
+&lt;p&gt;Bind the movement event to a button so we can control when the  move is triggered.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d3.select(&quot;#start&quot;).on(&quot;click&quot;, function() {...}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We can access the coordinates of E4 as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;var newPosition = positions[&quot;E4&quot;]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wkp&lt;/code&gt; and assign the E4 position to the pieces transform translation attribute.  To animate this position change, use the  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.transition())&lt;/code&gt; function before assigning the new translation.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;d3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#wkp&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;translate(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newPosition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newPosition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2
+&lt;p&gt;&lt;a href=&quot;https://github.com/matthewdhull/chess/blob/9c2f5950a3ebfce514cbc1a015da841276a030af/board.html#L213&quot;&gt;full code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/single_piece_movement.png&quot; alt=&quot;Single Piece Movement&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/9c2f5950a3ebfce514cbc1a015da841276a030af&quot;&gt;9c2f595&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">By using D3’s .transition() function, let’s explore how animate the movement of a piece to a new position. For this example, we move white’s king pawn wkp to E4.</summary></entry><entry><title type="html">Remaining Pieces, re-factored initial piece layout</title><link href="/2020/12/04/Adding-Remaining-Pieces.html" rel="alternate" type="text/html" title="Remaining Pieces, re-factored initial piece layout" /><published>2020-12-04T00:00:00+01:00</published><updated>2020-12-04T00:00:00+01:00</updated><id>/2020/12/04/Adding%20Remaining%20Pieces</id><content type="html" xml:base="/2020/12/04/Adding-Remaining-Pieces.html">&lt;ul&gt;
+  &lt;li&gt;All piece types (king, queen, bishop, knight, rook, pawn) have a defined path in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pieces.js&lt;/code&gt;.  We store a piece’s information in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;start_positions&lt;/code&gt; dictionary and use this data in our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d3.selectAll(&quot;path&quot;)...&lt;/code&gt; call.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;e.g., Black’s Queen Rook is named “bqr” and has the following data:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;bqr&quot;:{
+	&quot;path&quot;: rook_path
+	, &quot;position&quot;: &quot;A8&quot;
+	, &quot;fill&quot;: black_piece_fill
+	, &quot;stroke&quot;: black_piece_stroke }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
+&lt;p&gt;and append as seen &lt;a href=&quot;https://github.com/matthewdhull/chess/blob/44f5efe90eef3ee326224ad0e1cd50baf7cd25d8/board.html#L171&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column 1&lt;/th&gt;
-      &lt;th&gt;Column 2&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;A thing&lt;/td&gt;
-      &lt;td&gt;Another thing&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;&lt;img src=&quot;/images/remaining_pieces.png&quot; alt=&quot;Remaining Pieces&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h2&gt;
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/44f5efe90eef3ee326224ad0e1cd50baf7cd25d8&quot;&gt;44f5efe&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">All piece types (king, queen, bishop, knight, rook, pawn) have a defined path in pieces.js. We store a piece’s information in the start_positions dictionary and use this data in our d3.selectAll(&quot;path&quot;)... call.</summary></entry><entry><title type="html">Piece path and positioning</title><link href="/2020/12/03/Piece-Positioning.html" rel="alternate" type="text/html" title="Piece path and positioning" /><published>2020-12-03T00:00:00+01:00</published><updated>2020-12-03T00:00:00+01:00</updated><id>/2020/12/03/Piece%20Positioning</id><content type="html" xml:base="/2020/12/03/Piece-Positioning.html">&lt;ul&gt;
+  &lt;li&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pieces.js&lt;/code&gt; to hold the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;d&lt;/code&gt; value to specify the path to be drawn for a piece.  We start by drawing a rook.  To position the it, we use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;positions&lt;/code&gt; dictionary and get the coordinates for where to  place the rook path within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;svg&lt;/code&gt; element.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;This is the footnote. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Here’s the table of contents:</summary></entry></feed>
+&lt;p&gt;Getting the position:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;positions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;A8&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;positions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;A8&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/piece_positioning.png&quot; alt=&quot;Piece Positioning&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/b61e48f98534bceeb376048c64415a57f128b5b6&quot;&gt;b61e48f&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Using pieces.js to hold the d value to specify the path to be drawn for a piece. We start by drawing a rook. To position the it, we use the positions dictionary and get the coordinates for where to place the rook path within the svg element.</summary></entry><entry><title type="html">Square Center Annotations</title><link href="/2020/12/02/Square-Center-Annotations.html" rel="alternate" type="text/html" title="Square Center Annotations" /><published>2020-12-02T00:00:00+01:00</published><updated>2020-12-02T00:00:00+01:00</updated><id>/2020/12/02/Square%20Center%20Annotations</id><content type="html" xml:base="/2020/12/02/Square-Center-Annotations.html">&lt;ul&gt;
+  &lt;li&gt;Hover-over square shows board position&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/center_annotations.png&quot; alt=&quot;Square Cente Annotations&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/27c1aab3420bddc38086edd7cd4af7d5e200872f&quot;&gt;27c1aab&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Hover-over square shows board position</summary></entry><entry><title type="html">Full board position annotation added</title><link href="/2020/12/01/Board-Position-Annotation.html" rel="alternate" type="text/html" title="Full board position annotation added" /><published>2020-12-01T00:00:00+01:00</published><updated>2020-12-01T00:00:00+01:00</updated><id>/2020/12/01/Board%20Position%20Annotation</id><content type="html" xml:base="/2020/12/01/Board-Position-Annotation.html">&lt;ul&gt;
+  &lt;li&gt;Plan to add visibility toggle for board positions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/board_position_annotations.png&quot; alt=&quot;Board Position Annotations&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/4b799c7363b5dfd92fa251000c150dbd21085c79&quot;&gt;45799c7&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Plan to add visibility toggle for board positions</summary></entry><entry><title type="html">x and y Axes Indicate Board Positions.</title><link href="/2020/11/30/xy-Axes.html" rel="alternate" type="text/html" title="x and y Axes Indicate Board Positions." /><published>2020-11-30T00:00:00+01:00</published><updated>2020-11-30T00:00:00+01:00</updated><id>/2020/11/30/xy%20Axes</id><content type="html" xml:base="/2020/11/30/xy-Axes.html">&lt;p&gt;&lt;img src=&quot;/images/board_positions.png&quot; alt=&quot;Board Positions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/ac258a6106e9dcafd08baef30f54c5341477279f&quot;&gt;ac258a6&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html"></summary></entry><entry><title type="html">With Alternating Colors</title><link href="/2020/11/30/Alternating-Colors.html" rel="alternate" type="text/html" title="With Alternating Colors" /><published>2020-11-30T00:00:00+01:00</published><updated>2020-11-30T00:00:00+01:00</updated><id>/2020/11/30/Alternating%20Colors</id><content type="html" xml:base="/2020/11/30/Alternating-Colors.html">&lt;p&gt;&lt;img src=&quot;/images/alternating_colors_board.png&quot; alt=&quot;Alternating Colors&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Colors chosen from the &lt;a href=&quot;https://fabianburghardt.de/swisscolors/&quot;&gt;swiss style color picker&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Commit &lt;a href=&quot;https://github.com/matthewdhull/chess/commit/51168e44bf5d38d061212f6cda297b08eb3b67e2&quot;&gt;51168e4&lt;/a&gt;&lt;/p&gt;</content><author><name>matthew</name></author><summary type="html"></summary></entry></feed>

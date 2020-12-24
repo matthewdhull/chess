@@ -3,15 +3,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Building chess with D3 | Chess with D3</title>
+<title>Exploring Piece Movement | Chess with D3</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Building chess with D3" />
+<meta property="og:title" content="Exploring Piece Movement" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Notes on building chess visualizations" />
-<meta property="og:description" content="Notes on building chess visualizations" />
+<meta name="description" content="By using D3’s .transition() function, let’s explore how animate the movement of a piece to a new position. For this example, we move white’s king pawn wkp to E4." />
+<meta property="og:description" content="By using D3’s .transition() function, let’s explore how animate the movement of a piece to a new position. For this example, we move white’s king pawn wkp to E4." />
 <meta property="og:site_name" content="Chess with D3" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-05T00:00:00+01:00" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"Building chess with D3","description":"Notes on building chess visualizations","url":"/","name":"Chess with D3","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Exploring Piece Movement","dateModified":"2020-12-05T00:00:00+01:00","datePublished":"2020-12-05T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/05/Exploring-Piece-Movement.html"},"description":"By using D3’s .transition() function, let’s explore how animate the movement of a piece to a new position. For this example, we move white’s king pawn wkp to E4.","url":"/2020/12/05/Exploring-Piece-Movement.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Chess with D3" />
@@ -72,68 +74,42 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><h1 class="page-heading">Building chess with D3</h1><p><img src="/images/move_indicator.gif" alt="demo image" /></p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<p>All development notes:</p>
-<h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Dec 22, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/22/Game-Select-and-Move-Indicator.html">
-            Game select and move indicator
-          </a>
-        </h3></li><li><span class="post-meta">Dec 20, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/20/Re-thinking-Rook-Movement.html">
-            Re Thinking rook movement
-          </a>
-        </h3></li><li><span class="post-meta">Dec 7, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/07/Reading-Portable-Game-Notation.html">
-            Reading Portable Game Notation (pgn)
-          </a>
-        </h3></li><li><span class="post-meta">Dec 5, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/05/Exploring-Piece-Movement.html">
-            Exploring Piece Movement
-          </a>
-        </h3></li><li><span class="post-meta">Dec 4, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/04/Adding-Remaining-Pieces.html">
-            Remaining Pieces, re-factored initial piece layout
-          </a>
-        </h3></li><li><span class="post-meta">Dec 3, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/03/Piece-Positioning.html">
-            Piece path and positioning
-          </a>
-        </h3></li><li><span class="post-meta">Dec 2, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/02/Square-Center-Annotations.html">
-            Square Center Annotations
-          </a>
-        </h3></li><li><span class="post-meta">Dec 1, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/12/01/Board-Position-Annotation.html">
-            Full board position annotation added
-          </a>
-        </h3></li><li><span class="post-meta">Nov 30, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/30/xy-Axes.html">
-            x and y Axes Indicate Board Positions.
-          </a>
-        </h3></li><li><span class="post-meta">Nov 30, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/30/Alternating-Colors.html">
-            With Alternating Colors
-          </a>
-        </h3></li><li><span class="post-meta">Nov 29, 2020</span>
-        <h3>
-          <a class="post-link" href="/2020/11/29/Building-a-Basic-Board.html">
-            Building the Basic Board
-          </a>
-        </h3></li></ul>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Exploring Piece Movement</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-12-05T00:00:00+01:00" itemprop="datePublished">Dec 5, 2020
+      </time></p>
+  </header>
 
-    <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p></div>
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>By using D3’s <code class="language-plaintext highlighter-rouge">.transition()</code> function, let’s  explore how animate  the movement of a piece to a new position.   For this example, we move white’s king pawn <code class="language-plaintext highlighter-rouge">wkp</code> to E4.</p>
+
+<p>Bind the movement event to a button so we can control when the  move is triggered.</p>
+
+<p><code class="language-plaintext highlighter-rouge">d3.select("#start").on("click", function() {...}</code></p>
+
+<p>We can access the coordinates of E4 as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">var newPosition = positions["E4"]</code></p>
+
+<p>Then, select <code class="language-plaintext highlighter-rouge">wkp</code> and assign the E4 position to the pieces transform translation attribute.  To animate this position change, use the  <code class="language-plaintext highlighter-rouge">.transition())</code> function before assigning the new translation.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="dl">"</span><span class="s2">#wkp</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">transform</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">translate(</span><span class="dl">"</span><span class="o">+</span><span class="p">(</span><span class="nx">newPosition</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">25</span><span class="p">)</span><span class="o">+</span><span class="dl">"</span><span class="s2">,</span><span class="dl">"</span><span class="o">+</span>
+<span class="p">(</span><span class="nx">newPosition</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">24</span><span class="p">)</span><span class="o">+</span><span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><a href="https://github.com/matthewdhull/chess/blob/9c2f5950a3ebfce514cbc1a015da841276a030af/board.html#L213">full code</a></p>
+
+<p><img src="/images/single_piece_movement.png" alt="Single Piece Movement" /></p>
+
+<p>Commit <a href="https://github.com/matthewdhull/chess/commit/9c2f5950a3ebfce514cbc1a015da841276a030af">9c2f595</a></p>
+
+  </div><a class="u-url" href="/2020/12/05/Exploring-Piece-Movement.html" hidden></a>
+</article>
 
       </div>
     </main><footer class="site-footer h-card">
