@@ -9,6 +9,6 @@ y = positions["A8"][1]
 ```
 
 
-![Piece Positioning]({{site.url}}/images/piece_positioning.png)
+![Piece Positioning]({{site.url}}/chess/images/piece_positioning.png)
 
 Commit [b61e48f](https://github.com/matthewdhull/chess/commit/b61e48f98534bceeb376048c64415a57f128b5b6)

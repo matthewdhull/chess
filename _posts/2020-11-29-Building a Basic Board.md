@@ -4,7 +4,7 @@ author: matthew
 ---
 ### Building the Basic Board
 
-![Pink Board]({{site.url}}/images/basic_board.png)
+![Pink Board]({{site.url}}/chess/images/basic_board.png)
 
 Showing progress on a basic board layout in d3.
 

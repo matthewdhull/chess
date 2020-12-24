@@ -1,5 +1,5 @@
 ### Reading Portable Game Notation (pgn)
-![Reading PGN]({{site.url}}/images/reading_pgn.gif)
+![Reading PGN]({{site.url}}/chess/images/reading_pgn.gif)
 
 
 The [pgn](https://opensource.apple.com/source/Chess/Chess-110.0.6/Documentation/PGN-Standard.txt) format is widely used to notate the plays in a game of chess.  It seems natural to use pgn files to drive the movement of pieces in the visualization since adopting this standard would permit us to visualize any game.  While pgn is designed to be human-readable and easily read by computers, there are tradeoffs in the data representation that require some extra work to translate the notation of a given move into an action to drive the visualization.

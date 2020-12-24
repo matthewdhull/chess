@@ -5,7 +5,7 @@ author: matthew
 
 ### - With Alternating Colors
 
-![Alternating Colors]({{site.url}}/images/alternating_colors_board.png)
+![Alternating Colors]({{site.url}}/chess/images/alternating_colors_board.png)
 
 Colors chosen from the [swiss style color picker](https://fabianburghardt.de/swisscolors/)
 

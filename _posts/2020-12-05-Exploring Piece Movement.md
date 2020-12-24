@@ -21,6 +21,6 @@ d3.select("#wkp")
 
 [full code](https://github.com/matthewdhull/chess/blob/9c2f5950a3ebfce514cbc1a015da841276a030af/board.html#L213)
 
-![Single Piece Movement]({{site.url}}/images/single_piece_movement.png)
+![Single Piece Movement]({{site.url}}/chess/images/single_piece_movement.png)
 
 Commit [9c2f595](https://github.com/matthewdhull/chess/commit/9c2f5950a3ebfce514cbc1a015da841276a030af)

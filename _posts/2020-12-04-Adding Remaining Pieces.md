@@ -14,6 +14,6 @@ e.g., Black's Queen Rook is named "bqr" and has the following data:
 
 and append as seen [here](https://github.com/matthewdhull/chess/blob/44f5efe90eef3ee326224ad0e1cd50baf7cd25d8/board.html#L171)
 
-![Remaining Pieces]({{site.url}}/images/remaining_pieces.png)
+![Remaining Pieces]({{site.url}}/chess/images/remaining_pieces.png)
 
 Commit [44f5efe](https://github.com/matthewdhull/chess/commit/44f5efe90eef3ee326224ad0e1cd50baf7cd25d8)
