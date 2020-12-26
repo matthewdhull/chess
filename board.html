@@ -335,14 +335,14 @@
 				.attr("transform", "translate("+(newPosition[0]-25)+","+
   			(newPosition[1]-24)+")")
   				.on("end",function(d){
-	  				if (parsedMoves.length == 2){
+	  				if (parsedMoves.length == 2){ // capture or castle
 		  				if (parsedMoves[1][1]=="x"){
 			  				// capture
 			  				var capturedPiece = parsedMoves[1][0]
 		  					console.log("capture of "+ aBoard[capturedPiece].name + "!")
 							delete aBoard[capturedPiece]
 							pieces.splice (pieces.indexOf(capturedPiece), 1)
-
+							// fade out & remove captured piece
 							d3.select("#pieces").select("path#"+capturedPiece)
 								.transition()
 								.attr("stroke", "rgba(0,0,0,0)")

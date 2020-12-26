@@ -92,6 +92,14 @@
 	const bPawnRankDisambiguationBoard = {
 		"bkp": {"type":"pawn", "position": "d4"}
 		,"bqp": {"type":"pawn", "position": "d6"}
+	}	
+	
+	
+	const pawnPromotionBoard = {
+		"bkrp": {"type":"pawn", "position": "h2"} 
+		,"wqrp": {"type":"pawn", "position": "a7"} 
+		,"bkp": {"type":"pawn", "position": "e2"}	
+		,"wkr": {"type":"rook", "position": "d1"}  
 	}		
 			
 	
@@ -272,11 +280,31 @@
 			assert.deepEqual(parseMove(1, parseMove16, bPawnRankDisambiguationBoard),[["bkp","d3"]])
 		});
 	});		
+
+
+	QUnit.module('black pawn promotion test', function(){
+		const parseMove17 = "h1=Q"
+		QUnit.test.todo(parseMove17+' should be a pawn promotion', function(assert){
+			assert.deepEqual(parseMove(1, parseMove17, pawnPromotionBoard),[["bkrp","h1"],["bkrp","p"],["bq1","h1"]])
+		});
+	});		
+
 		
-	// pawn promotion test
+	QUnit.module('white pawn promotion test', function(){
+		const parseMove18 = "a8=Q"
+		QUnit.test.todo(parseMove18+' should be a pawn promotion', function(assert){
+			assert.deepEqual(parseMove(0, parseMove18, pawnPromotionBoard),[["wqrp","a8"],["wqrp","p"],["wq1","a8"]])
+		});
+	});	
+
 	
-	// pawn capture promotion test
-	
+	// https://boardgames.stackexchange.com/questions/6739/is-pawn-promotion-to-rook-or-bishop-something-that-is-seen-in-play?rq=1
+	QUnit.module('black pawn capture / promotion test', function(){
+		const parseMove19 = "hxg1=Q	"
+		QUnit.test.todo(parseMove19+' should be a pawn capture + promotion', function(assert){
+			assert.deepEqual(parseMove(1, parseMove19, pawnPromotionBoard),[["bkp","d1"],["wkr","x"],["bkp","p"],["bq1","d1"]])
+		});
+	});		
 	
 				
 	</script>    
