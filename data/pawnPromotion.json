@@ -1,0 +1,46 @@
+{
+					"wqr":{
+						"path": "rook_path"
+						, "type": "rook"
+						, "name": "white's queen rook"
+						, "position": "a1"
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}
+					
+					,"wqrp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "name": "white's queen rook pawn"						
+						, "position": "a7"						
+						, "fill": "white_piece_fill"
+						, "stroke": "white_piece_stroke"
+					}																									
+					
+					,"bk":{
+						"path": "queen_path"
+						, "type": "queen"						
+						, "position": "d1"						
+						, "name": "black's queen"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}	
+									
+					,"bkp":{
+						"path": "pawn_path"
+						, "type": "pawn"						
+						, "position": "e2"						
+						, "name": "black's king pawn"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}
+			
+					,"bkrp":{
+						"path": "pawn_path"
+						, "type": "pawn"
+						, "name": "black's king rook pawn"												
+						, "position": "h2"						
+						, "fill": "black_piece_fill"
+						, "stroke": "black_piece_stroke"
+					}																																																								
+}

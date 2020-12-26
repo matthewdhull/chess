@@ -1,0 +1,19 @@
+{
+    "str": {
+        "Event": "?",
+        "Black": "Test",
+        "Date": "Dec 21, 2020",
+        "Result": "1-0",
+        "Round": "?",
+        "Site": "?",
+        "White": "Tester"
+    },
+    "moves": [
+	    "Rxd1"
+	    ,"h8=Q"
+	    ,"a8=Q"
+	    ,"hxg1=Q"
+      ],
+    "annotations": [],
+    "nag": []
+}
