@@ -235,16 +235,16 @@
 	
 	QUnit.module('white queenside castle test', function(){
 		const parseMove7 = "O-O-O"
-		QUnit.test.todo(parseMove7+' should be a queenside castle', function(assert){
-			assert.deepEqual(parseMove(0, parseMove7, queensideCastleBoard),[["wk","b1"],["wqr","c1"]])
+		QUnit.test(parseMove7+' should be a queenside castle', function(assert){
+			assert.deepEqual(parseMove(0, parseMove7, queensideCastleBoard),[["wk","c1"],["wqr","d1"]])
 		});
 	});			
 
 	
 	QUnit.module('black queenside castle test', function(){
 		const parseMove8 = "O-O-O"
-		QUnit.test.todo(parseMove8+' should be a queenside castle', function(assert){
-			assert.deepEqual(parseMove(1, parseMove8, queensideCastleBoard),[["bk","b8"],["bqr","c8"]])
+		QUnit.test(parseMove8+' should be a queenside castle', function(assert){
+			assert.deepEqual(parseMove(1, parseMove8, queensideCastleBoard),[["bk","c8"],["bqr","d8"]])
 		});
 	});		
 

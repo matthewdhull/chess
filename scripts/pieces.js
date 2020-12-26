@@ -436,7 +436,7 @@ function parseMove(index, move, aBoard){
 	var file = ""
 	var newPosition = ""
 	var kingsideCastle = false
-	var queensideCastle = true
+	var queensideCastle = false
 	var capture = false
 	var player = "w"
 	
@@ -569,7 +569,7 @@ function parseMove(index, move, aBoard){
 			
 			else if (move.length == 5){
 				if (move[0] == "O") {
-					quensideCastle = true
+					queensideCastle = true
 				}
 				else {
 					return "non-pwn rank & file disambiguation move"
@@ -591,6 +591,10 @@ function parseMove(index, move, aBoard){
 		if (kingsideCastle) {
 			return ([["wk","g1"],["wkr","f1"]])		
 		}
+		else if (queensideCastle){
+			return ([["wk","c1"],["wqr","d1"]])	
+		}
+		
 		piece = "w"+piece
 	}
 	
@@ -598,7 +602,11 @@ function parseMove(index, move, aBoard){
 		// black to move
 		if (kingsideCastle) {
 			return ([["bk","g8"],["bkr","f8"]])		
-		}		
+		}
+		else if (queensideCastle){
+			return ([["bk","c8"],["bqr","d8"]])
+		}
+				
 		piece = "b"+piece		
 	}
 	
