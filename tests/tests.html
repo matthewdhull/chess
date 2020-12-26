@@ -252,8 +252,8 @@
 	// http://www.talkchess.com/forum3/viewtopic.php?t=33764#p341905
 	QUnit.module('queen file/rank disambiguation move test', function(){
 		const parseMove9 = "Qa8xb7"
-		QUnit.test.todo(parseMove9+' should be an a-file, rank 8 queen move & capture', function(assert){
-			assert.deepEqual(parseMove(0, parseMove9, queenDisambiguationBoard),[["wq1","b7"]])
+		QUnit.test(parseMove9+' should be an a-file, rank 8 queen move & capture', function(assert){
+			assert.deepEqual(parseMove(0, parseMove9, queenDisambiguationBoard),[["wq1","b7"],["bqnp","x"]])
 		});
 	});		
 	

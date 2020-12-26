@@ -504,7 +504,10 @@ function parseMove(index, move, aBoard){
 			}
 			
 			else if (piece.length == 3){
-				 console.log(move+": non-pwn file & rank disambiguation capture")
+				var thePosition = move.substr(1,2)
+				piece = getOccupiedSquares(aBoard)[thePosition]
+				const capturedPiece = getOccupiedSquares(aBoard)[newPosition]
+				return ([[piece, newPosition],[capturedPiece,"x"]])
 			}
 			
 			else {
@@ -592,6 +595,7 @@ function parseMove(index, move, aBoard){
 			return ([["wk","g1"],["wkr","f1"]])		
 		}
 		else if (queensideCastle){
+
 			return ([["wk","c1"],["wqr","d1"]])	
 		}
 		
