@@ -7,6 +7,7 @@ const lightSquareColor = '#FFFEE3'
 const darkSquareColor = '#419162'
 const squareStrokeColor = '#2f292b'
 
+
 const pieceColors = {
  "white_piece_fill" : "#fbfbfb"
  , "white_piece_stroke" : "black"
@@ -22,11 +23,32 @@ const piecePaths = {
 	, "queen_path" : "M12.13,40.35h0a7.46,7.46,0,0,0,1.15-1.47l.46-1.11a.2.2,0,0,1,.12-.08l1.38-.41A1.16,1.16,0,0,0,16,36.19v-.35a1.17,1.17,0,0,1,.8-1.11L19,34V33H18s4-13.4,3-14.4a1.39,1.39,0,0,0-2,0l-1-1,2-1v-1a1,1,0,0,1-1-1,.92.92,0,0,1,.74-1,.24.24,0,0,0,.17-.32l-1.78-4.4a.88.88,0,0,1,0-.64l0-.08a.92.92,0,0,1,1.74,0l.06.2a1.13,1.13,0,0,0,.22.36L21,9.6l.35.36a.94.94,0,0,0,1.3,0l.25-.26a.69.69,0,0,0,.16-.22l1.18-3.94a.92.92,0,0,1,1.62,0l1.08,3.94a.69.69,0,0,0,.16.22l.25.26a.94.94,0,0,0,1.3,0l1.2-1.2a1.13,1.13,0,0,0,.22-.36l.06-.2a.92.92,0,0,1,1.74,0h0a.92.92,0,0,1-.09.76l-2.63,4.33a.27.27,0,0,0,.17.37.9.9,0,0,1,.68.94,1,1,0,0,1-1,1v1l2,1-1,1a1.39,1.39,0,0,0-2,0c-1,1,3,14.4,3,14.4H30v1l2.2.73a1.17,1.17,0,0,1,.8,1.11v.35a1.16,1.16,0,0,0,.76,1.09L36,38.1l0,.9,1.57,1.17a1.4,1.4,0,0,1,.11,2.15l-.34.31a1.38,1.38,0,0,1-.94.37H12.51a1.17,1.17,0,0,1-.79-.31h0A1.41,1.41,0,0,1,12.13,40.35Z"	
 	,"pawn_path" : "M35,41.18l-1.88-1.49a.47.47,0,0,1-.16-.36V38.1a.44.44,0,0,0-.2-.38L29,37a.44.44,0,0,1-.2-.33L26.72,25.36h1.14A20.38,20.38,0,0,0,31,25.19l.43-.51a.18.18,0,0,0,0-.2l-.55-.66a.15.15,0,0,1,0-.2L31,22H28.31a6,6,0,1,0-6.62,0H19l.21,1.62a.15.15,0,0,1,0,.2l-.55.66a.15.15,0,0,0,0,.2l.42.51a18,18,0,0,0,3,.25h1.14L21,36.75a36.9,36.9,0,0,1-3.71,1,.44.44,0,0,0-.2.38v1.23a.47.47,0,0,1-.16.36l-1.88,1.49a.16.16,0,0,0,0,.22L16.33,43a.18.18,0,0,0,.09,0H33.58a.18.18,0,0,0,.09,0L35,41.4A.16.16,0,0,0,35,41.18Z" }
 
+
 const pieceTypeMap = {"R":"rook", "N":"knight", "B":"bishop","Q":"queen", "K":"king"}
 
 
+function makePieceForPlayer(player, pieceType, position, moveIndex) {
+					
+		const id = ""+player+pieceType.toLowerCase()+moveIndex
+		const name = (player == "w") ? "white" : "black"
+		const type = pieceTypeMap[pieceType]
+		
+		var piece = {}
+		piece[id]= {
+			"path": type+"_path"
+			, "type": type												
+			, "name": name+"'s "+type.toLowerCase()						
+			, "position": position						
+			, "fill": name+"_piece_fill"
+			, "stroke": name+"_piece_stroke"
+		}
+	
+	return piece
+}
+
+
 function getOccupiedSquares(aBoard){
-	// returns key-value pairs of occupied squares and their pieces e.g., {"a1", "wkr"}
+	// returns key-value pairs of occupied squares and their pieces e.g., {"a1":"wkr"}
 	var oc = {}
 	var pieces = Array.from(Object.keys(aBoard))
 	var i = 0
@@ -453,11 +475,18 @@ function parseMove(index, move, aBoard){
 		splits = move.split("x")
 		var piece = splits[0]
 		var newPosition = splits[1]
-		const capturedPiece = getOccupiedSquares(aBoard)[newPosition]		
+		var capturedPiece = getOccupiedSquares(aBoard)[newPosition]		
 		
 
 		if (splits[1].includes('=')){
-			return "pawn capture and promotion"
+			// e.g., exd1=Q
+			file = move[0]
+			newPosition = move.substring(2, 4)
+			var capturedPiece = getOccupiedSquares(aBoard)[newPosition]
+			// console.log("np: "+newPosition+" cp: "+capturedPiece)
+			const pawn = getPlayerPawnForFile(player, file, aBoard, newPosition)
+			const promotionPieceType = move.substring(move.length-1, move.length)
+			return([[pawn, newPosition],[capturedPiece,"x"],[pawn,"p"],[player+promotionPieceType, newPosition]])				
 		}
 		
 		else {
@@ -520,8 +549,12 @@ function parseMove(index, move, aBoard){
 
 	else if (!move.includes('x')){ // not a capture
 		
-		if (move.includes('=')){		
-			return ("pawn promotion")
+		if (move.includes('=')){ // pawn promotion
+			file = move[0]
+			newPosition = move.substring(0, 2)
+			const pawn = getPlayerPawnForFile(player, file, aBoard, newPosition)
+			const promotionPieceType = move.substring(move.length-1, move.length)
+			return([[pawn, newPosition],[pawn,"p"],[player+promotionPieceType, newPosition]])			
 		}
 		
 		else { // non capture move
