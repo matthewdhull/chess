@@ -283,6 +283,67 @@
 			return pieces			
 	}
 	
+
+	// https://observablehq.com/@d3/selection-join	
+	function update(aBoard){
+		
+		var pieces = Array.from(Object.keys(aBoard))  		
+		
+		const t = svg.transition()
+        		.duration(500);
+			
+		var chessPieces = d3.select("#pieces")
+			.selectAll("path")
+			.data(pieces, d => d)		
+			.join(
+		        enter => enter.append("path")
+					.attr("id", function(d){ return d })
+					.attr("transform", function(d){
+			  			return "translate("+
+			  			(positions[aBoard[d].position][0]-25)
+			  			+","+
+			  			(positions[aBoard[d].position][1]-24)
+			  			+")"			
+					})
+					.attr("fill", function(d){ 
+						return pieceColors[aBoard[d].fill]
+					})
+					.attr("stroke", function(d){ 
+						return pieceColors[aBoard[d].stroke] 				
+					})
+					.attr("d", function(d){ 
+						return piecePaths[aBoard[d].path]
+					}),	
+		        update => update
+		        	.attr("id", function(d){ return d })
+					.attr("transform", function(d){
+			  			return "translate("+
+			  			(positions[aBoard[d].position][0]-25)
+			  			+","+
+			  			(positions[aBoard[d].position][1]-24)
+			  			+")"			
+					})
+					.attr("fill", function(d){ 
+						return pieceColors[aBoard[d].fill]
+					})
+					.attr("stroke", function(d){ 
+						return pieceColors[aBoard[d].stroke] 				
+					})
+					.attr("d", function(d){ 
+						return piecePaths[aBoard[d].path]
+					}),	
+		        exit => exit
+					.call(exit => exit.transition(t)
+						.attr("stroke", "rgba(0,0,0,0)")
+						.attr("fill", "rgba(0,0,0,0)")
+						.remove())	 		            
+
+		      )		
+		return pieces
+	}
+
+	
+	
 	function loadGame(gameData, pieces, aBoard){
 		
 		pieces = loadPieces(pieces, aBoard)						
@@ -340,14 +401,8 @@
 			  				// capture
 			  				var capturedPiece = parsedMoves[1][0]
 		  					console.log("capture of "+ aBoard[capturedPiece].name + "!")
-							delete aBoard[capturedPiece]
-							pieces.splice (pieces.indexOf(capturedPiece), 1)
-							// fade out & remove captured piece
-							d3.select("#pieces").select("path#"+capturedPiece)
-								.transition()
-								.attr("stroke", "rgba(0,0,0,0)")
-								.attr("fill", "rgba(0,0,0,0)")
-								.remove()	  						  					
+							delete aBoard[capturedPiece]						
+							pieces = update(aBoard)										  					
 		  				}
 		  				else {
 			  				// castling move
@@ -361,6 +416,48 @@
 				  			(newPosition[1]-24)+")")			  				
 		  				}
 	  				}
+	  				else if (parsedMoves.length == 3){ // pawn promotion
+		  				var promotedPiece = parsedMoves[1][0]
+		  				var promotedPieceType = parsedMoves[2][0]
+		  				var promotedPiecePosition = parsedMoves[2][1]
+		  				console.log("promotion of "+ aBoard[promotedPiece].name + "!")
+		  				
+						d3.select("#"+promotedPiece) //animate movement
+							.transition()
+							.attr("transform", "translate("+(promotedPiecePosition[0]-25)+","+
+															(promotedPiecePosition[1]-24)+")")			  																			
+						delete aBoard[promotedPiece]		  		
+
+						const newPiece = makePieceForPlayer(promotedPieceType[0]
+											, promotedPieceType[1]
+											, promotedPiecePosition
+											, move)
+						
+
+						const pk = Object.keys(newPiece)[0]
+						aBoard[pk] = newPiece[pk]								
+						pieces = update(aBoard)			  				
+	  				}
+	  				else if (parsedMoves.length == 4){ // pawn promotion & capture
+		  				var capturedPiece = parsedMoves[1][0]
+		  				var promotedPiece = parsedMoves[2][0]
+		  				var promotedPieceType = parsedMoves[3][0]		  				
+		  				var promotedPiecePosition = parsedMoves[3][1]		  						  				
+		  				console.log("capture of "+ aBoard[capturedPiece].name + " & promotion of "
+		  				+ 	aBoard[promotedPiece].name + "!")
+		  				delete aBoard[capturedPiece]
+		  				delete aBoard[promotedPiece]
+
+		  				const newPiece = makePieceForPlayer(promotedPieceType[0]
+											, promotedPieceType[1]
+											, promotedPiecePosition
+											, move)
+						const pk = Object.keys(newPiece)[0]
+						aBoard[pk] = newPiece[pk]		  				
+						pieces = update(aBoard)		  				
+		  						  				
+	  				}
+	  				
 	  				if (move!=lastMove){ // detect endgame
 	  					d3.select("#start").attr("disabled", null)		  				
 	  				}
