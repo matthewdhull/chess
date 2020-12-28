@@ -5,13 +5,17 @@
   <link rel="shortcut icon" href="">
   <style>
 	
+	
+	 * {
+		  font-family: sans-serif;
+	  }	
+	
+	
 	 body {
 		 display: grid;
 	 }
 	 	  
-	  * {
-		  font-family: sans-serif;
-	  }
+	  
 	 svg g text {
 		 font-size: 9pt;
 	 }
@@ -27,7 +31,9 @@
 	 	height: 20px;
 	 }
 	 
+	 
 	 #positionDisplay{
+		 padding: 5px;
 		 grid-row-start: 3;		 
 	 }
 	 
@@ -41,7 +47,6 @@
 	 #moves {
 		 display: grid;
 		 grid-template-columns: repeat(2, 85px);  		 
-		 width: 433px;
 		 height: 433px;
 		 line-height: 25px;
 		 overflow: scroll;
@@ -52,6 +57,11 @@
 		 padding: 2px;
 	 }
 	 
+	 #annotation_control {
+		 grid-row-start: 4;
+		 display: inline;
+		 padding: 5px;		 
+	 }
 
 
 	 
@@ -60,9 +70,11 @@
 <body>
 
 <button id="start">Move</button>
-
 <div id="positionDisplay">(hover) Position:</div>
-
+<div id="annotation_control">
+	<input id="square_annotation_checkbox" type="checkbox"></select>	
+	<label for="square_annotation_checkbox">square annotation</label>	
+</div>
 <div id="selectGame">
 <label for="gameSelect">Select Game:</label>
 <select name="gameSelect" id="gameSelect">
@@ -189,6 +201,8 @@
   	
   	// annotate square centers
 	svg.append("g")
+		.attr("id", "square_centers")
+		.style("visibility","hidden")		
 		.selectAll("circle")
 		.data(Array.from(Object.keys(positions)))
 		.enter()
@@ -204,10 +218,13 @@
 		})
 		.attr('stroke', 'rgba(.5,.5,.5,.2)')
 		.attr('fill', 'rgba(1.0,1.0,1.0,.1)')  	
+		
   	
   	
   	// board position annotations
   	svg.append("g")
+  		.attr("id", "square_annotations")
+  		.style("visibility","hidden")  		
   		.selectAll("text")
   		.data(data)
   		.enter()
@@ -222,6 +239,18 @@
   		.text(function(d){
 	  		return getPositionLabel(d)
   		})
+		
+
+  	// toggle visibility of square annotations
+  	d3.select("#square_annotation_checkbox").on("change", function(){
+		if(d3.select("#square_annotation_checkbox").property("checked")){
+			d3.select("#square_annotations").style("visibility","visible")
+			d3.select("#square_centers").style("visibility","visible")
+		} else {
+			d3.select("#square_annotations").style("visibility","hidden")
+			d3.select("#square_centers").style("visibility","hidden")
+		}	
+  	})
 
   	//  container for pieces
 	svg.append("g").attr("id", "pieces")
@@ -249,6 +278,7 @@
 			
 		loadGame(gameData, pieces, aBoard)
 	}
+
 
 	function loadPieces(pieces, aBoard){
 				
@@ -283,7 +313,6 @@
 			return pieces			
 	}
 	
-
 	// https://observablehq.com/@d3/selection-join	
 	function update(aBoard){
 		
@@ -342,7 +371,6 @@
 		return pieces
 	}
 
-	
 	
 	function loadGame(gameData, pieces, aBoard){
 		

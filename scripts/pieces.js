@@ -1,11 +1,11 @@
 // color schemes
-const squareStrokeWidth = 3
+const squareStrokeWidth = 2
 const rectWidth = 50, rectHeight = rectWidth
 //const lightSquareColor = '#dfe0e2'
 const lightSquareColor = '#FFFEE3'
 //const darkSquareColor = '#a5a6a9'
 const darkSquareColor = '#419162'
-const squareStrokeColor = '#2f292b'
+const squareStrokeColor = '#326f4c'
 
 
 const pieceColors = {
