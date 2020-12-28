@@ -392,6 +392,7 @@
 			
 			
 			d3.select("#"+piece) //animate movement
+				.raise()
 				.transition()
 				.attr("transform", "translate("+(newPosition[0]-25)+","+
   			(newPosition[1]-24)+")")
@@ -401,6 +402,7 @@
 			  				// capture
 			  				var capturedPiece = parsedMoves[1][0]
 		  					console.log("capture of "+ aBoard[capturedPiece].name + "!")
+		  					d3.select("#"+capturedPiece).lower()
 							delete aBoard[capturedPiece]						
 							pieces = update(aBoard)										  					
 		  				}
