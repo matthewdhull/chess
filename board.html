@@ -46,8 +46,9 @@
 
 	 #moves {
 		 display: grid;
-		 grid-template-columns: repeat(2, 85px);  		 
+		 grid-template-columns: repeat(2, 100px);  		 
 		 height: 433px;
+		 width: 433px;
 		 line-height: 25px;
 		 overflow: scroll;
 	 }
@@ -62,6 +63,11 @@
 		 display: inline;
 		 padding: 5px;		 
 	 }
+	 
+	 #annotation_container {
+		 grid-row-start: 5;
+		 grid-column: span 2;
+	 }
 
 
 	 
@@ -73,7 +79,12 @@
 <div id="positionDisplay">(hover) Position:</div>
 <div id="annotation_control">
 	<input id="square_annotation_checkbox" type="checkbox"></select>	
-	<label for="square_annotation_checkbox">square annotation</label>	
+	<label for="square_annotation_checkbox">Square labels</label>	
+</div>
+
+<div id="annotation_container">
+	<label for="annotation_comment_container">Annotations:</label>	
+	<div id="annotations"></div>
 </div>
 <div id="selectGame">
 <label for="gameSelect">Select Game:</label>
@@ -93,10 +104,9 @@
 
 	const size = 8
 	var margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
-
-
 	// squares data generation
 	const data = Array.from(Array(size**2).keys())	
+
 
 	// scales + axes
 	var xScale = d3.scaleLinear()
@@ -110,6 +120,7 @@
   	let yAxisTickLabels = ['1','2','3','4','5','6','7','8']
   	yAxis = d3.axisRight(yScale)
   		.tickFormat((d,i) => yAxisTickLabels[i])
+
 
   	// construct hash of board position names and coordinates
   	var positions = {}
@@ -146,7 +157,8 @@
   		.append('svg')
   		.attr('height', (rectHeight * size) + margin.top + margin.bottom)
   		.attr('width', (rectWidth * size) + margin.right + margin.left)
-  	
+  		
+  		  	
   	// board 
   	svg.append("g")
   		.attr("transform", "translate("+squareStrokeWidth+","+squareStrokeWidth+")")
@@ -186,6 +198,7 @@
   			d3.select("#positionDisplay")
   			.text('Position: ')
   		})
+
 	
 	// axes	
   	svg.append("g")
@@ -193,11 +206,13 @@
   		.call(xAxis)
   		.call(g => g.select(".domain").remove())  		
 
+
   	svg.append("g")
 	  	.attr("transform", 
 	  		"translate("+((rectHeight*size)+squareStrokeWidth)+",-22)") 
   		.call(yAxis)
   		.call(g => g.select(".domain").remove())  		
+
   	
   	// annotate square centers
 	svg.append("g")
@@ -218,10 +233,9 @@
 		})
 		.attr('stroke', 'rgba(.5,.5,.5,.2)')
 		.attr('fill', 'rgba(1.0,1.0,1.0,.1)')  	
-		
+		  	
   	
-  	
-  	// board position annotations
+  	// square position labels
   	svg.append("g")
   		.attr("id", "square_annotations")
   		.style("visibility","hidden")  		
@@ -241,7 +255,7 @@
   		})
 		
 
-  	// toggle visibility of square annotations
+  	// toggle visibility of square position labels
   	d3.select("#square_annotation_checkbox").on("change", function(){
 		if(d3.select("#square_annotation_checkbox").property("checked")){
 			d3.select("#square_annotations").style("visibility","visible")
@@ -313,6 +327,7 @@
 			return pieces			
 	}
 	
+	
 	// https://observablehq.com/@d3/selection-join	
 	function update(aBoard){
 		
@@ -371,10 +386,12 @@
 		return pieces
 	}
 
+
 	function loadGame(gameData, pieces, aBoard){
 		
 		pieces = loadPieces(pieces, aBoard)						
 		
+		// display SAN for each move	
 		d3.select("#moves").selectAll("div").remove()
         d3.select("#moves")
         	.selectAll("div")
@@ -398,7 +415,7 @@
         	})	
 		
 		var move = 0		
-        var lastMove = gameData.moves.length
+        var lastMove = gameData.moves.length	
     	        
 		// piece movement
 		d3.select("#start").attr("disabled", null)		
@@ -414,7 +431,7 @@
 			d3.select("#start").attr("disabled", "disabled")
 			
 			
-			// color div move for the active move		
+			// highlight SAN for the active move		
 			d3.select("#move"+move)
 				.transition()
 				.style("background-color", "#c2d8d7")		
@@ -425,6 +442,13 @@
 			
 			var scrollMoveToView = document.getElementById("move"+move);
 			scrollMoveToView.scrollIntoView();
+			
+			// move annotations / comments
+			var moveCount = (Math.floor((move) / 2))+1; 
+			var moveComments = gameData.annotations.filter(item => item["moveCount"] == moveCount)
+			var flattenedComments = []
+			moveComments.forEach(function(comment){ flattenedComments.push(comment["comment"]) })
+			d3.select("#annotations").text(flattenedComments.join("\n"))
 			
 			
 			d3.select("#"+piece) //animate movement
@@ -503,7 +527,7 @@
   				})
   				
   			aBoard[piece].position = nextPosition					
-			move +=1 //advance to next move of game					
+			move +=1 //advance to next move of game, clarify that this is an index					
 		});            
 	}
 

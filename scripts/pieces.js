@@ -412,7 +412,7 @@ function getPieceTypeMoves(player, pieceType, newPosition, aBoard){
 
 function getPieceForPosition(player, pieceType, newPosition, aBoard) {
    /**
-	*	@summary 		Which piece can move to this position ??.
+	*	@summary 		Which piece {R,N,B,Q,K} can move to this position ??.
 	*	
 	*	@description 	Get all moves possible on the board for that piece type (pieceTypeMoves)
 	*	find the piece that could potentially move to that new position
