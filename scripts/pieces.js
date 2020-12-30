@@ -1,11 +1,11 @@
 // color schemes
-const squareStrokeWidth = 3
+const squareStrokeWidth = 2
 const rectWidth = 50, rectHeight = rectWidth
 //const lightSquareColor = '#dfe0e2'
 const lightSquareColor = '#FFFEE3'
 //const darkSquareColor = '#a5a6a9'
 const darkSquareColor = '#419162'
-const squareStrokeColor = '#2f292b'
+const squareStrokeColor = '#326f4c'
 
 
 const pieceColors = {
@@ -412,7 +412,7 @@ function getPieceTypeMoves(player, pieceType, newPosition, aBoard){
 
 function getPieceForPosition(player, pieceType, newPosition, aBoard) {
    /**
-	*	@summary 		Which piece can move to this position ??.
+	*	@summary 		Which piece {R,N,B,Q,K} can move to this position ??.
 	*	
 	*	@description 	Get all moves possible on the board for that piece type (pieceTypeMoves)
 	*	find the piece that could potentially move to that new position
