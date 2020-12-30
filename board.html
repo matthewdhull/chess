@@ -1,100 +1,121 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <head>
   <title>board</title>
-  <meta charset="utf-8">
+  	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://use.typekit.net/qhq5wzx.css">  
   <link rel="shortcut icon" href="">
   <style>
 	
-	
 	 * {
-		  font-family: sans-serif;
+		font-family: franklin-gothic-urw, sans-serif;
+		font-weight: 300;
+		font-style: normal;
 	  }	
 	
-	
 	 body {
-		 display: grid;
-	 }
-	 	  
+	    display: grid;
+	    grid-template-columns: repeat(4, 1fr);
+	    grid-gap: 10px;
+	    grid-template-areas: "n n s s" ". a b ." ". c c .";
+		grid-template-rows: 40px 500px 400px;	  
+	}
+	
+	#nav_bar {
+		grid-area: n;
+	}
+	
+	#nav_bar p {
+		text-align: right;
+		margin-right: 30px;
+		font-size: 1.3em;
+	}
+	
+	#selectGame {
+		grid-area: s;
+
+	}
+	 
+	 #wrapper_left {
+		grid-area: a;
+	}
+	
+	#wrapper_right {
+		
+		grid-area: b;
+		overflow-y: scroll;
+
+	}
 	  
 	 svg g text {
-		 font-size: 9pt;
-	 }
-	 
-	 svg {
-	 	/*place svg element above button */
-		 grid-row-start: 1; 
+		font-size: 9pt;
 	 }
 	 
 	 #start {
-	 	grid-row-start: 2;
 	 	width: 50px;
 	 	height: 20px;
 	 }
 	 
-	 
 	 #positionDisplay{
-		 padding: 5px;
-		 grid-row-start: 3;		 
-	 }
-	 
-	 
-	 #selectGame {
-		 grid-row-start: 1;
-		 grid-column-start: 2;
+		padding: 5px;
 	 }
 	 
 
 	 #moves {
-		 display: grid;
-		 grid-template-columns: repeat(2, 100px);  		 
-		 height: 433px;
-		 width: 433px;
-		 line-height: 25px;
-		 overflow: scroll;
+		display: grid;
+		grid-template-columns: repeat(2, 100px);
+		line-height: 25px;
 	 }
 	 
 	 #moves div {
-		 margin: 2px;
-		 padding: 2px;
+		margin: 2px;
+		padding: 2px;
 	 }
 	 
 	 #annotation_control {
-		 grid-row-start: 4;
-		 display: inline;
-		 padding: 5px;		 
+		display: inline;
+		padding: 5px;		 
 	 }
-	 
+
 	 #annotation_container {
-		 grid-row-start: 5;
-		 grid-column: span 2;
+		 grid-area: c;
 	 }
 
-
-	 
   </style>
  </head>
 <body>
 
-<button id="start">Move</button>
-<div id="positionDisplay">(hover) Position:</div>
-<div id="annotation_control">
-	<input id="square_annotation_checkbox" type="checkbox"></select>	
-	<label for="square_annotation_checkbox">Square labels</label>	
+<div id="nav_bar"><p>Chess with D3</p></div>
+<div id="selectGame">
+	<label for="gameSelect">Select Game:</label>
+	<select name="gameSelect" id="gameSelect">
+		<option value="data/kasparovVkarpov.json">Kasparov v. Karpov</option>	
+		<option value="data/fischerVreshevsky.json">Fischer v. Reshevsky</option>
+		<option value="data/bruehlVphilidor.json">Bruehl v. Philidor</option>  
+		<option value="data/brandtleyVmatthew211220.json">Brandtley v. Matthew </option>
+	</select>
+	</div>	
+
+<!-- Left column	 -->
+<div id="wrapper_left">
+	<button id="start">Move</button>
+	<div id="positionDisplay">(hover) Position:</div>
+	<div id="annotation_control">
+		<input id="square_annotation_checkbox" type="checkbox"></select>	
+		<label for="square_annotation_checkbox">Square labels</label>	
+	</div>
 </div>
 
+
+<!--  Right column -->	
+<div id="wrapper_right">	
+	<div id="moves"></div>
+</div>
+
+
+<!-- Annotation Area -->
 <div id="annotation_container">
 	<label for="annotation_comment_container">Annotations:</label>	
 	<div id="annotations"></div>
-</div>
-<div id="selectGame">
-<label for="gameSelect">Select Game:</label>
-<select name="gameSelect" id="gameSelect">
-	<option value="data/kasparovVkarpov.json">Kasparov v. Karpov</option>	
-	<option value="data/fischerVreshevsky.json">Fischer v. Reshevsky</option>
-	<option value="data/bruehlVphilidor.json">Bruehl v. Philidor</option>  
-	<option value="data/brandtleyVmatthew211220.json">Brandtley v. Matthew </option>
-</select>
-<div id="moves"></div>
 </div>
 
 <script src="scripts/pieces.js"></script> 
@@ -152,12 +173,10 @@
   		return f.concat('', r)	  	
   	}
   	
-  	
-  	var svg = d3.select('body')
-  		.append('svg')
+  	var svg = d3.select("#wrapper_left").insert("svg", "#start")
   		.attr('height', (rectHeight * size) + margin.top + margin.bottom)
-  		.attr('width', (rectWidth * size) + margin.right + margin.left)
-  		
+  		.attr('width', (rectWidth * size) + margin.right + margin.left); 
+  	
   		  	
   	// board 
   	svg.append("g")
@@ -441,7 +460,12 @@
 				.style("background-color", "white")		
 			
 			var scrollMoveToView = document.getElementById("move"+move);
-			scrollMoveToView.scrollIntoView();
+			scrollMoveToView.scrollIntoView({ 
+					behavior: 'smooth'
+					, block: 'nearest'
+					, inline: 'start' 
+				})
+
 			
 			// move annotations / comments
 			var moveCount = (Math.floor((move) / 2))+1; 
