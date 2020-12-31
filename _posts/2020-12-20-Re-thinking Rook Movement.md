@@ -1,3 +1,7 @@
+---
+layout: post
+author: matthew
+---
 #### Re-thinking Rook Movement
 
 This bug appeared while playing `Rb1`

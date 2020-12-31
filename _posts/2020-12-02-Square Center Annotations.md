@@ -1,3 +1,8 @@
+---
+layout: post
+author: matthew
+---
+
 ### - Square Center Annotations
 - Hover-over square shows board position
 

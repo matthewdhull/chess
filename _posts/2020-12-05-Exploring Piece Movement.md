@@ -1,3 +1,7 @@
+---
+layout: post
+author: matthew
+---
 ### Exploring Piece Movement
 
 By using D3's `.transition()` function, let's  explore how animate  the movement of a piece to a new position.   For this example, we move white's king pawn `wkp` to E4.

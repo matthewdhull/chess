@@ -1,3 +1,8 @@
+---
+layout: post
+author: matthew
+---
+
 ### - Full board position annotation added
 
 - Plan to add visibility toggle for board positions

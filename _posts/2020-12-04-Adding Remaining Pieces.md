@@ -1,3 +1,7 @@
+---
+layout: post
+author: matthew
+---
 ### - Remaining Pieces, re-factored initial piece layout
 - All piece types (king, queen, bishop, knight, rook, pawn) have a defined path in `pieces.js`.  We store a piece's information in the `start_positions` dictionary and use this data in our `d3.selectAll("path")...` call.
 

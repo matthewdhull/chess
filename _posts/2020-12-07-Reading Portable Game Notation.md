@@ -1,3 +1,7 @@
+---
+layout: post
+author: matthew
+---
 ### Reading Portable Game Notation (pgn)
 ![Reading PGN]({{site.url}}/chess/images/reading_pgn.gif)
 

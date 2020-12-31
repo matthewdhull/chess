@@ -1,3 +1,7 @@
+---
+layout: post
+author: matthew
+---
 #### Game Select and Move Indicators
 
 A few games are now available for play-through.  A simple indicator shows the current move.
