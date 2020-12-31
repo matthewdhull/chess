@@ -71,6 +71,10 @@
 		padding: 2px;
 	 }
 	 
+	 #moves a {
+		 color: black;
+	 }
+	 
 	 #annotation_control {
 		display: inline;
 		padding: 5px;		 
@@ -420,17 +424,20 @@
 			.attr("id", function(d,i){
 				return "move"+i
 			})
-        	.text(function(d,i){
+        	.html(function(d,i){
 
 				const rowPosition = (Math.floor((i) / 2))+1; 
 				
 				if (i % 2 == 0){
-					return (rowPosition+".  "+d)
+					return (rowPosition+".  <a href='#'>"+d+"<a/>")
 				}
 				else {
-					return d
+					return "<a href='#'>"+d+"</a>"
 				}	        	
 	        	
+        	})
+        	.on("click", function(d){
+	        	console.log(this.id.substr(4, this.id.length-1))
         	})	
 		
 		var move = 0		
@@ -459,6 +466,7 @@
 				.transition()
 				.style("background-color", "white")		
 			
+			// scroll current move into viewable portion of div
 			var scrollMoveToView = document.getElementById("move"+move);
 			scrollMoveToView.scrollIntoView({ 
 					behavior: 'smooth'
