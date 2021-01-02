@@ -50,10 +50,6 @@
 		font-size: 9pt;
 	 }
 	 
-	 #start {
-	 	width: 50px;
-	 	height: 20px;
-	 }
 	 
 	 #positionDisplay{
 		padding: 5px;
@@ -71,6 +67,12 @@
 		padding: 2px;
 	 }
 	 
+	 #moves a {
+		color: black;
+	 	text-decoration: none;
+	 	border-bottom: 0.05em solid rgba(0, 0, 0, 0.5);
+	 }
+	 
 	 #annotation_control {
 		display: inline;
 		padding: 5px;		 
@@ -78,6 +80,13 @@
 
 	 #annotation_container {
 		 grid-area: c;
+	 }
+	 
+	 #game_controls {
+		 display: grid;
+		 grid-template-columns: repeat(4, 1fr);
+		 grid-column-gap: 2px;
+		 padding-right: 6%;
 	 }
 
   </style>
@@ -97,10 +106,15 @@
 
 <!-- Left column	 -->
 <div id="wrapper_left">
-	<button id="start">Move</button>
+	<div id="game_controls">
+		<button id="begin"> l< </button>			
+		<button id="back"> < </button>	
+		<button id="start"> > </button>
+		<button id="finish"> >l </button>		
+	</div>
 	<div id="positionDisplay">(hover) Position:</div>
 	<div id="annotation_control">
-		<input id="square_annotation_checkbox" type="checkbox"></select>	
+		<input id="square_annotation_checkbox" type="checkbox" />
 		<label for="square_annotation_checkbox">Square labels</label>	
 	</div>
 </div>
@@ -114,7 +128,7 @@
 
 <!-- Annotation Area -->
 <div id="annotation_container">
-	<label for="annotation_comment_container">Annotations:</label>	
+	<label for="annotations">Annotations:</label>
 	<div id="annotations"></div>
 </div>
 
@@ -124,7 +138,7 @@
 	
 
 	const size = 8
-	var margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
+	const margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
 	// squares data generation
 	const data = Array.from(Array(size**2).keys())	
 
@@ -164,6 +178,8 @@
 		i++
 	}
 	
+	var lastPlayNavigationEvent = null
+
 
   	function getPositionLabel(d){
 	  	//iterate on data
@@ -173,7 +189,7 @@
   		return f.concat('', r)	  	
   	}
   	
-  	var svg = d3.select("#wrapper_left").insert("svg", "#start")
+  	var svg = d3.select("#wrapper_left").insert("svg", "#game_controls")
   		.attr('height', (rectHeight * size) + margin.top + margin.bottom)
   		.attr('width', (rectWidth * size) + margin.right + margin.left); 
   	
@@ -196,13 +212,13 @@
   		.attr('stroke-width', squareStrokeWidth)
   		.attr('stroke', squareStrokeColor)
   		.attr('fill', function(d){
-	  		if( Math.floor(d / size) % 2 == 0 ){
-		  		if ((d % 2) == 0){
+	  		if( Math.floor(d / size) % 2 === 0 ){
+		  		if ((d % 2) === 0){
 			  		return lightSquareColor		  		
 		  		}
 		  		return darkSquareColor
 		  	}
-	  		if ((d % 2) == 0){
+	  		if ((d % 2) === 0){
 				return darkSquareColor		  		
 		  	}
 		  	return lightSquareColor
@@ -284,6 +300,53 @@
 			d3.select("#square_centers").style("visibility","hidden")
 		}	
   	})
+
+
+	d3.selection.prototype.last = function() { // enable selection of last element in a selection
+		return d3.select(
+				this.nodes()[this.size() - 1]
+		)
+	}
+
+  	function highlightMove(move){
+		// highlight SAN for the active move
+		// console.log('highlight move: '+move)
+
+		d3.select("#moves")
+			.selectAll("div")
+			.transition()
+			.style("background-color", "white")			
+
+		if (move >= 0){
+			d3.select("#move"+move)
+				.transition()
+				.style("background-color", "#c2d8d7")		
+		}				
+
+		  	
+  	}
+
+
+  	function showAnnotationForMove(move, gameData){
+		d3.select("#annotations").text("")
+		var moveCount = (Math.floor((move) / 2))+1
+		var moveComments = gameData.annotations.filter(item => item["moveCount"] === moveCount)
+		var flattenedComments = []
+		moveComments.forEach(function(comment){ flattenedComments.push(comment["comment"]) })
+		d3.select("#annotations").text(flattenedComments.join("\n"))
+	}
+
+
+	function scrollMoveToView(move){
+		// scroll current move into viewable portion of div
+		var scrollMoveToView = document.getElementById("move"+move);
+		scrollMoveToView.scrollIntoView({
+			behavior: 'smooth'
+			, block: 'nearest'
+			, inline: 'start'
+		})
+	}
+
 
   	//  container for pieces
 	svg.append("g").attr("id", "pieces")
@@ -406,9 +469,83 @@
 	}
 
 
+	function playGame(toMove, aBoard, gameData){
+		// toMove is the index of the move to play to
+
+		var thisMove = 0
+		while (thisMove < toMove) {
+
+			var moveText = gameData.moves[thisMove]
+
+			var parsedMoves = parseMove(thisMove, moveText, aBoard)
+			// console.log(parsedMoves)
+
+			var piece = parsedMoves[0][0]
+			var nextPosition = parsedMoves[0][1]
+			
+			if (parsedMoves.length === 2){ // capture or castle
+		  		if (parsedMoves[1][1] ==="x"){ // capture
+
+	  				var capturedPiece = parsedMoves[1][0]
+					delete aBoard[capturedPiece]						
+					// pieces = update(aBoard)										  					
+				}
+  				else { 	// castling move
+  					var piece1 = parsedMoves[0][0]
+					var piece1NextPosition = parsedMoves[0][1]
+					aBoard[piece1].position = piece1NextPosition
+
+  					var piece2 = parsedMoves[1][0]
+					var piece2NextPosition = parsedMoves[1][1]
+					aBoard[piece2].position = piece2NextPosition
+  				}
+	  		}
+	  		else if (parsedMoves.length === 3){ // pawn promotion
+	  				var promotedPiece = parsedMoves[1][0]
+	  				var promotedPieceType = parsedMoves[2][0]
+	  				var promotedPiecePosition = parsedMoves[2][1]
+
+					delete aBoard[promotedPiece]		  		
+					const newPiece = makePieceForPlayer(promotedPieceType[0]
+										, promotedPieceType[1]
+										, promotedPiecePosition
+										, thisMove)
+					const pk = Object.keys(newPiece)[0]
+					aBoard[pk] = newPiece[pk]								
+					// pieces = update(aBoard)			  				
+	  			}
+  			else if (parsedMoves.length === 4){ // pawn promotion & capture
+	  				var capturedPiece = parsedMoves[1][0]
+	  				var promotedPiece = parsedMoves[2][0]
+	  				var promotedPieceType = parsedMoves[3][0]		  				
+	  				var promotedPiecePosition = parsedMoves[3][1]		  						  				
+	  				delete aBoard[capturedPiece]
+	  				delete aBoard[promotedPiece]
+
+	  				const newPiece = makePieceForPlayer(promotedPieceType[0]
+										, promotedPieceType[1]
+										, promotedPiecePosition
+										, thisMove)
+					const pk = Object.keys(newPiece)[0]
+					aBoard[pk] = newPiece[pk]		  				
+					// pieces = update(aBoard)		  				
+	  			}
+			
+  			aBoard[piece].position = nextPosition											
+			thisMove +=1
+		}
+		
+		// console.log('played to move : '+thisMove)
+		lastPlayNavigationEvent = "skip"
+		return aBoard	
+	}
+
+
 	function loadGame(gameData, pieces, aBoard){
 		
-		pieces = loadPieces(pieces, aBoard)						
+		pieces = loadPieces(pieces, aBoard)
+		var move = 0		
+        var lastMove = gameData.moves.length									
 		
 		// display SAN for each move	
 		d3.select("#moves").selectAll("div").remove()
@@ -420,60 +557,60 @@
 			.attr("id", function(d,i){
 				return "move"+i
 			})
-        	.text(function(d,i){
+        	.html(function(d,i){
 
 				const rowPosition = (Math.floor((i) / 2))+1; 
 				
-				if (i % 2 == 0){
-					return (rowPosition+".  "+d)
+				if (i % 2 === 0){
+					return (rowPosition+".  <a href='#'>"+d+"<a/>")
 				}
 				else {
-					return d
+					return "<a href='#'>"+d+"</a>"
 				}	        	
 	        	
+        	})
+        	.on("click", function(d){	// play selected move 
+
+	        	let selectedMove = parseInt(this.id.substr(4, this.id.length-1))
+
+
+					Promise.all([  // load default game.
+						d3.json('data/startBoard.json')
+					]).then(
+						d => {
+							aBoard = playGame(selectedMove, d[0], gameData)
+							update(aBoard)
+							move = selectedMove
+							highlightMove(move)
+						if (move === 0) {
+							d3.select("#back").attr("disabled", "disabled")								} else {
+							d3.select("#back").attr("disabled", null )
+						}
+						d3.select("#start").dispatch("click")
+					})
+	        
         	})	
-		
-		var move = 0		
-        var lastMove = gameData.moves.length	
+
     	        
 		// piece movement
 		d3.select("#start").attr("disabled", null)		
+		d3.select("#back").attr("disabled", "disabled")
 		d3.select("#start").on("click", function() {
-			
-  			this_move = gameData.moves[move]
-  			var parsedMoves = parseMove(move, this_move, aBoard)
+
+  			let this_move = gameData.moves[move]
+  			let parsedMoves = parseMove(move, this_move, aBoard)
 			console.log(parsedMoves)
 
-			var piece = parsedMoves[0][0]
-			var nextPosition = parsedMoves[0][1]
-			var newPosition = positions[nextPosition] //x,y coords
+			let piece = parsedMoves[0][0]
+			let nextPosition = parsedMoves[0][1]
+			let newPosition = positions[nextPosition] //x,y coords
 			d3.select("#start").attr("disabled", "disabled")
 			
 			
-			// highlight SAN for the active move		
-			d3.select("#move"+move)
-				.transition()
-				.style("background-color", "#c2d8d7")		
-
-			d3.select("#move"+(move-1).toString())
-				.transition()
-				.style("background-color", "white")		
-			
-			var scrollMoveToView = document.getElementById("move"+move);
-			scrollMoveToView.scrollIntoView({ 
-					behavior: 'smooth'
-					, block: 'nearest'
-					, inline: 'start' 
-				})
-
-			
-			// move annotations / comments
-			var moveCount = (Math.floor((move) / 2))+1; 
-			var moveComments = gameData.annotations.filter(item => item["moveCount"] == moveCount)
-			var flattenedComments = []
-			moveComments.forEach(function(comment){ flattenedComments.push(comment["comment"]) })
-			d3.select("#annotations").text(flattenedComments.join("\n"))
-			
+			// highlight SAN for the active move					
+			highlightMove(move)			
+			scrollMoveToView(move)
+			showAnnotationForMove(move,gameData)
 			
 			d3.select("#"+piece) //animate movement
 				.raise()
@@ -481,8 +618,8 @@
 				.attr("transform", "translate("+(newPosition[0]-25)+","+
   			(newPosition[1]-24)+")")
   				.on("end",function(d){
-	  				if (parsedMoves.length == 2){ // capture or castle
-		  				if (parsedMoves[1][1]=="x"){
+	  				if (parsedMoves.length === 2){ // capture or castle
+		  				if (parsedMoves[1][1] === "x"){
 			  				// capture
 			  				var capturedPiece = parsedMoves[1][0]
 		  					console.log("capture of "+ aBoard[capturedPiece].name + "!")
@@ -502,7 +639,7 @@
 				  			(newPosition[1]-24)+")")			  				
 		  				}
 	  				}
-	  				else if (parsedMoves.length == 3){ // pawn promotion
+	  				else if (parsedMoves.length === 3){ // pawn promotion
 		  				var promotedPiece = parsedMoves[1][0]
 		  				var promotedPieceType = parsedMoves[2][0]
 		  				var promotedPiecePosition = parsedMoves[2][1]
@@ -524,7 +661,7 @@
 						aBoard[pk] = newPiece[pk]								
 						pieces = update(aBoard)			  				
 	  				}
-	  				else if (parsedMoves.length == 4){ // pawn promotion & capture
+	  				else if (parsedMoves.length === 4){ // pawn promotion & capture
 		  				var capturedPiece = parsedMoves[1][0]
 		  				var promotedPiece = parsedMoves[2][0]
 		  				var promotedPieceType = parsedMoves[3][0]		  				
@@ -544,15 +681,58 @@
 		  						  				
 	  				}
 	  				
-	  				if (move!=lastMove){ // detect endgame
+	  				if (move !== lastMove){ // detect endgame
 	  					d3.select("#start").attr("disabled", null)		  				
 	  				}
 
   				})
   				
   			aBoard[piece].position = nextPosition					
-			move +=1 //advance to next move of game, clarify that this is an index					
+			move +=1 //advance to next move of game, clarify that this is an index
+			lastPlayNavigationEvent = "fwd"
+			d3.select("#back").attr("disabled", null)		
 		});            
+
+
+		d3.select("#back").on("click", function(){
+			let previousMove = null
+			
+			if (lastPlayNavigationEvent === "back" || lastPlayNavigationEvent === "skip") {
+				previousMove = move-1				
+			}	
+			else {
+				previousMove = move-2
+			}
+			
+			console.log("current move: "+(move)+"\nprevious move: "+(previousMove))		       		    
+			Promise.all([  // load default game. 
+		        d3.json('data/startBoard.json')
+		    ]).then(
+		        d => {
+			      aBoard = playGame(previousMove, d[0], gameData)
+				  update(aBoard)			      
+				  move = Math.max(0, previousMove)
+				  highlightMove(move)
+					showAnnotationForMove(move,gameData)
+					scrollMoveToView(move)
+				  if (move === 0 ) {
+				  	d3.select("#back").attr("disabled", "disabled")
+				  	d3.select("#start").dispatch("click")
+				  }	
+		    })			
+			lastPlayNavigationEvent = "back";
+		})
+
+
+		d3.select("#begin").on("click", function(){
+			d3.select("#moves").select("div").dispatch("click")
+		})
+
+
+		d3.select("#finish").on("click", function(){
+			d3.selectAll("#moves div").last().dispatch("click")
+
+		})
 	}
 
 	
