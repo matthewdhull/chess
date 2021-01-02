@@ -718,7 +718,8 @@
 				  if (move === 0 ) {
 				  	d3.select("#back").attr("disabled", "disabled")
 				  	d3.select("#start").dispatch("click")
-				  }	
+				  }
+				  d3.select("#start").attr("disabled", null)
 		    })			
 			lastPlayNavigationEvent = "back";
 		})
