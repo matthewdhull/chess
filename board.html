@@ -416,7 +416,9 @@
 		var pieces = Array.from(Object.keys(aBoard))  		
 		
 		const t = svg.transition()
-        		.duration(500);
+        		.duration(500)
+        		
+        const ut = svg.transition().duration(200)
 			
 		var chessPieces = d3.select("#pieces")
 			.selectAll("path")
@@ -442,13 +444,6 @@
 					}),	
 		        update => update
 		        	.attr("id", function(d){ return d })
-					.attr("transform", function(d){
-			  			return "translate("+
-			  			(positions[aBoard[d].position][0]-25)
-			  			+","+
-			  			(positions[aBoard[d].position][1]-24)
-			  			+")"			
-					})
 					.attr("fill", function(d){ 
 						return pieceColors[aBoard[d].fill]
 					})
@@ -457,7 +452,15 @@
 					})
 					.attr("d", function(d){ 
 						return piecePaths[aBoard[d].path]
-					}),	
+					})
+					.call(update => update.transition(ut)
+						.attr("transform", function(d){
+			  			return "translate("+
+			  			(positions[aBoard[d].position][0]-25)
+			  			+","+
+			  			(positions[aBoard[d].position][1]-24)
+			  			+")"})
+			  			),	
 		        exit => exit
 					.call(exit => exit.transition(t)
 						.attr("stroke", "rgba(0,0,0,0)")
@@ -704,24 +707,14 @@
 				previousMove = move-2
 			}
 			
-			console.log("current move: "+(move)+"\nprevious move: "+(previousMove))		       		    
-			Promise.all([  // load default game. 
-		        d3.json('data/startBoard.json')
-		    ]).then(
-		        d => {
-			      aBoard = playGame(previousMove, d[0], gameData)
-				  update(aBoard)			      
-				  move = Math.max(0, previousMove)
-				  highlightMove(move)
-					showAnnotationForMove(move,gameData)
-					scrollMoveToView(move)
-				  if (move === 0 ) {
-				  	d3.select("#back").attr("disabled", "disabled")
-				  	d3.select("#start").dispatch("click")
-				  }
-				  d3.select("#start").attr("disabled", null)
-		    })			
-			lastPlayNavigationEvent = "back";
+			console.log("current move: "+(move)+"\nprevious move: "+(previousMove))	
+			d3.select("#move"+previousMove).dispatch("click")
+			move = Math.max(0, previousMove)
+			if (move === 0 ) {
+				d3.select("#back").attr("disabled", "disabled")
+				d3.select("#start").dispatch("click")
+			}					
+
 		})
 
 
