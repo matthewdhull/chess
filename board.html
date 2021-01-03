@@ -16,7 +16,7 @@
 	    display: grid;
 	    grid-template-columns: repeat(4, 1fr);
 	    grid-gap: 10px;
-	    grid-template-areas: "n n s s" ". a b ." ". c c .";
+	    grid-template-areas: "n n s s" ". a b ." ". c . .";
 		grid-template-rows: 40px 500px 400px;	  
 	}
 	
@@ -80,6 +80,13 @@
 
 	 #annotation_container {
 		 grid-area: c;
+	 }
+	 
+	 #annotations {
+		height: 30%;
+		overflow: scroll;
+		border: 1px solid #c9c9c9;
+		padding: 5px;		 
 	 }
 	 
 	 #game_controls {
