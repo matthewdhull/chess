@@ -407,7 +407,11 @@
 		        d3.json(selectedOption),
 		        d3.json('data/startBoard.json')
 		    ]).then(
-		        d => loadGame(d[0], pieces, d[1], aScheme)
+		        d => {
+					loadGame(d[0], pieces, d[1], scheme)
+					updateBoardColorScheme()
+					
+		        }
 		    )                            
         })	
         
