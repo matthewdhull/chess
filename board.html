@@ -121,8 +121,14 @@
 	</div>
 	<div id="positionDisplay">(hover) Position:</div>
 	<div id="annotation_control">
+		<label for="square_annotation_checkbox">Square labels</label>			
 		<input id="square_annotation_checkbox" type="checkbox" />
-		<label for="square_annotation_checkbox">Square labels</label>	
+		
+	<label for="schemeSelect">Select Scheme:</label>
+	<select name="schemeSelect" id="schemeSelect">
+		<option value="data/schemes/defaultScheme.json">Default</option>	
+		<option value="data/schemes/brandtleyScheme.json">Brandtley's Scheme</option>
+	</select>		
 	</div>
 </div>
 
@@ -148,7 +154,7 @@
 	const margin = {'right':30, 'left':3, 'top':3, 'bottom':30}
 	// squares data generation
 	const data = Array.from(Array(size**2).keys())	
-
+	var scheme = null
 
 	// scales + axes
 	var xScale = d3.scaleLinear()
@@ -202,7 +208,9 @@
   	
   		  	
   	// board 
+  	
   	svg.append("g")
+  		.attr("id", "board")
   		.attr("transform", "translate("+squareStrokeWidth+","+squareStrokeWidth+")")
   		.selectAll('rect')
   		.data(data)
@@ -240,7 +248,27 @@
   			d3.select("#positionDisplay")
   			.text('Position: ')
   		})
-
+  		
+	function updateBoardColorScheme(){
+		console.log(scheme)
+		d3.select("#board")
+			.selectAll("rect")
+			.data(data)
+	  		.attr('stroke', scheme["squareStrokeColor"])
+	  		.attr('fill', function(d){
+		  		if( Math.floor(d / size) % 2 === 0 ){
+			  		if ((d % 2) === 0){
+				  		return scheme["lightSquareColor"]		  		
+			  		}
+			  		return scheme["darkSquareColor"]
+			  	}
+		  		if ((d % 2) === 0){
+					return scheme["darkSquareColor"]		  		
+			  	}
+			  	return scheme["lightSquareColor"]
+	  		})
+	}
+	
 	
 	// axes	
   	svg.append("g")
@@ -360,13 +388,18 @@
 
     Promise.all([  // load default game. 
         d3.json('data/kasparovVkarpov.json'),
-        d3.json('data/startBoard.json')
+        d3.json('data/startBoard.json'),
+        d3.json('data/schemes/defaultScheme.json')
     ]).then(
-        d => ready(d[0], d[1])
+        d => {
+	        ready(d[0], d[1], d[2])
+        }
     );
 
 
-	function ready(gameData, aBoard){	
+	function ready(gameData, aBoard, aScheme){	
+			
+
 				
         d3.select("#gameSelect").on("change", function (d) {
             var selectedOption = d3.select(this).property("value")
@@ -374,16 +407,33 @@
 		        d3.json(selectedOption),
 		        d3.json('data/startBoard.json')
 		    ]).then(
-		        d => loadGame(d[0], pieces, d[1])
-		    )                
-            
-        })		
+		        d => loadGame(d[0], pieces, d[1], aScheme)
+		    )                            
+        })	
+        
+        d3.select("#schemeSelect").on("change", function(d){
+	        var selectedOption = d3.select(this).property("value")
+	        Promise.all([
+		        d3.json(selectedOption)
+	        ]).then(
+		        d => {
+			        scheme = d[0]
+			        update(aBoard, scheme)
+					updateBoardColorScheme()			        
+					d3.select("#move0").dispatch("click")
+					
+			    }
+	        )
+        })
+		
+		scheme = aScheme
 			
-		loadGame(gameData, pieces, aBoard)
+		loadGame(gameData, pieces, aBoard, scheme)
 	}
 
 
-	function loadPieces(pieces, aBoard){
+	function loadPieces(pieces, aBoard, aScheme){
+		
 				
 		var pieces = Array.from(Object.keys(aBoard))  			
 		
@@ -404,21 +454,21 @@
 	  			+")"			
 			})
 			.attr("fill", function(d){ 
-				return pieceColors[aBoard[d].fill]
+				return aScheme[aBoard[d].fill]
 			})
 			.attr("stroke", function(d){ 
-				return pieceColors[aBoard[d].stroke] 				
+				return aScheme[aBoard[d].stroke] 				
 			})
 			.attr("d", function(d){ 
-				return piecePaths[aBoard[d].path]
+				return aScheme[aBoard[d].path]
 			})	
 			
 			return pieces			
 	}
 	
 	
-	// https://observablehq.com/@d3/selection-join	
-	function update(aBoard){
+	// https://observablehq.com/@d3/selection-join
+	function update(aBoard, aScheme){
 		
 		var pieces = Array.from(Object.keys(aBoard))  		
 		
@@ -441,24 +491,24 @@
 			  			+")"			
 					})
 					.attr("fill", function(d){ 
-						return pieceColors[aBoard[d].fill]
+						return aScheme[aBoard[d].fill]
 					})
 					.attr("stroke", function(d){ 
-						return pieceColors[aBoard[d].stroke] 				
+						return aScheme[aBoard[d].stroke] 				
 					})
 					.attr("d", function(d){ 
-						return piecePaths[aBoard[d].path]
+						return aScheme[aBoard[d].path]
 					}),	
 		        update => update
 		        	.attr("id", function(d){ return d })
 					.attr("fill", function(d){ 
-						return pieceColors[aBoard[d].fill]
+						return aScheme[aBoard[d].fill]
 					})
 					.attr("stroke", function(d){ 
-						return pieceColors[aBoard[d].stroke] 				
+						return aScheme[aBoard[d].stroke] 				
 					})
 					.attr("d", function(d){ 
-						return piecePaths[aBoard[d].path]
+						return aScheme[aBoard[d].path]
 					})
 					.call(update => update.transition(ut)
 						.attr("transform", function(d){
@@ -551,9 +601,9 @@
 	}
 
 
-	function loadGame(gameData, pieces, aBoard){
+	function loadGame(gameData, pieces, aBoard, aScheme){
 		
-		pieces = loadPieces(pieces, aBoard)
+		pieces = loadPieces(pieces, aBoard, aScheme)
 		var move = 0		
         var lastMove = gameData.moves.length									
 		
@@ -582,14 +632,12 @@
         	.on("click", function(d){	// play selected move 
 
 	        	let selectedMove = parseInt(this.id.substr(4, this.id.length-1))
-
-
 					Promise.all([  // load default game.
 						d3.json('data/startBoard.json')
 					]).then(
 						d => {
 							aBoard = playGame(selectedMove, d[0], gameData)
-							update(aBoard)
+							update(aBoard, scheme)
 							move = selectedMove
 							highlightMove(move)
 						if (move === 0) {
@@ -635,7 +683,7 @@
 		  					console.log("capture of "+ aBoard[capturedPiece].name + "!")
 		  					d3.select("#"+capturedPiece).lower()
 							delete aBoard[capturedPiece]						
-							pieces = update(aBoard)										  					
+							pieces = update(aBoard, scheme)										  					
 		  				}
 		  				else {
 			  				// castling move
@@ -669,7 +717,7 @@
 
 						const pk = Object.keys(newPiece)[0]
 						aBoard[pk] = newPiece[pk]								
-						pieces = update(aBoard)			  				
+						pieces = update(aBoard, scheme)			  				
 	  				}
 	  				else if (parsedMoves.length === 4){ // pawn promotion & capture
 		  				var capturedPiece = parsedMoves[1][0]
@@ -687,7 +735,7 @@
 											, move)
 						const pk = Object.keys(newPiece)[0]
 						aBoard[pk] = newPiece[pk]		  				
-						pieces = update(aBoard)		  				
+						pieces = update(aBoard, scheme)		  				
 		  						  				
 	  				}
 	  				

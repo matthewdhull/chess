@@ -1,0 +1,763 @@
+{
+  "wqr": {
+	    "type": "rook",
+	    "name": "white's queen rook",
+	    "position": "a1",
+	    "shapeParts": {
+	      "body": {
+	        "id": "body",
+	        "d": "M9,43.86v-37h11.7L19.46,17.29H32L30.74,7H41.08v37.2S9.16,44,9,43.86Z",
+	        "transform": "translate(-8.48 -6.38)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      }
+	    }
+  }
+
+   , "wqn": {
+	    "type": "knight",
+	    "name": "white's queen knight",
+	    "position": "b1",
+	    "shapeParts": {
+	      "knightBody": {
+	        "id": "body",
+	        "d": "M7.76,16.34s-.6-4.48.13-5.95A19.42,19.42,0,0,1,10,7.18a2.47,2.47,0,0,1,1-.67,23.05,23.05,0,0,1,3.21-.8,35.82,35.82,0,0,1,4.21-.27c.53.13,5,.07,5.55.2S28,6.51,28.42,7l3.34,3.27s3.21,5.08,3.41,5.82,4,6.39,1.88,17.18c-.07.35.64.63,1,.85.75.35,1.39.62,1.39.62a21.14,21.14,0,0,1-.87,5.15c-.53,1.54-1.21,3.78-3.54,4.35-1.07.33-23.67,0-23.67,0a4.33,4.33,0,0,1-.2-3.21c.67-1.34,2.47-4.41,3.34-5s2-1.6,2.75-1.67,6.88,1.08,8.75-.06c1.19-.73,2.14-4.15,2.41-5a17.75,17.75,0,0,0-1.54-10.3c-2.2-4.47-9.56-5.88-10.63-5.81s-4.95.67-6.15,1.47S7.76,16.34,7.76,16.34Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightTail": {
+	        "id": "tail",
+	        "d": "M44.21,31.56s.6,2.1-.69,3a5.51,5.51,0,0,1-3.89.52",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightMouth": {
+	        "id": "mouth",
+	        "d": "M24.1,12.93s-.63,1.83-2.14,1.91",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightEyeOutline": {
+	        "id": "eyeOutline",
+	        "d": "M19.17,9.21s.81-3.34,3-2.83c2,.25,2.27,2.35,2,3.28s-1.47,2.78-3,2.73A2.41,2.41,0,0,1,19.17,9.21Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightEyePupil": {
+	        "id": "eyePupil",
+	        "d": "M20.69,11.68c-.1-.81.22-2.47.91-2.88s1.55,0,1.72,1C23.42,12.74,20.79,12.49,20.69,11.68Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      }
+	    }
+  }
+
+   , "wqb": {
+		"type": "bishop",
+		"name": "white's queen bishop",
+		"position": "c1",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M14.87,43.79s-.48-12.33-.48-15.57S13.46,8.6,22.13,8.6c.34,0-.73,1.14,3,1.14,3.07,0,2.57-1.19,2.82-1.17,8.57.86,6.6,16.92,6.6,20.41-.07,4.74-.7,14.88-.7,14.88Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"hatDeco": {
+				"id": "hatDeco",
+				"d": "M22.19,8.53s.36-2.94,2.73-2.94,2.87,2.87,2.87,2.87.5,1.37-2.87,1.29S22.19,8.53,22.19,8.53Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M15.63,23.31c-.09-1.62,3.11-6.52,9.17-6.52s9,5.46,8.7,6.4c-.77.76-2.9-2.31-8.62-2.31S15.72,24.93,15.63,23.31Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}   
+
+   , "wq": {
+		"type": "queen",
+		"name": "white's queen",
+		"position": "d1",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M30.4,17.64l2.35,26.23L15.81,43.8l2.8-26.19s-4.95.9-5.94,0-1.63-7.49-.29-6.2,7.77.76,7.77.76-1.54-6.55,4.19-6.55S28,12.38,28,12.38s6.65-.36,7.43-.85c.78.93,1.64,4.48.35,5.87S30.4,17.64,30.4,17.64Z",
+				"transform": "translate(-11.12 -5.15)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}	
+
+   , "wk": {
+		"type": "king",
+		"name": "white's king",
+		"position": "e1",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M30.36,16.8c-.22.18,1.21,14,1.21,14L32.71,43.9l-16.94-.07,1-13.79s.78-12.86.79-13.24-6.48,0-6.48,0l-.14-6.41,9.18.78-1-6.76h10.4L28,11.17l8.69-.71-.08,6.34S30.58,16.62,30.36,16.8Z",
+				"transform": "translate(-10.41 -3.91)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}
+
+   , "wkb": {
+		"type": "bishop",
+		"name": "white's king bishop",
+		"position": "f1",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M14.87,43.79s-.48-12.33-.48-15.57S13.46,8.6,22.13,8.6c.34,0-.73,1.14,3,1.14,3.07,0,2.57-1.19,2.82-1.17,8.57.86,6.6,16.92,6.6,20.41-.07,4.74-.7,14.88-.7,14.88Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"hatDeco": {
+				"id": "hatDeco",
+				"d": "M22.19,8.53s.36-2.94,2.73-2.94,2.87,2.87,2.87,2.87.5,1.37-2.87,1.29S22.19,8.53,22.19,8.53Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M15.63,23.31c-.09-1.62,3.11-6.52,9.17-6.52s9,5.46,8.7,6.4c-.77.76-2.9-2.31-8.62-2.31S15.72,24.93,15.63,23.31Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}   
+   
+   , "wkn": {
+	    "type": "knight",
+	    "name": "white's king knight",
+	    "position": "g1",
+	    "shapeParts": {
+	      "knightBody": {
+	        "id": "body",
+	        "d": "M7.76,16.34s-.6-4.48.13-5.95A19.42,19.42,0,0,1,10,7.18a2.47,2.47,0,0,1,1-.67,23.05,23.05,0,0,1,3.21-.8,35.82,35.82,0,0,1,4.21-.27c.53.13,5,.07,5.55.2S28,6.51,28.42,7l3.34,3.27s3.21,5.08,3.41,5.82,4,6.39,1.88,17.18c-.07.35.64.63,1,.85.75.35,1.39.62,1.39.62a21.14,21.14,0,0,1-.87,5.15c-.53,1.54-1.21,3.78-3.54,4.35-1.07.33-23.67,0-23.67,0a4.33,4.33,0,0,1-.2-3.21c.67-1.34,2.47-4.41,3.34-5s2-1.6,2.75-1.67,6.88,1.08,8.75-.06c1.19-.73,2.14-4.15,2.41-5a17.75,17.75,0,0,0-1.54-10.3c-2.2-4.47-9.56-5.88-10.63-5.81s-4.95.67-6.15,1.47S7.76,16.34,7.76,16.34Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightTail": {
+	        "id": "tail",
+	        "d": "M44.21,31.56s.6,2.1-.69,3a5.51,5.51,0,0,1-3.89.52",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightMouth": {
+	        "id": "mouth",
+	        "d": "M24.1,12.93s-.63,1.83-2.14,1.91",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightEyeOutline": {
+	        "id": "eyeOutline",
+	        "d": "M19.17,9.21s.81-3.34,3-2.83c2,.25,2.27,2.35,2,3.28s-1.47,2.78-3,2.73A2.41,2.41,0,0,1,19.17,9.21Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      },
+	      "knightEyePupil": {
+	        "id": "eyePupil",
+	        "d": "M20.69,11.68c-.1-.81.22-2.47.91-2.88s1.55,0,1.72,1C23.42,12.74,20.79,12.49,20.69,11.68Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      }
+	    }
+  }   
+   
+   , "wkr": {
+	    "type": "rook",
+	    "name": "white's king rook",
+	    "position": "h1",
+	    "shapeParts": {
+	      "body": {
+	        "id": "body",
+	        "d": "M9,43.86v-37h11.7L19.46,17.29H32L30.74,7H41.08v37.2S9.16,44,9,43.86Z",
+	        "transform": "translate(-8.48 -6.38)",
+	        "stroke": "white_piece_stroke",
+	        "fill": "white_piece_fill"
+	      }
+	    }
+  }   
+      
+  , "wqrp": {
+		"type": "pawn",
+		"name": "white's queen rook pawn",
+		"position": "a2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}
+
+  , "wqnp": {
+		"type": "pawn",
+		"name": "white's queen knight pawn",
+		"position": "b2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}	
+   
+  , "wqbp": {
+		"type": "pawn",
+		"name": "white's queen bishop pawn",
+		"position": "c2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}	
+
+  , "wqp": {
+		"type": "pawn",
+		"name": "white's queen pawn",
+		"position": "d2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}	
+
+  , "wkp": {
+		"type": "pawn",
+		"name": "white's king pawn",
+		"position": "e2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}
+   
+  , "wkbp": {
+		"type": "pawn",
+		"name": "white's king bishop pawn",
+		"position": "f2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}   
+   
+  , "wknp": {
+		"type": "pawn",
+		"name": "white's king knight pawn",
+		"position": "g2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	} 
+  
+  , "wkrp": {
+		"type": "pawn",
+		"name": "white's king rook pawn",
+		"position": "h2",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "white_piece_stroke",
+				"fill": "white_piece_fill"
+			}
+		}
+	}   
+
+   , "bqr": {
+		"type": "rook",
+		"name": "black's queen rook",
+		"position": "a8",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M9,43.86v-37h11.7L19.46,17.29H32L30.74,7H41.08v37.2S9.16,44,9,43.86Z",
+				"transform": "translate(-8.48 -6.38)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}   
+   
+   , "bqn": {
+	    "type": "knight",
+	    "name": "black's queen knight",
+	    "position": "b8",
+	    "shapeParts": {
+	      "knightBody": {
+	        "id": "body",
+	        "d": "M7.76,16.34s-.6-4.48.13-5.95A19.42,19.42,0,0,1,10,7.18a2.47,2.47,0,0,1,1-.67,23.05,23.05,0,0,1,3.21-.8,35.82,35.82,0,0,1,4.21-.27c.53.13,5,.07,5.55.2S28,6.51,28.42,7l3.34,3.27s3.21,5.08,3.41,5.82,4,6.39,1.88,17.18c-.07.35.64.63,1,.85.75.35,1.39.62,1.39.62a21.14,21.14,0,0,1-.87,5.15c-.53,1.54-1.21,3.78-3.54,4.35-1.07.33-23.67,0-23.67,0a4.33,4.33,0,0,1-.2-3.21c.67-1.34,2.47-4.41,3.34-5s2-1.6,2.75-1.67,6.88,1.08,8.75-.06c1.19-.73,2.14-4.15,2.41-5a17.75,17.75,0,0,0-1.54-10.3c-2.2-4.47-9.56-5.88-10.63-5.81s-4.95.67-6.15,1.47S7.76,16.34,7.76,16.34Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightTail": {
+	        "id": "tail",
+	        "d": "M44.21,31.56s.6,2.1-.69,3a5.51,5.51,0,0,1-3.89.52",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightMouth": {
+	        "id": "mouth",
+	        "d": "M24.1,12.93s-.63,1.83-2.14,1.91",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightEyeOutline": {
+	        "id": "eyeOutline",
+	        "d": "M19.17,9.21s.81-3.34,3-2.83c2,.25,2.27,2.35,2,3.28s-1.47,2.78-3,2.73A2.41,2.41,0,0,1,19.17,9.21Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightEyePupil": {
+	        "id": "eyePupil",
+	        "d": "M20.69,11.68c-.1-.81.22-2.47.91-2.88s1.55,0,1.72,1C23.42,12.74,20.79,12.49,20.69,11.68Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      }
+	    }
+  }    
+
+   , "bqb": {
+		"type": "bishop",
+		"name": "black's queen bishop",
+		"position": "c8",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M14.87,43.79s-.48-12.33-.48-15.57S13.46,8.6,22.13,8.6c.34,0-.73,1.14,3,1.14,3.07,0,2.57-1.19,2.82-1.17,8.57.86,6.6,16.92,6.6,20.41-.07,4.74-.7,14.88-.7,14.88Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"hatDeco": {
+				"id": "hatDeco",
+				"d": "M22.19,8.53s.36-2.94,2.73-2.94,2.87,2.87,2.87,2.87.5,1.37-2.87,1.29S22.19,8.53,22.19,8.53Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M15.63,23.31c-.09-1.62,3.11-6.52,9.17-6.52s9,5.46,8.7,6.4c-.77.76-2.9-2.31-8.62-2.31S15.72,24.93,15.63,23.31Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}	
+   
+   , "bq": {
+		"type": "queen",
+		"name": "black's queen",
+		"position": "d8",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M30.4,17.64l2.35,26.23L15.81,43.8l2.8-26.19s-4.95.9-5.94,0-1.63-7.49-.29-6.2,7.77.76,7.77.76-1.54-6.55,4.19-6.55S28,12.38,28,12.38s6.65-.36,7.43-.85c.78.93,1.64,4.48.35,5.87S30.4,17.64,30.4,17.64Z",
+				"transform": "translate(-11.12 -5.15)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}	
+
+   , "bk": {
+		"type": "king",
+		"name": "black's king",
+		"position": "e8",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M30.36,16.8c-.22.18,1.21,14,1.21,14L32.71,43.9l-16.94-.07,1-13.79s.78-12.86.79-13.24-6.48,0-6.48,0l-.14-6.41,9.18.78-1-6.76h10.4L28,11.17l8.69-.71-.08,6.34S30.58,16.62,30.36,16.8Z",
+				"transform": "translate(-10.41 -3.91)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}
+
+   , "bkb": {
+		"type": "bishop",
+		"name": "black's king bishop",
+		"position": "f8",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M14.87,43.79s-.48-12.33-.48-15.57S13.46,8.6,22.13,8.6c.34,0-.73,1.14,3,1.14,3.07,0,2.57-1.19,2.82-1.17,8.57.86,6.6,16.92,6.6,20.41-.07,4.74-.7,14.88-.7,14.88Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"hatDeco": {
+				"id": "hatDeco",
+				"d": "M22.19,8.53s.36-2.94,2.73-2.94,2.87,2.87,2.87,2.87.5,1.37-2.87,1.29S22.19,8.53,22.19,8.53Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M15.63,23.31c-.09-1.62,3.11-6.52,9.17-6.52s9,5.46,8.7,6.4c-.77.76-2.9-2.31-8.62-2.31S15.72,24.93,15.63,23.31Z",
+				"transform": "translate(-13.86 -5.09)",
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}   
+   
+   , "bkn": {
+	    "type": "knight",
+	    "name": "black's king knight",
+	    "position": "g8",
+	    "shapeParts": {
+	      "knightBody": {
+	        "id": "body",
+	        "d": "M7.76,16.34s-.6-4.48.13-5.95A19.42,19.42,0,0,1,10,7.18a2.47,2.47,0,0,1,1-.67,23.05,23.05,0,0,1,3.21-.8,35.82,35.82,0,0,1,4.21-.27c.53.13,5,.07,5.55.2S28,6.51,28.42,7l3.34,3.27s3.21,5.08,3.41,5.82,4,6.39,1.88,17.18c-.07.35.64.63,1,.85.75.35,1.39.62,1.39.62a21.14,21.14,0,0,1-.87,5.15c-.53,1.54-1.21,3.78-3.54,4.35-1.07.33-23.67,0-23.67,0a4.33,4.33,0,0,1-.2-3.21c.67-1.34,2.47-4.41,3.34-5s2-1.6,2.75-1.67,6.88,1.08,8.75-.06c1.19-.73,2.14-4.15,2.41-5a17.75,17.75,0,0,0-1.54-10.3c-2.2-4.47-9.56-5.88-10.63-5.81s-4.95.67-6.15,1.47S7.76,16.34,7.76,16.34Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightTail": {
+	        "id": "tail",
+	        "d": "M44.21,31.56s.6,2.1-.69,3a5.51,5.51,0,0,1-3.89.52",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightMouth": {
+	        "id": "mouth",
+	        "d": "M24.1,12.93s-.63,1.83-2.14,1.91",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightEyeOutline": {
+	        "id": "eyeOutline",
+	        "d": "M19.17,9.21s.81-3.34,3-2.83c2,.25,2.27,2.35,2,3.28s-1.47,2.78-3,2.73A2.41,2.41,0,0,1,19.17,9.21Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      },
+	      "knightEyePupil": {
+	        "id": "eyePupil",
+	        "d": "M20.69,11.68c-.1-.81.22-2.47.91-2.88s1.55,0,1.72,1C23.42,12.74,20.79,12.49,20.69,11.68Z",
+	        "transform": "translate(-7.15 -5.04)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      }
+	    }
+  }   
+   
+   , "bkr": {
+	    "type": "rook",
+	    "name": "black's king rook",
+	    "position": "h8",
+	    "shapeParts": {
+	      "body": {
+	        "id": "body",
+	        "d": "M9,43.86v-37h11.7L19.46,17.29H32L30.74,7H41.08v37.2S9.16,44,9,43.86Z",
+	        "transform": "translate(-8.48 -6.38)",
+	        "stroke": "black_piece_stroke",
+	        "fill": "black_piece_fill"
+	      }
+	    }
+  } 
+   
+   , "bqrp": {
+		"type": "pawn",
+		"name": "black's queen rook pawn",
+		"position": "a7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}
+
+  , "bqnp": {
+		"type": "pawn",
+		"name": "black's queen knight pawn",
+		"position": "b7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}	
+   
+  , "bqbp": {
+		"type": "pawn",
+		"name": "black's queen bishop pawn",
+		"position": "c7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}	
+
+  , "bqp": {
+		"type": "pawn",
+		"name": "black's queen pawn",
+		"position": "d7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}	
+
+  , "bkp": {
+		"type": "pawn",
+		"name": "black's king pawn",
+		"position": "e7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}
+   
+  , "bkbp": {
+		"type": "pawn",
+		"name": "black's king bishop pawn",
+		"position": "f7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}   
+   
+  , "bknp": {
+		"type": "pawn",
+		"name": "black's king knight pawn",
+		"position": "g7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	} 
+  
+  , "bkrp": {
+		"type": "pawn",
+		"name": "black's king rook pawn",
+		"position": "h7",
+		"shapeParts": {
+			"body": {
+				"id": "body",
+				"d": "M24.92,16.36c6.78,0,9,8.11,9.09,16a42.17,42.17,0,0,1-2.31,12.1c-.33.42-1.84.49-5.91.49s-8.31-.18-8.82-.49-1.54-5.71-1.54-12C15.39,23.13,18.14,16.36,24.92,16.36Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			},
+			"visor": {
+				"id": "visor",
+				"d": "M16.36,27.08A15.69,15.69,0,0,1,25,24.54c5.19,0,8,2.18,8,2.18s-1.81,3.63-7.91,3.69S16.36,27.08,16.36,27.08Z", 
+				"transform": "translate(-6,-7)", 
+				"stroke": "black_piece_stroke",
+				"fill": "black_piece_fill"
+			}
+		}
+	}   
+     
+   
+}

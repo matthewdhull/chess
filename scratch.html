@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>scratch</title>
+		<style type="text/css" media="screen">
+			svg {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>			
+	<script src="d3-lib/d3/d3.min.js"></script>			
+	<script>
+
+	const brandtleyColors = {
+		"white_piece_fill": "yellow"
+		,"white_piece_stroke": "black"
+		, "black_piece_fill": "lightBlue"
+		, "black_piece_stroke": "black"
+	}		
+		
+		
+	var svg = d3.select("body")
+		.insert("svg")
+		.attr("height", "100")
+		.attr("width", "1600")	
+	
+	
+    Promise.all([
+        d3.json('data/multiPathStartBoard.json')
+    ]).then(
+        d => ready(d[0])
+    )
+
+		
+	function ready(data){
+		var pieces = Object.keys(data)
+		
+		var i = 0
+		pieces.forEach(function(piece){
+			var pieceParts = Object.keys(data[piece].shapeParts)
+			svg.append("g")
+				.attr("transform", function(d){
+					return "translate("+(5+(i*50))+",5)"						
+				})		
+				.attr("id", piece)
+				.selectAll("path")
+				.data(Object.keys(data[piece].shapeParts))
+				.enter()
+				.append("path")
+				.attr("transform", function(d){
+		  			return data[piece].shapeParts[d].transform
+				})
+				.attr("fill", function(d){ 
+					return brandtleyColors[data[piece].shapeParts[d].fill]
+				})
+				.attr("stroke", function(d){ 
+					return brandtleyColors[data[piece].shapeParts[d].stroke]
+				})
+				.attr("d", function(d){ 
+					return data[piece].shapeParts[d].d
+				})				
+			i +=1
+		})
+	}
+	
+	
+
+			
+	</script>
+	</body>
+</html>
+
+
