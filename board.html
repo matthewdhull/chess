@@ -14,10 +14,10 @@
 	
 	 body {
 	    display: grid;
-	    grid-template-columns: repeat(4, 1fr);
+	    grid-template-columns: 1fr 450px 200px 1fr;
 	    grid-gap: 10px;
-	    grid-template-areas: "n n s s" ". a b ." ". c . .";
-		grid-template-rows: 40px 500px 400px;	  
+	    grid-template-areas: "n n s s" ". a b ." ". c d .";
+		grid-template-rows: 40px 520px 400px;	  
 	}
 	
 	#nav_bar {
@@ -45,6 +45,13 @@
 		overflow-y: scroll;
 
 	}
+	
+	 #game_controls {
+		 display: grid;
+		 grid-template-columns: repeat(4, 1fr);
+		 grid-column-gap: 2px;
+		 padding-right: 6%;
+	 }	
 	  
 	 svg g text {
 		font-size: 9pt;
@@ -82,19 +89,23 @@
 		 grid-area: c;
 	 }
 	 
-	 #annotations {
-		height: 30%;
+	 #annotations, #matchInfo {
+		height: 40%;
 		overflow: scroll;
-		border: 1px solid #c9c9c9;
+		border-top: 1px solid #c9c9c9;
+		border-bottom: 1px solid #f6f6f6;
 		padding: 5px;		 
 	 }
 	 
-	 #game_controls {
-		 display: grid;
-		 grid-template-columns: repeat(4, 1fr);
-		 grid-column-gap: 2px;
-		 padding-right: 6%;
+	 #matchInfoContainer {
+		 grid-area: d;
 	 }
+	 
+	 #matchInfo p {
+		 line-height: .4;
+	 }
+	 
+
 
   </style>
  </head>
@@ -107,7 +118,7 @@
 		<option value="data/kasparovVkarpov.json">Kasparov v. Karpov</option>	
 		<option value="data/fischerVreshevsky.json">Fischer v. Reshevsky</option>
 		<option value="data/bruehlVphilidor.json">Bruehl v. Philidor</option>  
-		<option value="data/brandtleyVmatthew211220.json">Brandtley v. Matthew </option>
+		<option value="data/brandtleyVmatthew211220.json">B v. M 211220 </option>				
 	</select>
 	</div>	
 
@@ -143,6 +154,12 @@
 <div id="annotation_container">
 	<label for="annotations">Annotations:</label>
 	<div id="annotations"></div>
+</div>
+
+
+<div id="matchInfoContainer">
+	<label for="matchInfo">Match Info:</label>
+	<div id="matchInfo"></div>
 </div>
 
 <script src="scripts/pieces.js"></script> 
@@ -652,7 +669,17 @@
 					})
 	        
         	})	
-
+		
+		
+		d3.select("#matchInfo").selectAll("p").remove()
+		d3.select("#matchInfo")
+			.selectAll("p")
+			.data(Object.keys(gameData.str))
+			.enter()
+			.append("p")
+			.text(function(d){
+				return d+": "+gameData.str[d]
+			})
     	        
 		// piece movement
 		d3.select("#start").attr("disabled", null)		
