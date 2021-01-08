@@ -100,6 +100,13 @@
 		,"wqrp": {"type":"pawn", "position": "a7"} 
 		,"bkp": {"type":"pawn", "position": "e2"}	
 		,"wkr": {"type":"rook", "position": "d1"}  
+	}
+	
+	const sameFilePawnsBoard = {
+		"bqbp": {"type":"pawn", "position": "c7"}
+		,"bqp": {"type":"pawn", "position": "c4"}
+		,"wkp": {"type":"pawn", "position": "f4"}
+		,"wkbp": {"type":"pawn", "position": "f2"}		
 	}		
 			
 	
@@ -288,6 +295,23 @@
 			assert.deepEqual(parseMove(1, parseMove17, pawnPromotionBoard),[["bkrp","h1"],["bkrp","p"],["bQ","h1"]])
 		});
 	});		
+	
+	
+	QUnit.module('same file black pawn promotion test', function(){
+		const parseMove21 = "c5"
+		QUnit.test(parseMove21+' should be a bqbp pawn promotion', function(assert){
+			assert.deepEqual(parseMove(1, parseMove21, sameFilePawnsBoard),[["bqbp","c5"]])
+		});
+	});			
+	
+	
+	QUnit.module('same file white pawn promotion test', function(){
+		const parseMove22 = "f3"
+		QUnit.test(parseMove22+' should be a wkbp pawn promotion', function(assert){
+			assert.deepEqual(parseMove(0, parseMove22, sameFilePawnsBoard),[["wkbp","f3"]])
+		});
+	});			
+	
 
 		
 	QUnit.module('white pawn promotion test', function(){
@@ -295,7 +319,7 @@
 		QUnit.test(parseMove18+' should be a pawn promotion', function(assert){
 			assert.deepEqual(parseMove(0, parseMove18, pawnPromotionBoard),[["wqrp","a8"],["wqrp","p"],["wQ","a8"]])
 		});
-	});	
+	});		
 
 	
 	// https://boardgames.stackexchange.com/questions/6739/is-pawn-promotion-to-rook-or-bishop-something-that-is-seen-in-play?rq=1

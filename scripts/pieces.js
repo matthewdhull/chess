@@ -87,7 +87,7 @@ function getPlayerPawnForFile(player, file, aBoard, aPosition){
 		var chosenPawn = null	
 		if (player == "w"){
 			ranks.forEach(function(rank){
-				if (rank == (desiredRank-1)){
+				if ((rank == (desiredRank-1)) || (rank == (desiredRank-2))){
 					var calculatedPosition = file+rank.toString()
 					chosenPawn = playerPawnsForFile[calculatedPosition]
 				}
@@ -95,7 +95,7 @@ function getPlayerPawnForFile(player, file, aBoard, aPosition){
 		}
 		else {
 			ranks.forEach(function(rank){
-				if (rank == (desiredRank+1)){
+				if ((rank == (desiredRank+1)) || (rank == (desiredRank+2))){
 					chosenPawn = playerPawnsForFile[file+rank.toString()]					
 				}
 			})
