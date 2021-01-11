@@ -1,6 +1,7 @@
 ## Creating chess with D3
 
-Read  about building [chess in d3](https://matthewdhull.github.io/chess/) 
+An exploration of building a chess viewer for play-throughs and reading match annotations.  
 
-![Chess Demo](img/move_indicator.gif)
+Development notes about building [chess in d3](https://matthewdhull.github.io/chess/) 
 
+![Chess Demo](img/demo.gif)
