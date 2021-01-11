@@ -93,7 +93,7 @@
 
 <p>We could easily devise a table of white and black squares and determine which bishop to move.  If it is black’s turn, only the queen bishop can move to <code class="language-plaintext highlighter-rouge">b3</code>.</p>
 
-<p>While this approach will work, the intervening squares were not calculated.  If black’s queen bishop moved from <code class="language-plaintext highlighter-rouge">e6</code>, the path of squares traversed is not known.</p>
+<p>While this approach will work, the intervening squares were not calculated.  If white’s king bishop moved from <code class="language-plaintext highlighter-rouge">a8</code> to <code class="language-plaintext highlighter-rouge">h1</code>, the path of squares traversed is not known.</p>
 
 <p><img src="/chess/images/bishop_move_unkn_squares.png" alt="uknown squares" /></p>
 
@@ -111,11 +111,11 @@
 
 <p>Current position: <code class="language-plaintext highlighter-rouge">a1 = [1,1]</code></p>
 
-<p>Movement: <code class="language-plaintext highlighter-rouge">[1,3]</code></p>
+<p>Movement: <code class="language-plaintext highlighter-rouge">[3,3]</code></p>
 
-\[[1+1, 1+3]  = [2,4]\]
+\[[1+3, 1+3]  = [4,4]\]
 
-<p>New Position <code class="language-plaintext highlighter-rouge">[2,4] = b4</code></p>
+<p>New Position <code class="language-plaintext highlighter-rouge">[4,4] = d4</code></p>
 
 <p>This <a name="piecewise">piece-wise function <a></a> can be used to find all bishop moves, starting with increasing rank and file.</a></p>
 

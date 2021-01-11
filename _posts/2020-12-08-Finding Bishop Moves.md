@@ -12,7 +12,7 @@ First, observe that black's king bishop and white's queen bishop can only occupy
 
 We could easily devise a table of white and black squares and determine which bishop to move.  If it is black's turn, only the queen bishop can move to `b3`.
 
-While this approach will work, the intervening squares were not calculated.  If black's queen bishop moved from `e6`, the path of squares traversed is not known.
+While this approach will work, the intervening squares were not calculated.  If white's king bishop moved from `a8` to `h1`, the path of squares traversed is not known.
 
 ![uknown squares]({{site.url}}/chess/images/bishop_move_unkn_squares.png)
 
@@ -30,11 +30,11 @@ Calculation example:
 
 Current position: `a1 = [1,1]`
 
-Movement: `[1,3]`
+Movement: `[3,3]`
 
-$$ [1+1, 1+3]  = [2,4] $$
+$$ [1+3, 1+3]  = [4,4] $$
 
-New Position `[2,4] = b4`
+New Position `[4,4] = d4`
  
 This <a name='piecewise'>piece-wise function <a/> can be used to find all bishop moves, starting with increasing rank and file.  
 
