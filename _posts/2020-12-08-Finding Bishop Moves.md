@@ -113,13 +113,4 @@ Footnotes:
 
 [^1]: Under promotion to bishop is noteworthy for these [championship games](https://www.chess.com/blog/SamCopeland/the-rarest-chess-move-underpromoting-to-a-bishop) where it avoided stalemate.
 [^2]: Practically, all of these values could be held in a single list but we keep them separated for cleaner display.
-[^3]: A valid position has an $$ x $$ value between 1-7 and a $$ y $$ value betwen 1-7 
-
-
-
-
-
-
-
-
-
+[^3]: A valid position has an $$ x $$ value between 1-7 and a $$ y $$ value betwen 1-7
