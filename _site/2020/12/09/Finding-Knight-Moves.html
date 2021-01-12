@@ -3,18 +3,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Data Translation for D3 | Chess with D3</title>
+<title>Finding Knight Moves | Chess with D3</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Data Translation for D3" />
+<meta property="og:title" content="Finding Knight Moves" />
 <meta name="author" content="matthew" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="All 32 pieces and occupied positions are represented in a dictionary can be retrieved in a manner like:" />
-<meta property="og:description" content="All 32 pieces and occupied positions are represented in a dictionary can be retrieved in a manner like:" />
+<meta name="description" content="In a manner similar to finding bishop moves, this piecewise function can be used to find all knight moves." />
+<meta property="og:description" content="In a manner similar to finding bishop moves, this piecewise function can be used to find all knight moves." />
 <meta property="og:site_name" content="Chess with D3" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-09T00:00:00+01:00" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Data Translation for D3","dateModified":"2020-12-09T00:00:00+01:00","datePublished":"2020-12-09T00:00:00+01:00","author":{"@type":"Person","name":"matthew"},"mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/09/Data-Translation-for-D3.html"},"description":"All 32 pieces and occupied positions are represented in a dictionary can be retrieved in a manner like:","url":"/2020/12/09/Data-Translation-for-D3.html","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Finding Knight Moves","dateModified":"2020-12-09T00:00:00+01:00","datePublished":"2020-12-09T00:00:00+01:00","author":{"@type":"Person","name":"matthew"},"mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/09/Finding-Knight-Moves.html"},"description":"In a manner similar to finding bishop moves, this piecewise function can be used to find all knight moves.","url":"/2020/12/09/Finding-Knight-Moves.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Chess with D3" />
@@ -78,62 +78,94 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Data Translation for D3</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Finding Knight Moves</h1>
     <p class="post-meta">
       <time class="dt-published" datetime="2020-12-09T00:00:00+01:00" itemprop="datePublished">Dec 9, 2020
       </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">matthew</span></span></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>All 32 pieces and occupied positions are represented in a dictionary can be retrieved in a manner like:</p>
+    <p>In a manner similar to finding bishop moves, this <a name="piecewise">piecewise function <a></a> can be used to find all knight moves.</a></p>
 
-<p><code class="language-plaintext highlighter-rouge">board["bq"].position  //position of black's queen</code></p>
+\[f(x) = \begin{cases}
+x+1 \text{ if } x = -2  \\
+x-1, \text{ if } x = -1 \\
+x+1, \text{ if }  x = 1 \\
+x-1  \text{ if } x=2 
+\end{cases}\]
 
-<p>When we parse a new move from the PGN file, we update only the piece(s) that are changing, instead of rebuilding the entire board state with each move. Then we pass the changes to D3 and allow it to handle the movement of our pieces on the board or take other actions, such as removing captured pieces.</p>
+<p>The domain is: \(\{x \in \mathbb{I} \mid -2 \leq x \leq 2 \text{ and } x \neq 0 \}\)</p>
 
-<p>As discussed in an earlier post on reading PGN files, the SAN notation does not always cleanly indicate what piece movement or action is needed. In fact, that there are many ways to indicate a move:</p>
+<p>Half of the possible moves can be found by finding \(f(x)\) for all values in the domain.</p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">c5</code>, <code class="language-plaintext highlighter-rouge">Nf3</code>, and <code class="language-plaintext highlighter-rouge">Qa6a8</code> are all ways to indicate simple movement of a piece from one square to the next</li>
-  <li><code class="language-plaintext highlighter-rouge">Rxh5</code>, <code class="language-plaintext highlighter-rouge">cxd4</code>, and <code class="language-plaintext highlighter-rouge">Rbxa1</code> indicate both the movement of a piece and removal of another piece</li>
-  <li><code class="language-plaintext highlighter-rouge">O-O</code> or <code class="language-plaintext highlighter-rouge">O-O-O</code> indicate movement of two pieces (castling)</li>
-  <li><code class="language-plaintext highlighter-rouge">a8=Q</code>, <code class="language-plaintext highlighter-rouge">exd1=R</code> indicates a movement, the removal of a piece, and the addition of another piece. (pawn promotion)</li>
-</ul>
+<p>To find the remaining directions, use a vertical reflection of the function, \(-f(x)\)</p>
 
-<p>The following actions have been establish to categorize any move:</p>
+<p>After gathering the possible values, truncate any moves that yield coordinates that do not exist on the board.</p>
 
-<ol>
-  <li>Move</li>
-  <li>Capture</li>
-  <li>Castle</li>
-  <li>Promote</li>
-</ol>
+<p>Example:</p>
 
-<p>By pairing pieces with one of these four actions, we translate a move from SAN into a change to the data model representing the board state.
-While this is likely a misuse of javascript data structures, we use a pair of values of the form:</p>
+<p>Calculate possible moves for a knight <code class="language-plaintext highlighter-rouge">d5</code>.</p>
 
-<p><code class="language-plaintext highlighter-rouge">[&lt;piece&gt;, &lt;position&gt; | &lt;flag&gt;]</code></p>
+<p>Current Position: <code class="language-plaintext highlighter-rouge">d5 = [5,4]</code>.  We refer to this later as <a name="pxpy"> \((p_x, p_y)\) </a></p>
 
-<p>and pass them like a tuple.  The first value in the tuple will always be the piece identifier and the second value can be either a position, e.g., <code class="language-plaintext highlighter-rouge">a8</code>, or a flag containing one of two special values indicating capture <code class="language-plaintext highlighter-rouge">'x'</code> or promotion <code class="language-plaintext highlighter-rouge">'p'</code>.</p>
+<hr />
 
-<p>Examples:</p>
-<ul>
-  <li>The move <code class="language-plaintext highlighter-rouge">c5</code> could be translated to <code class="language-plaintext highlighter-rouge">['wqbp', 'c5']</code></li>
-  <li>The move and capture <code class="language-plaintext highlighter-rouge">Rxh5</code> could be translated to <code class="language-plaintext highlighter-rouge">['bkp', 'h5'],['wkrp', 'x']</code> where the <code class="language-plaintext highlighter-rouge">'x'</code> flag indicates a piece should be removed.</li>
-  <li>The move <code class="language-plaintext highlighter-rouge">O-O-O</code> is translated to <code class="language-plaintext highlighter-rouge">['wk','c1'],['wqr','d1']</code></li>
-  <li>The move <code class="language-plaintext highlighter-rouge">a8=Q</code> could be translated to <code class="language-plaintext highlighter-rouge">['wqrp','a8'],['wqrp','p'],['wQ','a8']</code> where the <code class="language-plaintext highlighter-rouge">'p'</code> flag indicates to promote the piece and remove it from the board and replace it with the piece in the subsequent tuple, a white queen at position <code class="language-plaintext highlighter-rouge">a8</code></li>
-</ul>
+<p><strong>Get all move changes in each direction:</strong></p>
 
-<p>After making this translation, we update our board state once per each move
-    e.g.,</p>
+<p><em>For all values</em> \(x\) <em>in the domain of</em> \(f(x)\) <em>:</em></p>
 
-<p><code class="language-plaintext highlighter-rouge">board[piece].position = nextPosition</code></p>
+<p><em>moves1</em> \(= [(-2, f(2)), (-1, f(1)), (1, f(1)), (2, f(2))]\)</p>
 
-<p>and/or</p>
+<p><em>moves2</em> \(= [(-2, -f(2)), (-1, -f(1)), (1, -f(1)), (2, -f(2))]\)</p>
 
-<p><code class="language-plaintext highlighter-rouge">delete board[piece]</code></p>
+<p><em>return moves1, moves2</em></p>
 
-  </div><a class="u-url" href="/2020/12/09/Data-Translation-for-D3.html" hidden></a>
+<hr />
+
+<p>This operation returns the values <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">1</a></sup>.:</p>
+
+<p><em>moves1</em> = \([(-2, -1), (-1,-2), (1,2), (2,1)]\)</p>
+
+<p><em>moves2</em> = \([(-2,1), (-1,2), (1,-2), (2,-1)]\)</p>
+
+<hr />
+
+<p><strong>Find new positions:</strong></p>
+
+<p><em>For each value-pair \((x_i, y_i)\) in moves1, moves2 and current position <a href="#pxpy">\((p_x, p_y)\):</a></em></p>
+
+<p><em>new_position</em> = \((p_x + x_i, p_y + y_i)\)</p>
+
+<p><em>If new_position is valid: <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">2</a></sup></em></p>
+
+<p><em>return new_position</em></p>
+
+<p><img src="/chess/images/knight_moves.png" alt="knight moves" /></p>
+
+<p>Considering our original position of \([5,4]\), the new positions calculated from <em>moves1</em> would be: \([1,4], [2,3], [5,7], [6,6]\)</p>
+
+<p>And we map these back to positions <code class="language-plaintext highlighter-rouge">'a4', 'b3', 'e7', 'f6'</code></p>
+
+<p>(Continue in the manner for <em>moves2</em>)</p>
+
+<p>Graph of knight moves graphed using the <a href="#piecewise">piecewise</a> function on <a href="https://www.desmos.com/calculator/osdzle1man">desmos</a></p>
+
+<hr />
+
+<p>Footnotes:</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:2" role="doc-endnote">
+      <p>Practically, all of these values could be held in a single list but we keep them separated for cleaner display. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>A valid position has an \(x\) value between 1-7 and a \(y\) value betwen 1-7 <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div><a class="u-url" href="/2020/12/09/Finding-Knight-Moves.html" hidden></a>
 </article>
 
       </div>
